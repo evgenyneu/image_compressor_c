@@ -18,7 +18,7 @@ double **load_image(const char *path, int *width, int *height, int *channels) {
     return matrices;
 }
 
-// Convert the `image` data into separate arrays for each color (returned).
+
 double **image_to_array(unsigned char *image, int width, int height, int channels) {
     int i, pixel;
     int pixel_num = width * height;

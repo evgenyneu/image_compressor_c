@@ -39,6 +39,7 @@ static char * test_load_image() {
     mu_equal_double(matrices[2][7], 230.0);
     mu_equal_double(matrices[2][8], 210.0);
 
+    // Free memory
     free(matrices[0]);
     free(matrices[1]);
     free(matrices[2]);

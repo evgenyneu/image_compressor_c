@@ -50,6 +50,7 @@ DEP = $(OBJ:%.o=%.d)
 # Default target named after the binary.
 compressor : $(BUILD_DIR)/$(BIN)
 
+# Build and run tests
 test : $(BUILD_DIR)/$(BIN)
 	$(BUILD_DIR)/test
 
