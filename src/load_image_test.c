@@ -4,37 +4,40 @@
 
 static char * test_load_image() {
     int width, height, channels;
-    double **matrices = load_image("images/test_3x3_gray.bmp", &width, &height, &channels);
-    
-    mu_equal_double(matrices[0][0], 79.0);
-    mu_equal_double(matrices[0][1], 59.0);
+    double **matrices = load_image("images/test_3x3.bmp", &width, &height, &channels);
+
+    // Red
+    mu_equal_double(matrices[0][0], 80.0);
+    mu_equal_double(matrices[0][1], 60.0);
     mu_equal_double(matrices[0][2], 0.0);
-    mu_equal_double(matrices[0][3], 149.0);
-    mu_equal_double(matrices[0][4], 119.0);
-    mu_equal_double(matrices[0][5], 99.0);
-    mu_equal_double(matrices[0][6], 254.0);
-    mu_equal_double(matrices[0][7], 219.0);
-    mu_equal_double(matrices[0][8], 199.0);
+    mu_equal_double(matrices[0][3], 150.0);
+    mu_equal_double(matrices[0][4], 120.0);
+    mu_equal_double(matrices[0][5], 100.0);
+    mu_equal_double(matrices[0][6], 255.0);
+    mu_equal_double(matrices[0][7], 220.0);
+    mu_equal_double(matrices[0][8], 200.0);
 
-    mu_equal_double(matrices[1][0], 79.0);
-    mu_equal_double(matrices[1][1], 59.0);
-    mu_equal_double(matrices[1][2], 0.0);
-    mu_equal_double(matrices[1][3], 149.0);
-    mu_equal_double(matrices[1][4], 119.0);
-    mu_equal_double(matrices[1][5], 99.0);
-    mu_equal_double(matrices[1][6], 254.0);
-    mu_equal_double(matrices[1][7], 219.0);
-    mu_equal_double(matrices[1][8], 199.0);
+    // Green
+    mu_equal_double(matrices[1][0], 85.0);
+    mu_equal_double(matrices[1][1], 65.0);
+    mu_equal_double(matrices[1][2], 5.0);
+    mu_equal_double(matrices[1][3], 155.0);
+    mu_equal_double(matrices[1][4], 125.0);
+    mu_equal_double(matrices[1][5], 105.0);
+    mu_equal_double(matrices[1][6], 255.0);
+    mu_equal_double(matrices[1][7], 225.0);
+    mu_equal_double(matrices[1][8], 205.0);
 
-    mu_equal_double(matrices[1][0], 79.0);
-    mu_equal_double(matrices[1][1], 59.0);
-    mu_equal_double(matrices[1][2], 0.0);
-    mu_equal_double(matrices[1][3], 149.0);
-    mu_equal_double(matrices[1][4], 119.0);
-    mu_equal_double(matrices[1][5], 99.0);
-    mu_equal_double(matrices[1][6], 254.0);
-    mu_equal_double(matrices[1][7], 219.0);
-    mu_equal_double(matrices[1][8], 199.0);
+    // Blue
+    mu_equal_double(matrices[2][0], 90.0);
+    mu_equal_double(matrices[2][1], 70.0);
+    mu_equal_double(matrices[2][2], 10.0);
+    mu_equal_double(matrices[2][3], 160.0);
+    mu_equal_double(matrices[2][4], 130.0);
+    mu_equal_double(matrices[2][5], 110.0);
+    mu_equal_double(matrices[2][6], 255.0);
+    mu_equal_double(matrices[2][7], 230.0);
+    mu_equal_double(matrices[2][8], 210.0);
 
     free(matrices[0]);
     free(matrices[1]);
