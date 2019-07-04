@@ -16,17 +16,13 @@ static char * test_image_to_array() {
     int i;
     int pixel_num = width * height;
 
-    image = malloc(pixel_num * channels * sizeof(unsigned char));
+    image = malloc((unsigned long) (pixel_num * channels) * sizeof(unsigned char));
 
     for(i = 0; i < pixel_num; i++) {
-       image[i] = i;
+       image[i] = (unsigned char)i;
     }
 
-    double **matrices = malloc(channels * sizeof(double *));
-    double a = 2.23432;
-    int aa;
-
-    aa = a;
+    double **matrices = malloc((unsigned long) channels * sizeof(double *));
 
     image_to_array(image, width, height, channels, matrices);
     mu_assert(matrices[0][0] == 0);

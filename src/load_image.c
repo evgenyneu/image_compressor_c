@@ -20,7 +20,7 @@ void image_to_array(unsigned char *image, int width, int height, int channels, d
     double *single_matrix;
 
     for (i = 0; i < channels; i++) {
-        single_matrix = malloc(pixel_num * sizeof(double));
+        single_matrix = malloc((unsigned long)pixel_num * sizeof(double));
 
         if (single_matrix == NULL) {
             printf("Error allocating matrix data \n");
