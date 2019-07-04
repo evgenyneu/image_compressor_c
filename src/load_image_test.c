@@ -3,7 +3,8 @@
 #include "load_image_test.h"
 
 static char * test_load_image() {
-    load_image("images/test_3x3_gray.bmp");
+    int width, height, channels;
+    load_image("images/test_3x3_gray.bmp", &width, &height, &channels);
     mu_assert(7 == 7);
     return 0;
 }
@@ -22,9 +23,7 @@ static char * test_image_to_array() {
        image[i] = (unsigned char)i;
     }
 
-    double **matrices = malloc((unsigned long) channels * sizeof(double *));
-
-    image_to_array(image, width, height, channels, matrices);
+    double **matrices = image_to_array(image, width, height, channels);
     mu_assert(matrices[0][0] == 0);
     mu_assert(matrices[0][1] == 1);
     mu_assert(matrices[0][2] == 2);
