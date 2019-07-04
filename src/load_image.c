@@ -11,7 +11,26 @@ void load_image(const char *path) {
     }
 }
 
+// Convert the image data into separate arrays for each color channel stored in `matrices`.
+void image_to_array(unsigned char *image, int width, int height, int channels,
+                    unsigned char **matrices) {
+    int i;
+    int pixel;
+    int pixel_num = width * height;
+    unsigned char *single_matrix;
 
-void image_to_array(unsigned char *image, int width, int height, int channels) {
-    int i = 2;
+    for (i = 0; i < channels; i++) {
+        single_matrix = malloc(pixel_num * sizeof(unsigned char));
+
+        if (single_matrix == NULL) {
+            printf("Error allocating image data \n");
+            exit(EXIT_FAILURE);
+        }
+
+        matrices[i] =  single_matrix;
+
+        for (pixel = 0; pixel < pixel_num; pixel++) {
+            single_matrix[pixel] = image[pixel * channels + i];
+        }
+    }
 }

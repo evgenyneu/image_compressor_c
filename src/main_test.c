@@ -9,7 +9,7 @@ static char * all_tests() {
     return 0;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     char *result = all_tests();
     printf("Tests run: %d\n", tests_run);
     if (result != 0) {

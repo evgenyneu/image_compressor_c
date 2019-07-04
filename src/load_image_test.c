@@ -12,11 +12,31 @@ static char * test_image_to_array() {
     int width = 2;
     int height = 3;
     int channels = 1;
+    int i;
+    int pixel_num = width * height;
 
-    image = malloc(width * width * channels * sizeof(unsigned char));
+    image = malloc(pixel_num * channels * sizeof(unsigned char));
 
-    image_to_array(image, width, height, channels);
-    mu_assert(7 == 7);
+    for(i = 0; i < pixel_num; i++) {
+       image[i] = i;
+    }
+
+    unsigned char **matrices = malloc(channels * sizeof(unsigned char *));
+
+    image_to_array(image, width, height, channels, matrices);
+    mu_assert(matrices[0][0] == 0);
+    mu_assert(matrices[0][1] == 1);
+    mu_assert(matrices[0][2] == 2);
+    mu_assert(matrices[0][4] == 4);
+    mu_assert(matrices[0][5] == 5);
+
+    // Free memory
+    free(image);
+    image = NULL;
+    free(matrices[0]);
+    free(matrices);
+    matrices = NULL;
+
     return 0;
 }
 
