@@ -11,13 +11,13 @@ static char * all_tests() {
 
 int main(int argc, char **argv) {
     char *result = all_tests();
+    printf("Tests run: %d\n", tests_run);
     if (result != 0) {
         printf("%s\n", result);
     }
     else {
-        printf("ALL TESTS PASSED\n");
+        printf("\nALL TESTS PASSED\n\n");
     }
-    printf("Tests run: %d\n", tests_run);
 
     return result != 0;
 }
