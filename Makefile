@@ -15,7 +15,7 @@
 #
 
 CXX = gcc
-CXX_FLAGS = -Wall -Wextra -Wshadow -Wwrite-strings
+CXX_FLAGS = -Wall -Wextra -Wshadow -Wwrite-strings -Werror-implicit-function-declaration -Wundef -Wpointer-arith -Waggregate-return  -Wswitch-default -Wunreachable-code -Wformat=2 -Wmissing-prototypes -Wstrict-prototypes
 
 # Final binary
 BIN = compressor

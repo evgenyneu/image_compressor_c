@@ -1,1 +1,1 @@
-char * all_load_image_tests();
+char * all_load_image_tests(void);

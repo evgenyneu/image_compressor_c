@@ -1,5 +1,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "external/stb_image.h"
+#include "load_image.h"
 
 void load_image(const char *path) {
     int width, height, channels;
@@ -11,16 +12,15 @@ void load_image(const char *path) {
     }
 }
 
-// Convert the `image` data into separate arrays for each color channel stored in `matrices`.
-void image_to_array(unsigned char *image, int width, int height, int channels,
-                    unsigned char **matrices) {
+// Convert the `image` data into separate arrays for each color and store in `matrices`.
+void image_to_array(unsigned char *image, int width, int height, int channels, double **matrices) {
     int i;
     int pixel;
     int pixel_num = width * height;
-    unsigned char *single_matrix;
+    double *single_matrix;
 
     for (i = 0; i < channels; i++) {
-        single_matrix = malloc(pixel_num * sizeof(unsigned char));
+        single_matrix = malloc(pixel_num * sizeof(double));
 
         if (single_matrix == NULL) {
             printf("Error allocating matrix data \n");

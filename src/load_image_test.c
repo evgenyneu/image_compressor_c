@@ -1,5 +1,6 @@
 #include "external/minunit.h"
 #include "load_image.h"
+#include "load_image_test.h"
 
 static char * test_load_image() {
     load_image("images/test_3x3_gray.bmp");
@@ -21,7 +22,11 @@ static char * test_image_to_array() {
        image[i] = i;
     }
 
-    unsigned char **matrices = malloc(channels * sizeof(unsigned char *));
+    double **matrices = malloc(channels * sizeof(double *));
+    double a = 2.23432;
+    int aa;
+
+    aa = a;
 
     image_to_array(image, width, height, channels, matrices);
     mu_assert(matrices[0][0] == 0);
@@ -40,7 +45,7 @@ static char * test_image_to_array() {
     return 0;
 }
 
-char * all_load_image_tests() {
+char * all_load_image_tests(void) {
     mu_run_test(test_load_image);
     mu_run_test(test_image_to_array);
     return 0;
