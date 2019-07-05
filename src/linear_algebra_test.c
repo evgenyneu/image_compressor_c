@@ -2,7 +2,7 @@
 #include "linear_algebra.h"
 #include "linear_algebra_test.h"
 
-static char * test_transpose()
+static char *test_transpose()
 {
     double matrix_data[] = {
                                 1, 2,
@@ -37,7 +37,7 @@ static char * test_transpose()
 }
 
 
-static char * test_multiply_matrix_with_a_number()
+static char *test_multiply_matrix_with_a_number()
 {
     double matrix_data[] = {
                                 1, 2,
@@ -71,7 +71,7 @@ static char * test_multiply_matrix_with_a_number()
 }
 
 
-static char * test_multiply_matrices()
+static char *test_multiply_matrices()
 {
     double matrix1_data[] = {
                                 1, 2,
@@ -119,7 +119,7 @@ static char * test_multiply_matrices()
 }
 
 
-static char * test_add_matrices()
+static char *test_add_matrices()
 {
     double matrix1_data[] = {
                                 1, 2,
@@ -197,7 +197,7 @@ static char *test_new_matrix()
     return 0;
 }
 
-char * load_all_linear_algebra_tests(void)
+char *load_all_linear_algebra_tests(void)
 {
     MU_RUN_TEST(test_new_matrix);
     MU_RUN_TEST(test_new_matrix_from_array);

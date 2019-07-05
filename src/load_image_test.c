@@ -2,7 +2,7 @@
 #include "load_image.h"
 #include "load_image_test.h"
 
-static char * test_load_image()
+static char *test_load_image()
 {
     int width, height, channels;
     double **matrices = load_image("images/test_3x3.bmp", &width, &height, &channels);
@@ -50,7 +50,7 @@ static char * test_load_image()
     return 0;
 }
 
-static char * test_image_to_array()
+static char *test_image_to_array()
 {
     unsigned char *image;
     int width = 2;
@@ -82,7 +82,7 @@ static char * test_image_to_array()
     return 0;
 }
 
-char * load_all_image_tests(void)
+char *load_all_image_tests(void)
 {
     MU_RUN_TEST(test_load_image);
     MU_RUN_TEST(test_image_to_array);

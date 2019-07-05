@@ -5,7 +5,7 @@
 
 int tests_run = 0;
 
-static char * all_tests()
+static char *all_tests()
 {
     MU_RUN_TEST(load_all_image_tests);
     MU_RUN_TEST(load_all_linear_algebra_tests);
