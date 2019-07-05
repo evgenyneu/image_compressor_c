@@ -50,6 +50,29 @@ Returns : a new matrix.
 */
 Matrix *new_matrix(int row_num, int col_num);
 
+/*
+
+Allocate a new matrix based on the given data array.
+A new block of memory is allocated in Matrix->data and then elements
+are copied to it from the supplied `array`.
+
+Inputs:
+-------
+
+array : A 1D array containing values of the matrix.
+
+row_num : number of rows.
+
+col_num : number of columns.
+
+
+Outputs:
+-------
+
+Returns : a new matrix.
+
+*/
+Matrix *new_matrix_from_array(double *array, int row_num, int col_num);
 
 /*
 
@@ -60,7 +83,26 @@ Inputs:
 
 matrix : a matrix.
 
+
 */
 void free_matrix(Matrix *matrix);
+
+/*
+
+Adds two matrices and returns the result.
+
+Inputs:
+-------
+
+matrix1, matrix2 : Two matrices that will be added.
+
+
+Outputs:
+-------
+
+Returns : a new matrix, which is a sum of matrix1 and matrix2.
+
+*/
+Matrix *add_matrices(Matrix *matrix1, Matrix *matrix2);
 
 #endif // INCLUDE_LIEAR_ALGEBRA_H

@@ -8,7 +8,7 @@ double **load_image(const char *path, int *width, int *height, int *channels)
 
     if (image == NULL)
     {
-        printf("Error loading image %s \n", path);
+        perror("Error loading image");
         exit(EXIT_FAILURE);
     }
 
@@ -34,7 +34,7 @@ double **image_to_array(unsigned char *image, int width, int height, int channel
 
         if (single_matrix == NULL)
         {
-            printf("Error allocating matrix data \n");
+            perror("Error allocating matrix data");
             exit(EXIT_FAILURE);
         }
 
