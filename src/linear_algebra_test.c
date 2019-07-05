@@ -3,6 +3,28 @@
 #include "linear_algebra_test.h"
 
 
+static char *test_norm()
+{
+    double matrix_data[] = {
+                                1,
+                                2,
+                                2,
+                            };
+
+    Matrix *matrix = new_matrix_from_array(matrix_data, 3, 1);
+
+    double result = norm(matrix);
+
+    MU_EQUAL_DOUBLE(result, 3.0);
+
+    // Free memory
+    free_matrix(matrix);
+    matrix = NULL;
+
+    return 0;
+}
+
+
 static char *test_dot_product()
 {
     double matrix_data1[] = {
@@ -241,5 +263,6 @@ char *load_all_linear_algebra_tests(void)
     MU_RUN_TEST(test_multiply_matrix_with_a_number);
     MU_RUN_TEST(test_transpose);
     MU_RUN_TEST(test_dot_product);
+    MU_RUN_TEST(test_norm);
     return 0;
 }

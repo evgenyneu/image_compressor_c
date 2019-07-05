@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "linear_algebra.h"
 
 Matrix *new_matrix(int row_num, int col_num)
@@ -132,8 +133,6 @@ double dot_product(Matrix *matrix1, Matrix *matrix2)
         exit(EXIT_FAILURE);
     }
 
-    Matrix *result_matrix = new_matrix(matrix1->row_num, matrix1->col_num);
-
     int i;
     double result = 0;
 
@@ -144,3 +143,11 @@ double dot_product(Matrix *matrix1, Matrix *matrix2)
 
     return result;
 }
+
+
+double norm(Matrix *matrix)
+{
+    return sqrt(dot_product(matrix, matrix));
+}
+
+

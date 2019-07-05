@@ -171,7 +171,7 @@ Matrix *transpose_matrix(Matrix *matrix);
 
 /*
 
-Calculates the dot product of thw n by 1 matrices.
+Calculates the dot product of two n by 1 matrices.
 
 Inputs:
 -------
@@ -182,10 +182,28 @@ matrix1, matrix2 : matrices with size n by 1 (n rows, one column).
 Outputs:
 -------
 
-Returns : result of the dot product, an n by 1 matrix.
+Returns : result of the dot product.
 
 */
 double dot_product(Matrix *matrix1, Matrix *matrix2);
+
+/*
+
+Calculates the length of a vector passed in an n by 1 matrix.
+
+Inputs:
+-------
+
+matrix : matrix with size n by 1 (n rows, one column).
+
+
+Outputs:
+-------
+
+Returns : length of the vector
+
+*/
+double norm(Matrix *matrix);
 
 
 #endif // INCLUDE_LINEAR_ALGEBRA_H
