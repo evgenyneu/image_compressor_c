@@ -2,10 +2,12 @@
 #include "external/stb_image.h"
 #include "load_image.h"
 
-double **load_image(const char *path, int *width, int *height, int *channels) {
+double **load_image(const char *path, int *width, int *height, int *channels)
+{
     unsigned char *image = stbi_load(path, width, height, channels, 0);
 
-    if (image == NULL) {
+    if (image == NULL)
+    {
         printf("Error loading image %s \n", path);
         exit(EXIT_FAILURE);
     }
@@ -19,23 +21,27 @@ double **load_image(const char *path, int *width, int *height, int *channels) {
 }
 
 
-double **image_to_array(unsigned char *image, int width, int height, int channels) {
+double **image_to_array(unsigned char *image, int width, int height, int channels)
+{
     int i, pixel;
     int pixel_num = width * height;
     double **matrices = malloc((unsigned long) channels * sizeof(double *));
     double *single_matrix = NULL;
 
-    for (i = 0; i < channels; i++) {
+    for (i = 0; i < channels; i++)
+    {
         single_matrix = malloc((unsigned long)pixel_num * sizeof(double));
 
-        if (single_matrix == NULL) {
+        if (single_matrix == NULL)
+        {
             printf("Error allocating matrix data \n");
             exit(EXIT_FAILURE);
         }
 
         matrices[i] =  single_matrix;
 
-        for (pixel = 0; pixel < pixel_num; pixel++) {
+        for (pixel = 0; pixel < pixel_num; pixel++)
+        {
             single_matrix[pixel] = image[pixel * channels + i];
         }
     }
