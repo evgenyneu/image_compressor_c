@@ -1,5 +1,5 @@
-#ifndef INCLUDE_LIEAR_ALGEBRA_H
-#define INCLUDE_LIEAR_ALGEBRA_H
+#ifndef INCLUDE_LINEAR_ALGEBRA_H
+#define INCLUDE_LINEAR_ALGEBRA_H
 
 
 // Matrix
@@ -105,4 +105,24 @@ Returns : a new matrix, which is a sum of matrix1 and matrix2.
 */
 Matrix *add_matrices(Matrix *matrix1, Matrix *matrix2);
 
-#endif // INCLUDE_LIEAR_ALGEBRA_H
+
+/*
+
+Multiply two matrices and return the result.
+
+Inputs:
+-------
+
+matrix1, matrix2 : Two matrices that will be multiplied.
+
+
+Outputs:
+-------
+
+Returns : a new matrix, which is the product of matrix1 and matrix2.
+
+*/
+Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2);
+
+
+#endif // INCLUDE_LINEAR_ALGEBRA_H

@@ -8,6 +8,13 @@ Matrix *new_matrix(int row_num, int col_num)
     Matrix *matrix = malloc(sizeof(Matrix));
     if (matrix == NULL) return NULL;
     matrix->data = malloc((unsigned long) (row_num * col_num) * sizeof(double));
+
+    if (matrix->data == NULL)
+    {
+        perror("Error allocating memory for a matrix");
+        exit(EXIT_FAILURE);
+    }
+
     matrix->row_num = row_num;
     matrix->col_num = col_num;
 
@@ -36,7 +43,7 @@ Matrix *add_matrices(Matrix *matrix1, Matrix *matrix2)
         exit(EXIT_FAILURE);
     }
 
-    Matrix *result_matrix = new_matrix(matrix1->row_num, matrix2->col_num);
+    Matrix *result_matrix = new_matrix(matrix1->row_num, matrix1->col_num);
 
     int i_row, i_col, index;
 
@@ -50,4 +57,36 @@ Matrix *add_matrices(Matrix *matrix1, Matrix *matrix2)
     }
 
     return result_matrix;
+}
+
+
+Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
+{
+    if (matrix1->col_num != matrix2->row_num)
+    {
+        perror("Incompatible matrix dimensions");
+        exit(EXIT_FAILURE);
+    }
+
+    Matrix *product = new_matrix(matrix1->row_num, matrix2->col_num);
+
+    int i, j, k, sum;
+
+    for (i = 0; i < matrix1->row_num; i++)
+    {
+        for (j = 0; j < matrix2->col_num; j++)
+        {
+            sum = 0;
+
+            for (k = 0; k < matrix1->col_num; k++)
+            {
+                sum += matrix1->data[i * matrix1->col_num + k]
+                            * matrix2->data[k * matrix2->col_num + j];
+            }
+
+            product->data[i * matrix2->col_num + j] = sum;
+        }
+    }
+
+    return product;
 }
