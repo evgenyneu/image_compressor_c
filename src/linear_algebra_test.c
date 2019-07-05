@@ -3,6 +3,40 @@
 #include "linear_algebra_test.h"
 
 
+static char * test_multiply_matrix_with_a_number()
+{
+    double matrix1_data[] = {
+                                1, 2,
+                                3, 4,
+                                5, 6
+                            };
+
+    Matrix *matrix1 = new_matrix_from_array(matrix1_data, 3, 2);
+
+    Matrix *result = multiply_matrix_with_a_number(matrix1, 3);
+
+    MU_EQUAL_INT(result->row_num, 3);
+    MU_EQUAL_INT(result->col_num, 2);
+
+    MU_EQUAL_DOUBLE(result->data[0], 3.0);
+    MU_EQUAL_DOUBLE(result->data[1], 6.0);
+    MU_EQUAL_DOUBLE(result->data[2], 9.0);
+    MU_EQUAL_DOUBLE(result->data[3], 12.0);
+    MU_EQUAL_DOUBLE(result->data[4], 15.0);
+    MU_EQUAL_DOUBLE(result->data[5], 18.0);
+
+
+    // Free memory
+    free_matrix(matrix1);
+    matrix1 = NULL;
+
+    free_matrix(result);
+    result = NULL;
+
+    return 0;
+}
+
+
 static char * test_multiply_matrices()
 {
     double matrix1_data[] = {
@@ -135,5 +169,6 @@ char * load_all_linear_algebra_tests(void)
     MU_RUN_TEST(test_new_matrix_from_array);
     MU_RUN_TEST(test_add_matrices);
     MU_RUN_TEST(test_multiply_matrices);
+    MU_RUN_TEST(test_multiply_matrix_with_a_number);
     return 0;
 }

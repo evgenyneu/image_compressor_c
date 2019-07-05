@@ -90,3 +90,21 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
 
     return product;
 }
+
+Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number)
+{
+   Matrix *product = new_matrix(matrix->row_num, matrix->col_num);
+
+   int i, j, index;
+
+    for (i = 0; i < matrix->row_num; i++)
+    {
+        for (j = 0; j < matrix->col_num; j++)
+        {
+            index = i * matrix->col_num + j;
+            product->data[index] = number * matrix->data[index];
+        }
+    }
+
+    return product;
+}

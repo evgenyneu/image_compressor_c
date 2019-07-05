@@ -125,4 +125,24 @@ Returns : a new matrix, which is the product of matrix1 and matrix2.
 Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2);
 
 
+/*
+
+Multiply `matrix` with the `number` and return the result.
+
+Inputs:
+-------
+
+matrix : a matrix.
+
+number : a number.
+
+
+Outputs:
+-------
+
+Returns : a new matrix, which is the product of `matrix` with a `number`.
+
+*/
+Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number);
+
 #endif // INCLUDE_LINEAR_ALGEBRA_H
