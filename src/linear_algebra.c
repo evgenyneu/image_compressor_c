@@ -121,3 +121,26 @@ Matrix *transpose_matrix(Matrix *matrix)
 
     return product;
 }
+
+
+double dot_product(Matrix *matrix1, Matrix *matrix2)
+{
+    if (matrix1->row_num != matrix2->row_num ||
+        matrix1->col_num != 1 || matrix2->col_num != 1)
+    {
+        perror("Matrices are not n by 1.");
+        exit(EXIT_FAILURE);
+    }
+
+    Matrix *result_matrix = new_matrix(matrix1->row_num, matrix1->col_num);
+
+    int i;
+    double result = 0;
+
+    for (i = 0; i < matrix1->row_num; i++)
+    {
+        result += matrix1->data[i] * matrix2->data[i];
+    }
+
+    return result;
+}

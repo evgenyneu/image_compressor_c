@@ -152,7 +152,7 @@ Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number);
 
 /*
 
-Transposes the matrix
+Transposes the matrix.
 
 Inputs:
 -------
@@ -167,6 +167,25 @@ Returns : a tranposed matrix.
 
 */
 Matrix *transpose_matrix(Matrix *matrix);
+
+
+/*
+
+Calculates the dot product of thw n by 1 matrices.
+
+Inputs:
+-------
+
+matrix1, matrix2 : matrices with size n by 1 (n rows, one column).
+
+
+Outputs:
+-------
+
+Returns : result of the dot product, an n by 1 matrix.
+
+*/
+double dot_product(Matrix *matrix1, Matrix *matrix2);
 
 
 #endif // INCLUDE_LINEAR_ALGEBRA_H

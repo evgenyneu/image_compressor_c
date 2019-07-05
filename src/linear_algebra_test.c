@@ -2,6 +2,41 @@
 #include "linear_algebra.h"
 #include "linear_algebra_test.h"
 
+
+static char *test_dot_product()
+{
+    double matrix_data1[] = {
+                                1,
+                                3,
+                                5,
+                            };
+
+    Matrix *matrix1 = new_matrix_from_array(matrix_data1, 3, 1);
+
+    double matrix_data2[] = {
+                                -1,
+                                7,
+                                3,
+                            };
+
+    Matrix *matrix2 = new_matrix_from_array(matrix_data2, 3, 1);
+
+
+    double result = dot_product(matrix1, matrix2);
+
+    MU_EQUAL_DOUBLE(result, 35.0);
+
+    // Free memory
+    free_matrix(matrix1);
+    matrix1 = NULL;
+
+    free_matrix(matrix2);
+    matrix2 = NULL;
+
+    return 0;
+}
+
+
 static char *test_transpose()
 {
     double matrix_data[] = {
@@ -205,5 +240,6 @@ char *load_all_linear_algebra_tests(void)
     MU_RUN_TEST(test_multiply_matrices);
     MU_RUN_TEST(test_multiply_matrix_with_a_number);
     MU_RUN_TEST(test_transpose);
+    MU_RUN_TEST(test_dot_product);
     return 0;
 }
