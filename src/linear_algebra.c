@@ -45,15 +45,12 @@ Matrix *add_matrices(Matrix *matrix1, Matrix *matrix2)
 
     Matrix *result_matrix = new_matrix(matrix1->row_num, matrix1->col_num);
 
-    int i, j, index;
+    int i;
+    int elements = matrix1->row_num * matrix1->col_num;
 
-    for (i = 0; i < matrix1->row_num; i++)
+    for (i = 0; i < elements; i++)
     {
-        for (j = 0; j < matrix1->col_num; j++)
-        {
-            index = i * matrix2->col_num + j;
-            result_matrix->data[index] = matrix1->data[index] + matrix2->data[index];
-        }
+        result_matrix->data[i] = matrix1->data[i] + matrix2->data[i];
     }
 
     return result_matrix;
@@ -96,15 +93,12 @@ Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number)
 {
     Matrix *product = new_matrix(matrix->row_num, matrix->col_num);
 
-    int i, j, index;
+    int i;
+    int elements = matrix->row_num * matrix->col_num;
 
-    for (i = 0; i < matrix->row_num; i++)
+    for (i = 0; i < elements; i++)
     {
-        for (j = 0; j < matrix->col_num; j++)
-        {
-            index = i * matrix->col_num + j;
-            product->data[index] = number * matrix->data[index];
-        }
+        product->data[i] = number * matrix->data[i];
     }
 
     return product;
