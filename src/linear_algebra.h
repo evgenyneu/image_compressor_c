@@ -1,3 +1,7 @@
+/*
+Matrix manipulation: multiplication, addition, transpose etc.
+*/
+
 #ifndef INCLUDE_LINEAR_ALGEBRA_H
 #define INCLUDE_LINEAR_ALGEBRA_H
 

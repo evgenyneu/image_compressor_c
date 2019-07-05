@@ -1,3 +1,7 @@
+/*
+Loading data from and saving data to image files.
+*/
+
 #ifndef INCLUDE_LOAD_IMAGE_H
 #define INCLUDE_LOAD_IMAGE_H
 

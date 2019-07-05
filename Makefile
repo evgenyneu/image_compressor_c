@@ -69,7 +69,7 @@ $(BUILD_DIR)/$(BIN) : $(OBJ)
 # by calling `-include $(DEP)`.
 $(BUILD_DIR)/%.o : %.c
 	mkdir -p $(@D)
-# Complile the object files.
+# Complile *.c files into the object files.
 # The -MMD flags additionaly creates a .d file with
 # the same name as the .o file.
 	$(CXX) $(CXX_FLAGS) -MMD -c $< -o $@
