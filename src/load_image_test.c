@@ -80,7 +80,7 @@ static char * test_image_to_array() {
     return 0;
 }
 
-char * all_load_image_tests(void) {
+char * load_all_image_tests(void) {
     mu_run_test(test_load_image);
     mu_run_test(test_image_to_array);
     return 0;

@@ -5,7 +5,7 @@
 int tests_run = 0;
 
 static char * all_tests() {
-    mu_run_test(all_load_image_tests);
+    mu_run_test(load_all_image_tests);
     return 0;
 }
 
