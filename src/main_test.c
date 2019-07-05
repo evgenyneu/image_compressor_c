@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include "external/minunit.h"
 #include "load_image_test.h"
+#include "linear_algebra_test.h"
 
 int tests_run = 0;
 
 static char * all_tests()
 {
-    mu_run_test(load_all_image_tests);
+    MU_RUN_TEST(load_all_image_tests);
+    MU_RUN_TEST(load_all_linear_algebra_tests);
     return 0;
 }
 

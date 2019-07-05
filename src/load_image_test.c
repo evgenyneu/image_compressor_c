@@ -8,37 +8,37 @@ static char * test_load_image()
     double **matrices = load_image("images/test_3x3.bmp", &width, &height, &channels);
 
     // Red
-    mu_equal_double(matrices[0][0], 80.0);
-    mu_equal_double(matrices[0][1], 60.0);
-    mu_equal_double(matrices[0][2], 0.0);
-    mu_equal_double(matrices[0][3], 150.0);
-    mu_equal_double(matrices[0][4], 120.0);
-    mu_equal_double(matrices[0][5], 100.0);
-    mu_equal_double(matrices[0][6], 255.0);
-    mu_equal_double(matrices[0][7], 220.0);
-    mu_equal_double(matrices[0][8], 200.0);
+    MU_EQUAL_DOUBLE(matrices[0][0], 80.0);
+    MU_EQUAL_DOUBLE(matrices[0][1], 60.0);
+    MU_EQUAL_DOUBLE(matrices[0][2], 0.0);
+    MU_EQUAL_DOUBLE(matrices[0][3], 150.0);
+    MU_EQUAL_DOUBLE(matrices[0][4], 120.0);
+    MU_EQUAL_DOUBLE(matrices[0][5], 100.0);
+    MU_EQUAL_DOUBLE(matrices[0][6], 255.0);
+    MU_EQUAL_DOUBLE(matrices[0][7], 220.0);
+    MU_EQUAL_DOUBLE(matrices[0][8], 200.0);
 
     // Green
-    mu_equal_double(matrices[1][0], 85.0);
-    mu_equal_double(matrices[1][1], 65.0);
-    mu_equal_double(matrices[1][2], 5.0);
-    mu_equal_double(matrices[1][3], 155.0);
-    mu_equal_double(matrices[1][4], 125.0);
-    mu_equal_double(matrices[1][5], 105.0);
-    mu_equal_double(matrices[1][6], 255.0);
-    mu_equal_double(matrices[1][7], 225.0);
-    mu_equal_double(matrices[1][8], 205.0);
+    MU_EQUAL_DOUBLE(matrices[1][0], 85.0);
+    MU_EQUAL_DOUBLE(matrices[1][1], 65.0);
+    MU_EQUAL_DOUBLE(matrices[1][2], 5.0);
+    MU_EQUAL_DOUBLE(matrices[1][3], 155.0);
+    MU_EQUAL_DOUBLE(matrices[1][4], 125.0);
+    MU_EQUAL_DOUBLE(matrices[1][5], 105.0);
+    MU_EQUAL_DOUBLE(matrices[1][6], 255.0);
+    MU_EQUAL_DOUBLE(matrices[1][7], 225.0);
+    MU_EQUAL_DOUBLE(matrices[1][8], 205.0);
 
     // Blue
-    mu_equal_double(matrices[2][0], 90.0);
-    mu_equal_double(matrices[2][1], 70.0);
-    mu_equal_double(matrices[2][2], 10.0);
-    mu_equal_double(matrices[2][3], 160.0);
-    mu_equal_double(matrices[2][4], 130.0);
-    mu_equal_double(matrices[2][5], 110.0);
-    mu_equal_double(matrices[2][6], 255.0);
-    mu_equal_double(matrices[2][7], 230.0);
-    mu_equal_double(matrices[2][8], 210.0);
+    MU_EQUAL_DOUBLE(matrices[2][0], 90.0);
+    MU_EQUAL_DOUBLE(matrices[2][1], 70.0);
+    MU_EQUAL_DOUBLE(matrices[2][2], 10.0);
+    MU_EQUAL_DOUBLE(matrices[2][3], 160.0);
+    MU_EQUAL_DOUBLE(matrices[2][4], 130.0);
+    MU_EQUAL_DOUBLE(matrices[2][5], 110.0);
+    MU_EQUAL_DOUBLE(matrices[2][6], 255.0);
+    MU_EQUAL_DOUBLE(matrices[2][7], 230.0);
+    MU_EQUAL_DOUBLE(matrices[2][8], 210.0);
 
     // Free memory
     free(matrices[0]);
@@ -66,11 +66,11 @@ static char * test_image_to_array()
     }
 
     double **matrices = image_to_array(image, width, height, channels);
-    mu_assert(matrices[0][0] == 0);
-    mu_assert(matrices[0][1] == 1);
-    mu_assert(matrices[0][2] == 2);
-    mu_assert(matrices[0][4] == 4);
-    mu_assert(matrices[0][5] == 5);
+    MU_ASSERT(matrices[0][0] == 0);
+    MU_ASSERT(matrices[0][1] == 1);
+    MU_ASSERT(matrices[0][2] == 2);
+    MU_ASSERT(matrices[0][4] == 4);
+    MU_ASSERT(matrices[0][5] == 5);
 
     // Free memory
     free(image);
@@ -84,7 +84,7 @@ static char * test_image_to_array()
 
 char * load_all_image_tests(void)
 {
-    mu_run_test(test_load_image);
-    mu_run_test(test_image_to_array);
+    MU_RUN_TEST(test_load_image);
+    MU_RUN_TEST(test_image_to_array);
     return 0;
 }
