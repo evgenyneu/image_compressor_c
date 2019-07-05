@@ -1,3 +1,6 @@
+#ifndef INCLUDE_LOAD_IMAGE_H
+#define INCLUDE_LOAD_IMAGE_H
+
 /*
 
 Loads an image from given path (PNG, JPG, BMP formats).
@@ -41,3 +44,5 @@ Returns : array of image pixel values for each channel, array length is `channel
 
 */
 double **image_to_array(unsigned char *image, int width, int height, int channels);
+
+#endif // INCLUDE_LOAD_IMAGE_H

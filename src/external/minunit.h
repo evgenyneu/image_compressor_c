@@ -1,3 +1,6 @@
+#ifndef INCLUDE_MINUNIT_H
+#define INCLUDE_MINUNIT_H
+
 /*
 Unit testing helper.
 Based on http://www.jera.com/techinfo/jtns/jtn002.html
@@ -25,3 +28,5 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
 #define mu_run_test(test) do { char *message = test(); tests_run++; \
                             if (message) return message; } while (0)
 extern int tests_run;
+
+#endif // INCLUDE_MINUNIT_H

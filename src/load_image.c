@@ -23,7 +23,7 @@ double **image_to_array(unsigned char *image, int width, int height, int channel
     int i, pixel;
     int pixel_num = width * height;
     double **matrices = malloc((unsigned long) channels * sizeof(double *));
-    double *single_matrix;
+    double *single_matrix = NULL;
 
     for (i = 0; i < channels; i++) {
         single_matrix = malloc((unsigned long)pixel_num * sizeof(double));
