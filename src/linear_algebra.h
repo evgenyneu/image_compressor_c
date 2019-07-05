@@ -7,12 +7,12 @@ typedef struct
 {
     // A 1D array containing values of the matrix.
     // Elements are incremented along rows.
-    // For example, suppose we have a 2x3 matrix (2 rows, 3 columns):
+    // For example, suppose we have a 2 by 3 matrix (2 rows, 3 columns):
     //
     //   |  5  12  18 |
     //   | 11   7   8 |
     //
-    // The elements will be accessed the following way:
+    // Then the elements are stored like this:
     //   data[0] is  5
     //   data[1] is 12
     //   data[2] is 18
