@@ -45,13 +45,13 @@ Matrix *add_matrices(Matrix *matrix1, Matrix *matrix2)
 
     Matrix *result_matrix = new_matrix(matrix1->row_num, matrix1->col_num);
 
-    int i_row, i_col, index;
+    int i, j, index;
 
-    for (i_row = 0; i_row < matrix1->row_num; i_row++)
+    for (i = 0; i < matrix1->row_num; i++)
     {
-        for (i_col = 0; i_col < matrix1->col_num; i_col++)
+        for (j = 0; j < matrix1->col_num; j++)
         {
-            index = i_row * matrix2->col_num + i_col;
+            index = i * matrix2->col_num + j;
             result_matrix->data[index] = matrix1->data[index] + matrix2->data[index];
         }
     }

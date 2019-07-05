@@ -2,16 +2,16 @@
 # Makefile for building and testing image compressor
 # --------------------------------------------------
 #
-# Build executable build/mybin:
+# Build executable build/compressor:
 # > make
 #
-# Build and run tests:
+# Build and run tests build/test:
 # > make test
 #
-# Remove built files:
+# Remove build files:
 # > make clean
 #
-# Makefile is based on: https://stackoverflow.com/a/30142139/297131
+# This Makefile is based on: https://stackoverflow.com/a/30142139/297131
 #
 
 CXX = gcc
@@ -58,7 +58,7 @@ test : $(BUILD_DIR)/$(BIN)
 $(BUILD_DIR)/$(BIN) : $(OBJ)
 # Create build directories - same structure as sources.
 	mkdir -p $(@D)
-# Just link all the object files.
+# Link all the object files and make the executable.
 	$(CXX) $(CXX_FLAGS) $^ -o $@
 
 # Include all .d files
@@ -69,6 +69,7 @@ $(BUILD_DIR)/$(BIN) : $(OBJ)
 # by calling `-include $(DEP)`.
 $(BUILD_DIR)/%.o : %.c
 	mkdir -p $(@D)
+# Complile the object files.
 # The -MMD flags additionaly creates a .d file with
 # the same name as the .o file.
 	$(CXX) $(CXX_FLAGS) -MMD -c $< -o $@
