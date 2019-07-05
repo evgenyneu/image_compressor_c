@@ -145,4 +145,24 @@ Returns : a new matrix, which is the product of `matrix` with a `number`.
 */
 Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number);
 
+
+/*
+
+Transposes the matrix
+
+Inputs:
+-------
+
+matrix : a matrix.
+
+
+Outputs:
+-------
+
+Returns : a tranposed matrix.
+
+*/
+Matrix *transpose_matrix(Matrix *matrix);
+
+
 #endif // INCLUDE_LINEAR_ALGEBRA_H

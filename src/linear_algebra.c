@@ -91,11 +91,12 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
     return product;
 }
 
+
 Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number)
 {
-   Matrix *product = new_matrix(matrix->row_num, matrix->col_num);
+    Matrix *product = new_matrix(matrix->row_num, matrix->col_num);
 
-   int i, j, index;
+    int i, j, index;
 
     for (i = 0; i < matrix->row_num; i++)
     {
@@ -103,6 +104,24 @@ Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number)
         {
             index = i * matrix->col_num + j;
             product->data[index] = number * matrix->data[index];
+        }
+    }
+
+    return product;
+}
+
+
+Matrix *transpose_matrix(Matrix *matrix)
+{
+    Matrix *product = new_matrix(matrix->col_num, matrix->row_num);
+
+    int i, j;
+
+    for (i = 0; i < matrix->col_num; i++)
+    {
+        for (j = 0; j < matrix->row_num; j++)
+        {
+            product->data[i * matrix->row_num + j] = matrix->data[j * matrix->col_num + i];
         }
     }
 
