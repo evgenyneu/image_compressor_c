@@ -5,6 +5,8 @@ Matrix manipulation: multiplication, addition, transpose etc.
 #ifndef INCLUDE_LINEAR_ALGEBRA_H
 #define INCLUDE_LINEAR_ALGEBRA_H
 
+// Used to check if a number is close to zero
+#define ALMOST_ZERO 1e-20
 
 // Matrix
 typedef struct

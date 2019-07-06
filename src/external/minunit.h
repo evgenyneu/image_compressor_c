@@ -8,6 +8,7 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // Fail if `test` is false
 #define MU_ASSERT(test) do { \
@@ -26,6 +27,17 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
         sprintf(buffer, "\nTEST FAILED: %f != %f, %s:%d %s\n", a, b, __FILE__, __LINE__, __FUNCTION__); \
         return buffer; } \
     } while (0)
+
+
+// Fail if the absolute difference between two values `a` and `b` is greater than `diff`
+#define MU_APPROX_DOUBLE(a, b, diff) do { \
+    if (fabs(a - b) > diff) { \
+        char *buffer; \
+        buffer = malloc(1024 * sizeof(char)); \
+        sprintf(buffer, "\nTEST FAILED: %f != %f, %s:%d %s\n", a, b, __FILE__, __LINE__, __FUNCTION__); \
+        return buffer; } \
+    } while (0)
+
 
 // Fail if two values are not equal
 #define MU_EQUAL_INT(a, b) do { \

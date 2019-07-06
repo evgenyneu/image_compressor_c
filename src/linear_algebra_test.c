@@ -8,14 +8,14 @@ static char *test_norm()
     double matrix_data[] = {
                                 1,
                                 2,
-                                2,
+                                3,
                             };
 
     Matrix *matrix = new_matrix_from_array(matrix_data, 3, 1);
 
     double result = norm(matrix);
 
-    MU_EQUAL_DOUBLE(result, 3.0);
+    MU_APPROX_DOUBLE(result, 3.741657, 0.0001);
 
     // Free memory
     free_matrix(matrix);
@@ -28,17 +28,17 @@ static char *test_norm()
 static char *test_dot_product()
 {
     double matrix_data1[] = {
-                                1,
-                                3,
-                                5,
+                                1.3,
+                                3.1,
+                                5.7,
                             };
 
     Matrix *matrix1 = new_matrix_from_array(matrix_data1, 3, 1);
 
     double matrix_data2[] = {
-                                -1,
-                                7,
-                                3,
+                                0,
+                                2.1,
+                                1.97999,
                             };
 
     Matrix *matrix2 = new_matrix_from_array(matrix_data2, 3, 1);
@@ -46,7 +46,7 @@ static char *test_dot_product()
 
     double result = dot_product(matrix1, matrix2);
 
-    MU_EQUAL_DOUBLE(result, 35.0);
+    MU_APPROX_DOUBLE(result, 17.7959, 0.0001);
 
     // Free memory
     free_matrix(matrix1);
@@ -62,7 +62,7 @@ static char *test_dot_product()
 static char *test_transpose()
 {
     double matrix_data[] = {
-                                1, 2,
+                                1.9, 2,
                                 3, 4,
                                 5, 6
                             };
@@ -74,7 +74,7 @@ static char *test_transpose()
     MU_EQUAL_INT(result->row_num, 2);
     MU_EQUAL_INT(result->col_num, 3);
 
-    MU_EQUAL_DOUBLE(result->data[0], 1.0);
+    MU_EQUAL_DOUBLE(result->data[0], 1.9);
     MU_EQUAL_DOUBLE(result->data[1], 3.0);
     MU_EQUAL_DOUBLE(result->data[2], 5.0);
 
@@ -97,24 +97,24 @@ static char *test_transpose()
 static char *test_multiply_matrix_with_a_number()
 {
     double matrix_data[] = {
-                                1, 2,
-                                3, 4,
+                                1.1, 2,
+                                4, 5,
                                 5, 6
                             };
 
     Matrix *matrix = new_matrix_from_array(matrix_data, 3, 2);
 
-    Matrix *result = multiply_matrix_with_a_number(matrix, 3);
+    Matrix *result = multiply_matrix_with_a_number(matrix, 2.98);
 
     MU_EQUAL_INT(result->row_num, 3);
     MU_EQUAL_INT(result->col_num, 2);
 
-    MU_EQUAL_DOUBLE(result->data[0], 3.0);
-    MU_EQUAL_DOUBLE(result->data[1], 6.0);
-    MU_EQUAL_DOUBLE(result->data[2], 9.0);
-    MU_EQUAL_DOUBLE(result->data[3], 12.0);
-    MU_EQUAL_DOUBLE(result->data[4], 15.0);
-    MU_EQUAL_DOUBLE(result->data[5], 18.0);
+    MU_APPROX_DOUBLE(result->data[0], 3.278, 0.0001);
+    MU_APPROX_DOUBLE(result->data[1], 5.96, 0.0001);
+    MU_APPROX_DOUBLE(result->data[2], 11.92, 0.0001);;
+    MU_APPROX_DOUBLE(result->data[3], 14.9, 0.0001);;
+    MU_APPROX_DOUBLE(result->data[4], 14.9, 0.0001);;
+    MU_APPROX_DOUBLE(result->data[5], 17.88, 0.0001);;
 
 
     // Free memory
