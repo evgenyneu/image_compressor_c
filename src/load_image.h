@@ -20,14 +20,12 @@ path : path to the image.
 Outputs:
 -------
 
-width, height : width and height of the image.
-
 channels : number of color channels (3 for RGB, 1 for monochrome, 4 for RGB + alpha).
 
 Returns : matrices containing data each channel, array length is `channels`.
 
 */
-Matrix **load_image(const char *path, int *width, int *height, int *channels);
+Matrix **load_image(const char *path, int *channels);
 
 
 /*

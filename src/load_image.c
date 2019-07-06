@@ -2,9 +2,10 @@
 #include "external/stb_image.h"
 #include "load_image.h"
 
-Matrix **load_image(const char *path, int *width, int *height, int *channels)
+Matrix **load_image(const char *path,  int *channels)
 {
-    unsigned char *image = stbi_load(path, width, height, channels, 0);
+    int width, height;
+    unsigned char *image = stbi_load(path, &width, &height, channels, 0);
 
     if (image == NULL)
     {
@@ -12,7 +13,7 @@ Matrix **load_image(const char *path, int *width, int *height, int *channels)
         exit(EXIT_FAILURE);
     }
 
-    Matrix **matrices = image_to_matrix(image, *width, *height, *channels);
+    Matrix **matrices = image_to_matrix(image, width, height, *channels);
 
     free(image);
     image = NULL;

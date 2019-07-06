@@ -4,8 +4,8 @@
 
 static char *test_load_image()
 {
-    int width, height, channels;
-    Matrix **matrices = load_image("images/test_3x3.bmp", &width, &height, &channels);
+    int channels;
+    Matrix **matrices = load_image("images/test_3x3.bmp", &channels);
 
     // Red
     MU_EQUAL_INT(matrices[0]->row_num, 3);

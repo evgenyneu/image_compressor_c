@@ -63,7 +63,7 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
 
         double singular_value = sqrt(eigenvalue);
         Matrix *u = find_u_from_v(current_matrix, v, singular_value);
-        
+
         // Store SVD elements
         u_vectors[iteration] = u;
         singular_values[iteration] = singular_value;
