@@ -17,8 +17,12 @@ static char *test_dominant_eigen_system()
     Matrix *result = dominant_eigen_system(matrix, 4, &eigenvalue);
 
     MU_APPROX_DOUBLE(eigenvalue, 8.887124, 0.00001);
+
     MU_EQUAL_INT(result->row_num, 3);
     MU_EQUAL_INT(result->col_num, 1);
+    MU_APPROX_DOUBLE(result->data[0], 0.785224, 0.00001);
+    MU_APPROX_DOUBLE(result->data[1], -0.585385, 0.00001);
+    MU_APPROX_DOUBLE(result->data[2], 0.201857, 0.00001);
 
     // Free memory
     free_matrix(matrix);
