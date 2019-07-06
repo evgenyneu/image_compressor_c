@@ -12,7 +12,12 @@ static char *test_compress_image()
 
     MU_EQUAL_INT(channels, 3);
     MU_ASSERT(result != NULL);
-    MU_EQUAL_INT(result[0]->row_num, 12);
+    MU_EQUAL_INT(result[0]->row_num, 100);
+    MU_EQUAL_INT(result[0]->col_num, 100);
+    MU_EQUAL_INT(result[1]->row_num, 100);
+    MU_EQUAL_INT(result[1]->col_num, 100);
+    MU_EQUAL_INT(result[2]->row_num, 100);
+    MU_EQUAL_INT(result[2]->col_num, 100);
 
     // Free memory
     free_matrix(matrices[0]);
@@ -21,11 +26,11 @@ static char *test_compress_image()
     free(matrices);
     matrices = NULL;
 
-    // free_matrix(result[0]);
-    // free_matrix(result[1]);
-    // free_matrix(result[2]);
-    // free(result);
-    // result = NULL;
+    free_matrix(result[0]);
+    free_matrix(result[1]);
+    free_matrix(result[2]);
+    free(result);
+    result = NULL;
 
     return 0;
 }

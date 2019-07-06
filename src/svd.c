@@ -21,6 +21,7 @@ void free_svd(SVD *svd_data)
     svd_data->singular_values = NULL;
     free(svd_data->v_vectors);
     svd_data->v_vectors = NULL;
+    free(svd_data);
 }
 
 Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)
@@ -37,6 +38,7 @@ Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)
 SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
 {
     SVD *result = malloc(sizeof(SVD));
+    result->elements = 0;
     Matrix **u_vectors = malloc((unsigned long)max_eigenvalues * sizeof(Matrix *));
     double *singular_values = malloc((unsigned long)max_eigenvalues * sizeof(double));
     Matrix **v_vectors = malloc((unsigned long)max_eigenvalues * sizeof(Matrix *));

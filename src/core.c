@@ -7,10 +7,12 @@ Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channe
 {
     int i;
     Matrix **result = malloc((unsigned long) channels * sizeof(Matrix *));
+    SVD *svd_data;
+    Matrix *compressed;
 
     for(i = 0; i < channels; i++)
     {
-        SVD *svd_data = svd(matrices[i], terms, iterations);
+        svd_data = svd(matrices[i], terms, iterations);
 
         if (svd_data->elements == 0)
         {
@@ -22,7 +24,7 @@ Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channe
             return NULL;
         }
 
-        Matrix *compressed = singular_value_expansion(svd_data);
+        compressed = singular_value_expansion(svd_data);
         result[i] = compressed;
 
         free_svd(svd_data);
