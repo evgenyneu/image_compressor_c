@@ -8,7 +8,7 @@ static char *test_compress_image()
     int channels;
     Matrix **matrices = load_image("images/test_100x100.jpg", &channels);
 
-    Matrix **result = compress_image(matrices, 10, 5, channels);
+    Matrix **result = compress_image(matrices, 3, 5, channels);
 
     MU_EQUAL_INT(channels, 3);
     MU_ASSERT(result != NULL);
