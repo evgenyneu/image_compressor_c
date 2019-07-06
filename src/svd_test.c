@@ -152,11 +152,70 @@ static char *test_svd_with_zero_singular_values()
     return 0;
 }
 
+static char *test_singular_value_expansion()
+{
+    double u1_matrix_data[] = {
+                                0.7071067812541464,
+                                -0.7071067811189488
+                           };
+
+    Matrix *u1_matrix = new_matrix_from_array(u1_matrix_data, 2, 1);
+
+    double u2_matrix_data[] = {
+                                0.7071067805781589,
+                                0.7071067817949361
+                           };
+
+    Matrix *u2_matrix = new_matrix_from_array(u2_matrix_data, 2, 1);
+
+    double *singular_values = malloc(2 * sizeof(double));
+
+    singular_values[0] = 2.9999999999999996;
+    singular_values[1] = 0.9999999999999998;
+
+
+    double v1_matrix_data[] = {
+                                0.7071067813893437,
+                                -0.7071067809837512
+                           };
+
+    Matrix *v1_matrix = new_matrix_from_array(v1_matrix_data, 2, 1);
+
+    double v2_matrix_data[] = {
+                                0.7071067809837509,
+                                0.707106781389344
+                           };
+
+    Matrix *v2_matrix = new_matrix_from_array(v2_matrix_data, 2, 1);
+
+    SVD *svd_data = malloc(sizeof(SVD));
+    svd_data->elements = 2;
+    svd_data->u_vectors = malloc(2 * sizeof(Matrix *));
+    svd_data->u_vectors[0] = u1_matrix;
+    svd_data->u_vectors[1] = u2_matrix;
+
+    svd_data->singular_values = singular_values;
+
+    svd_data->v_vectors = malloc(2 * sizeof(Matrix *));
+    svd_data->v_vectors[0] = v1_matrix;
+    svd_data->v_vectors[1] = v2_matrix;
+
+
+    // Free memory
+    // -------------
+
+    free_svd(svd_data);
+    svd_data = NULL;
+
+    return 0;
+}
+
 
 char *load_all_svd_tests(void)
 {
     MU_RUN_TEST(test_find_u_from_v);
     MU_RUN_TEST(test_svd);
     MU_RUN_TEST(test_svd_with_zero_singular_values);
+    MU_RUN_TEST(test_singular_value_expansion);
     return 0;
 }
