@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "svd.h"
 
 Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)
@@ -10,4 +11,19 @@ Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)
     product = NULL;
 
     return vector_u;
+}
+
+SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
+{
+    SVD *result = malloc(sizeof(SVD));
+
+    printf("size of SVF %lu", sizeof(SVD));
+
+    if (result == NULL)
+    {
+        perror("Error allocating memory for SVD");
+        exit(EXIT_FAILURE);
+    }
+
+    return result;
 }

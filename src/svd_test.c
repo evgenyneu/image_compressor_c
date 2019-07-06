@@ -44,8 +44,40 @@ static char *test_find_u_from_v()
     return 0;
 }
 
+
+static char *test_svd()
+{
+    double matrix_data[] = {
+                                2, -1,
+                                -1, 2
+                           };
+
+    Matrix *matrix = new_matrix_from_array(matrix_data, 2, 2);
+
+    int elements;
+
+    SVD *result = svd(matrix, 2, 10);
+
+    // MU_EQUAL_INT(result->row_num, 2);
+    // MU_EQUAL_INT(result->col_num, 1);
+
+    // MU_APPROX_DOUBLE(result->data[0], 0.707106, 0.00001);
+    // MU_APPROX_DOUBLE(result->data[1], -0.707106, 0.00001);
+
+    // Free memory
+    free_matrix(matrix);
+    matrix = NULL;
+
+    // free_matrix(result);
+    // result = NULL;
+
+    return 0;
+}
+
+
 char *load_all_svd_tests(void)
 {
     MU_RUN_TEST(test_find_u_from_v);
+    MU_RUN_TEST(test_svd);
     return 0;
 }
