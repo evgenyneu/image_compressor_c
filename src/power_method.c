@@ -22,6 +22,7 @@ Matrix *dominant_eigen_system(Matrix *matrix, int iterations, double *eigenvalue
         // Reached zero eigenvalue
         if (vec_length < ALMOST_ZERO)
         {
+            *eigenvalue = 0; 
             return NULL;
         }
 
