@@ -39,7 +39,7 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
         double eigenvalue;
         Matrix *v = dominant_eigen_system(matrix_gramian, iterations, &eigenvalue);
 
-        if (eigenvalue == 0)
+        if (eigenvalue < ALMOST_ZERO)
         {
             break;
         }

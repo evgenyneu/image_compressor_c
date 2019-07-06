@@ -18,6 +18,7 @@ static char *all_tests()
 
 int main(void)
 {
+    printf("\nRunning tests:\n", tests_run);
     char *result = all_tests();
     printf("\nTests run: %d\n", tests_run);
 
