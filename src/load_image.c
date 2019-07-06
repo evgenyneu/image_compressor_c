@@ -2,7 +2,7 @@
 #include "external/stb_image.h"
 #include "load_image.h"
 
-double **load_image(const char *path, int *width, int *height, int *channels)
+Matrix **load_image(const char *path, int *width, int *height, int *channels)
 {
     unsigned char *image = stbi_load(path, width, height, channels, 0);
 
@@ -12,7 +12,7 @@ double **load_image(const char *path, int *width, int *height, int *channels)
         exit(EXIT_FAILURE);
     }
 
-    double **matrices = image_to_array(image, *width, *height, *channels);
+    Matrix **matrices = image_to_matrix(image, *width, *height, *channels);
 
     free(image);
     image = NULL;
@@ -28,6 +28,7 @@ double **image_to_array(unsigned char *image, int width, int height, int channel
     double **matrices = malloc((unsigned long) channels * sizeof(double *));
     double *single_matrix = NULL;
 
+    // Allocate data
     for (i = 0; i < channels; i++)
     {
         single_matrix = malloc((unsigned long)pixel_num * sizeof(double));
@@ -39,10 +40,38 @@ double **image_to_array(unsigned char *image, int width, int height, int channel
         }
 
         matrices[i] =  single_matrix;
+    }
 
-        for (pixel = 0; pixel < pixel_num; pixel++)
+    for (pixel = 0; pixel < pixel_num; pixel++)
+    {
+        for (i = 0; i < channels; i++)
         {
-            single_matrix[pixel] = image[pixel * channels + i];
+            matrices[i][pixel] = image[pixel * channels + i];
+        }
+    }
+
+    return matrices;
+}
+
+Matrix **image_to_matrix(unsigned char *image, int width, int height, int channels)
+{
+    int i, pixel;
+    int pixel_num = width * height;
+    Matrix **matrices = malloc((unsigned long) channels * sizeof(Matrix *));
+    Matrix *single_matrix = NULL;
+
+    // Allocate data
+    for (i = 0; i < channels; i++)
+    {
+        single_matrix = new_matrix(height, width);
+        matrices[i] =  single_matrix;
+    }
+
+    for (pixel = 0; pixel < pixel_num; pixel++)
+    {
+        for (i = 0; i < channels; i++)
+        {
+            matrices[i]->data[pixel] = image[pixel * channels + i];
         }
     }
 
