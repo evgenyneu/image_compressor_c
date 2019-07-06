@@ -68,7 +68,8 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
 
     Matrix *product = new_matrix(matrix1->row_num, matrix2->col_num);
 
-    int i, j, k, sum;
+    int i, j, k;
+    double sum;
 
     for (i = 0; i < matrix1->row_num; i++)
     {
