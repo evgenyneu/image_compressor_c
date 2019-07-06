@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "svd.h"
 #include "power_method.h"
 
@@ -41,21 +42,32 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
             break;
         }
 
-        // singular_value = math.sqrt(eigenvalue)
-        // u = find_u_from_v(matrix, v=v, singular_value=singular_value)
-        // svd_items.append((u, singular_value, v))
+        double singular_value = sqrt(eigenvalue);
+        Matrix *u = find_u_from_v(matrix, v, singular_value);
+        u_vectors[iteration] = u;
+        singular_values[iteration] = singular_value;
+        v_vectors[iteration] = v;
 
-        // if iteration == (max_eigenvalues - 1):
-        //     break
+        if (iteration == (max_eigenvalues - 1))
+        {
+            break;
+        }
 
-        // # Calculate the first dominant term of the singular value expansion
-        // dominant = u @ np.transpose(v) * singular_value
+        // Calculate the first dominant term of the singular value expansion
+        Matrix *v_transposed = transpose_matrix(v);
+        Matrix *product_u_transpose = multiply_matrices(u, v_transposed);
+        Matrix *dominant_matrix = multiply_matrix_with_a_number(product_u_transpose, -singular_value);
 
-        // # Subtract the dominant term
-        // matrix = matrix - dominant
+        // Subtract the dominant term
+        Matrix *matrix_dominant_subtracted = add_matrices(matrix, dominant_matrix);
+
+        // Free memory
+        free_matrix(v_transposed);
+        v_transposed = NULL;
+
     }
 
-    // Free memeory
+    // Free memory
     free(u_vectors);
     u_vectors = NULL;
 
