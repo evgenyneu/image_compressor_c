@@ -97,6 +97,8 @@ static char *test_svd()
     MU_APPROX_DOUBLE(v->data[1], 0.34072387004861016, 1e-12);
 
     // Free memory
+    // -------------
+
     free_matrix(matrix);
     matrix = NULL;
 
