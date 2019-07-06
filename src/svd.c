@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "svd.h"
 #include "power_method.h"
 
@@ -131,4 +132,48 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
     current_matrix = NULL;
 
     return result;
+}
+
+
+Matrix *singular_value_expansion(SVD *svd_data)
+{
+    if (svd_data->elements == 0)
+    {
+        return NULL;
+    }
+
+    Matrix *matrix = new_matrix(svd_data->u_vectors[0]->row_num, svd_data->v_vectors[0]->row_num);
+
+    memset(matrix->data, 0, (unsigned long) (matrix->col_num * matrix->row_num) * sizeof(double));
+
+    int i;
+    Matrix *u_times_transpose_v;
+    Matrix *transposed_v;
+    Matrix *u_times_transpose_v_times_singular_value;
+    Matrix *temp_matrix;
+
+    for (i = 0; i < svd_data->elements; i++)
+    {
+        transposed_v = transpose_matrix(svd_data->v_vectors[i]);
+        u_times_transpose_v = multiply_matrices(svd_data->u_vectors[i], transposed_v);
+        u_times_transpose_v_times_singular_value = multiply_matrix_with_a_number(u_times_transpose_v,                                                                       svd_data->singular_values[i]);
+
+        temp_matrix = add_matrices(matrix, u_times_transpose_v_times_singular_value);
+
+        free_matrix(matrix);
+        matrix = temp_matrix;
+
+        // Free memory
+
+        free_matrix(transposed_v);
+        transposed_v = NULL;
+
+        free_matrix(u_times_transpose_v);
+        u_times_transpose_v = NULL;
+
+        free_matrix(u_times_transpose_v_times_singular_value);
+        u_times_transpose_v_times_singular_value = NULL;
+    }
+
+    return matrix;
 }

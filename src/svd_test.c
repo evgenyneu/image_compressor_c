@@ -154,6 +154,9 @@ static char *test_svd_with_zero_singular_values()
 
 static char *test_singular_value_expansion()
 {
+    // Prepare SVD data
+    // -------------
+
     double u1_matrix_data[] = {
                                 0.7071067812541464,
                                 -0.7071067811189488
@@ -199,6 +202,19 @@ static char *test_singular_value_expansion()
     svd_data->v_vectors = malloc(2 * sizeof(Matrix *));
     svd_data->v_vectors[0] = v1_matrix;
     svd_data->v_vectors[1] = v2_matrix;
+    
+
+    // Preform singular value expansion
+
+    Matrix *result = singular_value_expansion(svd_data);
+
+    MU_EQUAL_INT(result->row_num, 2);
+    MU_EQUAL_INT(result->col_num, 2);
+
+    MU_APPROX_DOUBLE(result->data[0], 2.0, 0.00001);
+    MU_APPROX_DOUBLE(result->data[1], -1.0, 0.00001);
+    MU_APPROX_DOUBLE(result->data[2], -1.0, 0.00001);
+    MU_APPROX_DOUBLE(result->data[3], 2.0, 0.00001);
 
 
     // Free memory
@@ -206,6 +222,9 @@ static char *test_singular_value_expansion()
 
     free_svd(svd_data);
     svd_data = NULL;
+
+    free_matrix(result);
+    result = NULL;
 
     return 0;
 }

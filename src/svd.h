@@ -77,18 +77,29 @@ iterations : The number of iterations of the power method.
 Outputs:
 -------
 
-elements : number of elements in `u_vectors`, `singular_values` and `v_vectors` arrays.
-
-u_vectors : array of m by 1 matrices, the column vectors of U.
-
-singular_values :  corresponding singular value of `matrix`,
-                which are the diagonal entries of Σ matrix.
-
-v_vectors :  array of n by 1 matrices, the column vectors of V.
+Returns: singular value decomposition data for the `matrix`.
 
 */
-
 SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations);
+
+
+/*
+
+Performs singular value expansion by reconstructing the original `matrix`
+    from its SVD UΣV^T.
+
+Inputs:
+-------
+
+svd_data : singular value decomposition data created by the `svd` function that contains singular value decomposition.
+
+Outputs:
+-------
+
+Returns: a matrix, which is the result of the singular value expansion.
+
+*/
+Matrix *singular_value_expansion(SVD *svd_data);
 
 
 #endif // INCLUDE_SVD_H
