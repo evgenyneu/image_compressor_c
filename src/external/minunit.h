@@ -34,7 +34,7 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
     if (fabs(a - b) > diff) { \
         char *buffer; \
         buffer = malloc(1024 * sizeof(char)); \
-        sprintf(buffer, "\nTEST FAILED: %f != %f, %s:%d %s\n", a, b, __FILE__, __LINE__, __FUNCTION__); \
+        sprintf(buffer, "\nTEST FAILED: %.14f != %.14f, %s:%d %s\n", a, b, __FILE__, __LINE__, __FUNCTION__); \
         return buffer; } \
     } while (0)
 

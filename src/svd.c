@@ -29,10 +29,12 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
     }
 
     int iteration;
+    // Matrix used to find dominant eigenvalues 
+    Matrix *current_matrix = new_matrix_from_array(matrix->data, matrix->row_num, matrix->col_num);
 
     for (iteration = 0; iteration < max_eigenvalues; iteration++)
     {
-        Matrix *matrix_gramian = gramian(matrix);
+        Matrix *matrix_gramian = gramian(current_matrix);
 
         double eigenvalue;
         Matrix *v = dominant_eigen_system(matrix_gramian, iterations, &eigenvalue);
@@ -43,10 +45,13 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
         }
 
         double singular_value = sqrt(eigenvalue);
-        Matrix *u = find_u_from_v(matrix, v, singular_value);
+        Matrix *u = find_u_from_v(current_matrix, v, singular_value);
+        
+        // Store SVD elements
         u_vectors[iteration] = u;
         singular_values[iteration] = singular_value;
         v_vectors[iteration] = v;
+        result->elements += 1;
 
         if (iteration == (max_eigenvalues - 1))
         {
@@ -59,13 +64,42 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
         Matrix *dominant_matrix = multiply_matrix_with_a_number(product_u_transpose, -singular_value);
 
         // Subtract the dominant term
-        Matrix *matrix_dominant_subtracted = add_matrices(matrix, dominant_matrix);
+        Matrix *matrix_dominant_subtracted = add_matrices(current_matrix, dominant_matrix);
+
+        // Use the new `current_matrix` for next iteration
+        free_matrix(current_matrix);
+        current_matrix = matrix_dominant_subtracted;
 
         // Free memory
+        free_matrix(matrix_gramian);
+        matrix_gramian = NULL;
+
         free_matrix(v_transposed);
         v_transposed = NULL;
 
+        free_matrix(product_u_transpose);
+        product_u_transpose = NULL;
+
+        free_matrix(dominant_matrix);
+        dominant_matrix = NULL;
     }
+
+    // Copy SVD elements to `result`
+    if (result->elements > 0)
+    {
+        result->u_vectors = malloc((unsigned long)(result->elements) * sizeof(Matrix *));
+        result->singular_values = malloc((unsigned long)(result->elements) * sizeof(double));
+        result->v_vectors = malloc((unsigned long)(result->elements) * sizeof(Matrix *));
+
+        int i;
+        for (i = 0; i < result->elements; i++)
+        {
+            result->u_vectors[i] = u_vectors[i];
+            result->singular_values[i] = singular_values[i];
+            result->v_vectors[i] = v_vectors[i];
+        }
+    }
+
 
     // Free memory
     free(u_vectors);
@@ -76,6 +110,9 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
 
     free(v_vectors);
     v_vectors = NULL;
+
+    free_matrix(current_matrix);
+    current_matrix = NULL;
 
     return result;
 }
