@@ -102,17 +102,7 @@ static char *test_svd()
     free_matrix(matrix);
     matrix = NULL;
 
-    free_matrix(result->u_vectors[0]);
-    free_matrix(result->u_vectors[1]);
-    free(result->u_vectors);
-
-    free_matrix(result->v_vectors[0]);
-    free_matrix(result->v_vectors[1]);
-    free(result->v_vectors);
-
-    free(result->singular_values);
-
-    free(result);
+    free_svd(result);
     result = NULL;
 
     return 0;
@@ -156,15 +146,7 @@ static char *test_svd_with_zero_singular_values()
     free_matrix(matrix);
     matrix = NULL;
 
-    free_matrix(result->u_vectors[0]);
-    free(result->u_vectors);
-
-    free_matrix(result->v_vectors[0]);
-    free(result->v_vectors);
-
-    free(result->singular_values);
-
-    free(result);
+    free_svd(result);
     result = NULL;
 
     return 0;

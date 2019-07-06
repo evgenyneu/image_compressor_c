@@ -4,6 +4,22 @@
 #include "svd.h"
 #include "power_method.h"
 
+void free_svd(SVD *svd_data)
+{
+    int i;
+
+    for (i = 0; i < svd_data->elements; i++)
+    {
+        free_matrix(svd_data->u_vectors[i]);
+        free_matrix(svd_data->v_vectors[i]);
+    }
+
+    free(svd_data->u_vectors);
+    free(svd_data->singular_values);
+    free(svd_data->v_vectors);
+    free(svd_data);
+}
+
 Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)
 {
     Matrix *product = multiply_matrices(matrix, v);

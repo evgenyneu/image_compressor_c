@@ -7,7 +7,7 @@ Singular value decomposition and expansion.
 
 #include "linear_algebra.h"
 
-// Contains element from the singular value decomposition UΣV^T
+// Contains element of the singular value decomposition UΣV^T
 typedef struct
 {
     // Number of elements in `u_vectors`, `singular_values` and `v_vectors` arrays.
@@ -22,6 +22,19 @@ typedef struct
     // Array of n by 1 matrices, the column vectors of V
     Matrix **v_vectors;
 } SVD;
+
+
+/*
+
+Free memory of SVD data.
+
+Inputs:
+-------
+
+svd_data :SVD data.
+
+*/
+void free_svd(SVD *svd_data);
 
 
 /*
