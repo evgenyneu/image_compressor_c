@@ -16,9 +16,11 @@ void free_svd(SVD *svd_data)
     }
 
     free(svd_data->u_vectors);
+    svd_data->u_vectors = NULL;
     free(svd_data->singular_values);
+    svd_data->singular_values = NULL;
     free(svd_data->v_vectors);
-    free(svd_data);
+    svd_data->v_vectors = NULL;
 }
 
 Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)

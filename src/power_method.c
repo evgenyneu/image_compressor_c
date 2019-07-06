@@ -19,15 +19,18 @@ Matrix *dominant_eigen_system(Matrix *matrix, int iterations, double *eigenvalue
         product = multiply_matrices(matrix, unit_vector);
         vec_length = norm(product);
 
+        free_matrix(unit_vector);
+        unit_vector = NULL;
+
         // Reached zero eigenvalue
         if (vec_length < ALMOST_ZERO)
         {
-            *eigenvalue = 0; 
+            free_matrix(product);
+            product = NULL;
+
+            *eigenvalue = 0;
             return NULL;
         }
-
-        free_matrix(unit_vector);
-        unit_vector = NULL;
 
         // Normalize unit vector
         unit_vector = multiply_matrix_with_a_number(product, 1 / vec_length);
