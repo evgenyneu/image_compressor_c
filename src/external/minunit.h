@@ -48,7 +48,7 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
         return buffer; } \
     } while (0)
 
-#define MU_RUN_TEST(test) do { char *message = test(); tests_run++; \
+#define MU_RUN_TEST(test) do { printf("."); char *message = test(); tests_run++; \
                             if (message) return message; } while (0)
 extern int tests_run;
 

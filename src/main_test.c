@@ -19,7 +19,7 @@ static char *all_tests()
 int main(void)
 {
     char *result = all_tests();
-    printf("Tests run: %d\n", tests_run);
+    printf("\nTests run: %d\n", tests_run);
 
     if (result != 0)
     {
