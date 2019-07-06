@@ -25,5 +25,17 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
         exit(EXIT_FAILURE);
     }
 
+
+    int iteration;
+
+    for (iteration = 0; iteration < max_eigenvalues; iteration++)
+    {
+
+    }
+
+    // for iteration in range(max_eigenvalues):
+    //     matrix_gramian = gramian(matrix)
+    //     eigenvalue, v = dominant_eigen_system(matrix_gramian, iterations=iterations)
+
     return result;
 }

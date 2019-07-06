@@ -3,6 +3,37 @@
 #include "linear_algebra_test.h"
 
 
+static char *test_gramian()
+{
+    double matrix_data[] = {
+                                3.912, -2.01,
+                                -2.99998, -1.23
+                            };
+
+    Matrix *matrix = new_matrix_from_array(matrix_data, 2, 2);
+
+    Matrix *result = gramian(matrix);
+
+    MU_EQUAL_INT(result->row_num, 2);
+    MU_EQUAL_INT(result->col_num, 2);
+
+    MU_APPROX_DOUBLE(result->data[0], 24.3036, 0.0001);
+    MU_APPROX_DOUBLE(result->data[1], -4.17314, 0.0001);
+    MU_APPROX_DOUBLE(result->data[2], -4.17314, 0.0001);
+    MU_APPROX_DOUBLE(result->data[3], 5.553, 0.0001);
+
+
+    // Free memory
+    free_matrix(matrix);
+    matrix = NULL;
+
+    free_matrix(result);
+    result = NULL;
+
+    return 0;
+}
+
+
 static char *test_norm()
 {
     double matrix_data[] = {
@@ -264,5 +295,6 @@ char *load_all_linear_algebra_tests(void)
     MU_RUN_TEST(test_transpose);
     MU_RUN_TEST(test_dot_product);
     MU_RUN_TEST(test_norm);
+    MU_RUN_TEST(test_gramian);
     return 0;
 }

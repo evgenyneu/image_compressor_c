@@ -208,4 +208,23 @@ Returns : length of the vector
 double norm(Matrix *matrix);
 
 
+/*
+
+Returns the Gramian of `matrix`.
+
+Inputs:
+-------
+
+matrix : a matrix.
+
+
+Outputs:
+-------
+
+Returns : Gramian of `matrix`.
+
+*/
+Matrix *gramian(Matrix *matrix);
+
+
 #endif // INCLUDE_LINEAR_ALGEBRA_H

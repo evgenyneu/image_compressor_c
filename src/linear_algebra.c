@@ -152,3 +152,16 @@ double norm(Matrix *matrix)
 }
 
 
+Matrix *gramian(Matrix *matrix)
+{
+    Matrix *transposed = transpose_matrix(matrix);
+    Matrix *product = multiply_matrices(transposed, matrix);
+
+    free_matrix(transposed);
+    transposed = NULL;
+
+    return product;
+}
+
+
+
