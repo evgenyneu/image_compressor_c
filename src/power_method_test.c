@@ -14,11 +14,11 @@ static char *test_dominant_eigen_system()
     Matrix *matrix = new_matrix_from_array(matrix_data, 3, 3);
 
     double eigenvalue;
-    Matrix *result = dominant_eigen_system(matrix, 19, &eigenvalue);
+    Matrix *result = dominant_eigen_system(matrix, 4, &eigenvalue);
 
     MU_EQUAL_INT(result->row_num, 3);
     MU_EQUAL_INT(result->col_num, 1);
-    // MU_EQUAL_DOUBLE(eigenvalue, 0.0);
+    MU_APPROX_DOUBLE(eigenvalue, 8.887124, 0.00001);
 
     // Free memory
     free_matrix(matrix);
