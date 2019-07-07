@@ -50,4 +50,25 @@ Returns : matrices containing data each channel, array length is `channels`.
 Matrix **image_to_matrix(unsigned char *image, int width, int height, int channels);
 
 
+/*
+
+Convert array of matrices that contain image data into a single image data.
+
+Inputs:
+-------
+
+matrices: matrices containing data each channel, array length is `channels`.
+
+channels : number of color channels (3 for RGB, 1 for monochrome, 4 for RGB + alpha).
+
+Outputs:
+-------
+
+Returns : image data ready to be saved to disk with stbi_write_* functions.
+
+*/
+unsigned char *matrix_to_image(Matrix **matrices, int channels);
+
+
+
 #endif // INCLUDE_LOAD_IMAGE_H

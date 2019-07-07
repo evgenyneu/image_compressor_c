@@ -93,9 +93,48 @@ static char *test_image_to_matrix()
     return 0;
 }
 
+
+static char *test_matrix_to_image()
+{
+    int row_num = 3;
+    int col_num = 2;
+    int channels = 3;
+    int channel;
+    Matrix **matrices = malloc((unsigned long) channels * sizeof(Matrix *));
+
+    for (channel = 0; channel < channels; channel++)
+    {
+        double *image_data = malloc((unsigned long) (row_num * col_num) * sizeof(double)); 
+        matrices[channel] = new_matrix_from_array(image_data, row_num, col_num);
+    }
+
+    unsigned char *image = matrix_to_image(matrices, channel);
+
+    // Matrix **matrices = image_to_matrix(image, width, height, channels);
+
+    // MU_EQUAL_INT(channels, 1);
+    // MU_EQUAL_INT(matrices[0]->row_num, 3);
+    // MU_EQUAL_INT(matrices[0]->col_num, 2);
+    // MU_ASSERT(matrices[0]->data[0] == 0);
+    // MU_ASSERT(matrices[0]->data[1] == 1);
+    // MU_ASSERT(matrices[0]->data[2] == 2);
+    // MU_ASSERT(matrices[0]->data[4] == 4);
+    // MU_ASSERT(matrices[0]->data[5] == 5);
+
+    // // Free memory
+    // free(image);
+    // image = NULL;
+    // free_matrix(matrices[0]);
+    // free(matrices);
+    // matrices = NULL;
+
+    return 0;
+}
+
 char *load_all_image_tests(void)
 {
     MU_RUN_TEST(test_load_image);
     MU_RUN_TEST(test_image_to_matrix);
+    MU_RUN_TEST(test_matrix_to_image);
     return 0;
 }

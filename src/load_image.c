@@ -46,3 +46,9 @@ Matrix **image_to_matrix(unsigned char *image, int width, int height, int channe
 
     return matrices;
 }
+
+
+unsigned char *matrix_to_image(Matrix **matrices, int channels)
+{
+    return NULL;
+}
