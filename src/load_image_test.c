@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <unistd.h>
 #include "external/minunit.h"
 #include "load_image.h"
 #include "load_image_test.h"
@@ -61,6 +63,18 @@ static char *test_load_image()
 
 static char *test_save_image()
 {
+    const char *output_path = "images/test_output_3x2.bmp";
+
+    if (access(output_path, F_OK) != -1)
+    {
+        if (remove(output_path) != 0)
+        {
+            printf("Unable to delete the file");
+        }
+    }
+
+    MU_ASSERT(access(output_path, F_OK) == -1);
+
     // Red data
     Matrix *matrix1 = new_matrix(3, 2);
     matrix1->data[0] = 0;
@@ -93,13 +107,13 @@ static char *test_save_image()
     matrices[1] = matrix2;
     matrices[2] = matrix3;
 
-    save_image("images/test_output_3x2.bmp", matrices, 3);
+    save_image(output_path, matrices, 3);
 
     // Verify the image
     // --------------
 
     int matrix_num;
-    Matrix **matrices_read = load_image("images/test_output_3x2.bmp", &matrix_num);
+    Matrix **matrices_read = load_image(output_path, &matrix_num);
 
     MU_EQUAL_INT(matrix_num, 3);
 
@@ -150,22 +164,39 @@ static char *test_save_image()
     free_matrix(matrices_read[2]);
     free(matrices_read);
     matrices_read = NULL;
-    
+
+    // Delete test file
+    if (remove(output_path) != 0)
+    {
+        printf("Unable to delete the file");
+    }
 
     return 0;
 }
 
 static char *test_save_image_to_jpg()
 {
+    const char *output_path = "images/test_output_100x100.jpg";
+
+    if (access(output_path, F_OK) != -1)
+    {
+        if (remove(output_path) != 0)
+        {
+            printf("Unable to delete the file");
+        }
+    }
+
+    MU_ASSERT(access(output_path, F_OK) == -1);
+
     int matrix_num;
     Matrix **matrices = load_image("images/test_100x100.jpg", &matrix_num);
 
-    save_image("images/test_output_100x100.jpg", matrices, matrix_num);
+    save_image(output_path, matrices, matrix_num);
 
     // Verify the image
     // --------------
 
-    Matrix **matrices_read = load_image("images/test_output_100x100.jpg", &matrix_num);
+    Matrix **matrices_read = load_image(output_path, &matrix_num);
 
     MU_EQUAL_INT(matrix_num, 3);
 
@@ -175,6 +206,12 @@ static char *test_save_image_to_jpg()
     free_matrix(matrices_read[2]);
     free(matrices_read);
     matrices_read = NULL;
+
+    // Delete test file
+    if (remove(output_path) != 0)
+    {
+        printf("Unable to delete the file");
+    }
 
     return 0;
 }
