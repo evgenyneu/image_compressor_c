@@ -12,6 +12,8 @@ Calculate the dominant eigenvalue and eigenvector of a matrix using the power me
 
 Check if `target` string ends with `ending`.
 
+Based on https://codereview.stackexchange.com/a/54726
+
 Inputs:
 -------
 
