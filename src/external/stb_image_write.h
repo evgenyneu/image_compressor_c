@@ -1,3 +1,5 @@
+#pragma GCC system_header
+
 /* stb_image_write - v1.13 - public domain - http://nothings.org/stb/stb_image_write.h
    writes out PNG/BMP/TGA/JPEG/HDR images to C stdio - Sean Barrett 2010-2015
                                      no warranty implied; use at your own risk

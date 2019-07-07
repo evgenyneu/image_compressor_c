@@ -4,8 +4,10 @@
 
 static char *test_load_image()
 {
-    int channels;
+    int channels = 0;
     Matrix **matrices = load_image("images/test_3x3.bmp", &channels);
+
+    MU_EQUAL_INT(channels, 3);
 
     // Red
     MU_EQUAL_INT(matrices[0]->row_num, 3);
@@ -52,6 +54,102 @@ static char *test_load_image()
     free_matrix(matrices[2]);
     free(matrices);
     matrices = NULL;
+
+    return 0;
+}
+
+
+static char *test_save_image()
+{
+    // Red data
+    Matrix *matrix1 = new_matrix(3, 2);
+    matrix1->data[0] = 0;
+    matrix1->data[1] = 50;
+    matrix1->data[2] = 100;
+    matrix1->data[3] = 150;
+    matrix1->data[4] = 200;
+    matrix1->data[5] = 250;
+
+    // Green data
+    Matrix *matrix2 = new_matrix(3, 2);
+    matrix2->data[0] = 1;
+    matrix2->data[1] = 51;
+    matrix2->data[2] = 101;
+    matrix2->data[3] = 151;
+    matrix2->data[4] = 201;
+    matrix2->data[5] = 251;
+
+    // Blue data
+    Matrix *matrix3 = new_matrix(3, 2);
+    matrix3->data[0] = 2;
+    matrix3->data[1] = 52;
+    matrix3->data[2] = 102;
+    matrix3->data[3] = 152;
+    matrix3->data[4] = 202;
+    matrix3->data[5] = 252;
+
+    Matrix **matrices = malloc(3 * sizeof(Matrix *));
+    matrices[0] = matrix1;
+    matrices[1] = matrix2;
+    matrices[2] = matrix3;
+
+    save_image("images/test_output_3x2.bmp", matrices, 3);
+
+    // Verify the image
+    // --------------
+
+    int channels;
+    Matrix **matrices_read = load_image("images/test_output_3x2.bmp", &channels);
+
+    MU_EQUAL_INT(channels, 3);
+
+    // Red
+    MU_EQUAL_INT(matrices[0]->row_num, 3);
+    MU_EQUAL_INT(matrices[0]->col_num, 2);
+    MU_EQUAL_DOUBLE(matrices[0]->data[0], 0.0);
+    MU_EQUAL_DOUBLE(matrices[0]->data[1], 50.0);
+    MU_EQUAL_DOUBLE(matrices[0]->data[2], 100.0);
+    MU_EQUAL_DOUBLE(matrices[0]->data[3], 150.0);
+    MU_EQUAL_DOUBLE(matrices[0]->data[4], 200.0);
+    MU_EQUAL_DOUBLE(matrices[0]->data[5], 250.0);
+
+    // Green
+    MU_EQUAL_INT(matrices[1]->row_num, 3);
+    MU_EQUAL_INT(matrices[1]->col_num, 2);
+    MU_EQUAL_DOUBLE(matrices[1]->data[0], 1.0);
+    MU_EQUAL_DOUBLE(matrices[1]->data[1], 51.0);
+    MU_EQUAL_DOUBLE(matrices[1]->data[2], 101.0);
+    MU_EQUAL_DOUBLE(matrices[1]->data[3], 151.0);
+    MU_EQUAL_DOUBLE(matrices[1]->data[4], 201.0);
+    MU_EQUAL_DOUBLE(matrices[1]->data[5], 251.0);
+
+
+    // Blue
+    MU_EQUAL_INT(matrices[2]->row_num, 3);
+    MU_EQUAL_INT(matrices[2]->col_num, 2);
+    MU_EQUAL_DOUBLE(matrices[2]->data[0], 2.0);
+    MU_EQUAL_DOUBLE(matrices[2]->data[1], 52.0);
+    MU_EQUAL_DOUBLE(matrices[2]->data[2], 102.0);
+    MU_EQUAL_DOUBLE(matrices[2]->data[3], 152.0);
+    MU_EQUAL_DOUBLE(matrices[2]->data[4], 202.0);
+    MU_EQUAL_DOUBLE(matrices[2]->data[5], 252.0);
+
+
+    // Free memory
+    free_matrix(matrices[0]);
+    free_matrix(matrices[1]);
+    free_matrix(matrices[2]);
+    free(matrices);
+    matrices = NULL;
+    matrix1 = NULL;
+    matrix2 = NULL;
+    matrix3 = NULL;
+
+    free_matrix(matrices_read[0]);
+    free_matrix(matrices_read[1]);
+    free_matrix(matrices_read[2]);
+    free(matrices_read);
+    matrices_read = NULL;
 
     return 0;
 }
@@ -119,7 +217,7 @@ static char *test_matrix_to_image()
     matrices[0]->data[5] = -1;
     matrices[1]->data[5] = 256;
 
-    unsigned char *image = matrix_to_image(matrices, channel);
+    unsigned char *image = matrix_to_image(matrices, 3);
 
     MU_EQUAL_INT(image[0], 0);
     MU_EQUAL_INT(image[1], 6);
@@ -150,10 +248,12 @@ static char *test_matrix_to_image()
     return 0;
 }
 
+
 char *load_all_image_tests(void)
 {
     MU_RUN_TEST(test_load_image);
     MU_RUN_TEST(test_image_to_matrix);
     MU_RUN_TEST(test_matrix_to_image);
+    MU_RUN_TEST(test_save_image);
     return 0;
 }

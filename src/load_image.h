@@ -30,6 +30,23 @@ Matrix **load_image(const char *path, int *channels);
 
 /*
 
+Saves matrices to an image.
+
+Inputs:
+-------
+
+path : path to the image, with any of the following extensions: jpg, png, bmp.
+
+matrices: matrices containing data each channel, array length is `channels`.
+
+channels : number of color channels (3 for RGB, 1 for monochrome, 4 for RGB + alpha).
+
+*/
+void save_image(const char *path, Matrix **matrices, int channels);
+
+
+/*
+
 Convert the `image` data into separate arrays for each color (returned).
 
 Inputs:
