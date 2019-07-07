@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "core.h"
 #include "svd.h"
+#include "load_image.h"
 
 Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channels)
 {
@@ -32,4 +33,30 @@ Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channe
     }
 
     return result;
+}
+
+void compress_image_file(const char *path, const char *output, int terms, int iterations)
+{
+    int matrix_num = 0;
+    Matrix **matrices = load_image(path, &matrix_num);
+
+    Matrix **matrices_compressed = compress_image(matrices, terms, iterations, matrix_num);
+
+    save_image(output, matrices_compressed, matrix_num);
+
+    // Free memory
+    // ---------
+
+    int i;
+
+    for (i = 0; i < matrix_num; i++)
+    {
+        free_matrix(matrices[i]);
+        free_matrix(matrices_compressed[i]);
+    }
+
+    free(matrices);
+    matrices = NULL;
+    free(matrices_compressed);
+    matrices_compressed = NULL;
 }
