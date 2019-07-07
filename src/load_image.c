@@ -80,7 +80,7 @@ unsigned char *matrix_to_image(Matrix **matrices, int channels)
             {
                 output_value  = 255;
             }
-            else if (value < 255)
+            else if (value < 0)
             {
                 output_value = 0;
             }

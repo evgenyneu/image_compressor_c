@@ -99,26 +99,43 @@ static char *test_matrix_to_image()
     int row_num = 3;
     int col_num = 2;
     int channel;
+    int pixel;
+    int pixel_num = row_num * col_num;
     Matrix **matrices = malloc(3 * sizeof(Matrix *));
 
     for (channel = 0; channel < 3; channel++)
     {
         double *image_data = malloc((unsigned long) (row_num * col_num) * sizeof(double)); 
-        matrices[channel] = new_matrix_from_array(image_data, row_num, col_num);
+        Matrix *matrix = new_matrix_from_array(image_data, row_num, col_num);
+        matrices[channel] = matrix;
+
+        for (pixel = 0; pixel < pixel_num; pixel++)
+        {
+            matrix->data[pixel] = pixel_num * channel + pixel;
+        }
     }
+
+    // Set some pixels to be outsede [0, 255] range
+    matrices[0]->data[5] = -1;
+    matrices[1]->data[5] = 256;
 
     unsigned char *image = matrix_to_image(matrices, channel);
 
-    // Matrix **matrices = image_to_matrix(image, width, height, channels);
+    MU_EQUAL_INT(image[0], 0);
+    MU_EQUAL_INT(image[1], 6);
+    MU_EQUAL_INT(image[2], 12);
 
-    // MU_EQUAL_INT(channels, 1);
-    // MU_EQUAL_INT(matrices[0]->row_num, 3);
-    // MU_EQUAL_INT(matrices[0]->col_num, 2);
-    // MU_ASSERT(matrices[0]->data[0] == 0);
-    // MU_ASSERT(matrices[0]->data[1] == 1);
-    // MU_ASSERT(matrices[0]->data[2] == 2);
-    // MU_ASSERT(matrices[0]->data[4] == 4);
-    // MU_ASSERT(matrices[0]->data[5] == 5);
+    MU_EQUAL_INT(image[3], 1);
+    MU_EQUAL_INT(image[4], 7);
+    MU_EQUAL_INT(image[5], 13);
+
+    MU_EQUAL_INT(image[6], 2);
+    MU_EQUAL_INT(image[7], 8);
+    MU_EQUAL_INT(image[8], 14);
+
+    MU_EQUAL_INT(image[15], 0); // The pixel was changed from -1 to 0
+    MU_EQUAL_INT(image[16], 255); // The pixel was changed from 256 to 255
+
 
     // Free memory
     free_matrix(matrices[0]);
