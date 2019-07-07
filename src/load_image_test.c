@@ -98,11 +98,10 @@ static char *test_matrix_to_image()
 {
     int row_num = 3;
     int col_num = 2;
-    int channels = 3;
     int channel;
-    Matrix **matrices = malloc((unsigned long) channels * sizeof(Matrix *));
+    Matrix **matrices = malloc(3 * sizeof(Matrix *));
 
-    for (channel = 0; channel < channels; channel++)
+    for (channel = 0; channel < 3; channel++)
     {
         double *image_data = malloc((unsigned long) (row_num * col_num) * sizeof(double)); 
         matrices[channel] = new_matrix_from_array(image_data, row_num, col_num);
@@ -121,12 +120,15 @@ static char *test_matrix_to_image()
     // MU_ASSERT(matrices[0]->data[4] == 4);
     // MU_ASSERT(matrices[0]->data[5] == 5);
 
-    // // Free memory
-    // free(image);
-    // image = NULL;
-    // free_matrix(matrices[0]);
-    // free(matrices);
-    // matrices = NULL;
+    // Free memory
+    free_matrix(matrices[0]);
+    free_matrix(matrices[1]);
+    free_matrix(matrices[2]);
+    free(matrices);
+    matrices = NULL;
+
+    free(image);
+    image = NULL;
 
     return 0;
 }

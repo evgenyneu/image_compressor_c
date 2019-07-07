@@ -24,23 +24,23 @@ Matrix **load_image(const char *path,  int *channels)
 
 Matrix **image_to_matrix(unsigned char *image, int width, int height, int channels)
 {
-    int i, pixel;
+    int channel, pixel;
     int pixel_num = width * height;
     Matrix **matrices = malloc((unsigned long) channels * sizeof(Matrix *));
     Matrix *single_matrix = NULL;
 
     // Allocate data
-    for (i = 0; i < channels; i++)
+    for (channel = 0; channel < channels; channel++)
     {
         single_matrix = new_matrix(height, width);
-        matrices[i] =  single_matrix;
+        matrices[channel] =  single_matrix;
     }
 
     for (pixel = 0; pixel < pixel_num; pixel++)
     {
-        for (i = 0; i < channels; i++)
+        for (channel = 0; channel < channels; channel++)
         {
-            matrices[i]->data[pixel] = image[pixel * channels + i];
+            matrices[channel]->data[pixel] = image[pixel * channels + channel];
         }
     }
 
@@ -50,5 +50,48 @@ Matrix **image_to_matrix(unsigned char *image, int width, int height, int channe
 
 unsigned char *matrix_to_image(Matrix **matrices, int channels)
 {
-    return NULL;
+    if (channels == 0)
+    {
+        perror("Can not save data for zero channels.");
+        exit(EXIT_FAILURE);
+    }
+
+    int pixel_num = matrices[0]->col_num * matrices[0]->row_num;
+    int pixel, channel;
+    unsigned char *data;
+
+    data = malloc((unsigned long)(pixel_num * channels) * sizeof(unsigned char));
+
+    if (data == NULL)
+    {
+        perror("Can not allocate memory for the image.");
+        exit(EXIT_FAILURE);
+    }
+
+    for (pixel = 0; pixel < pixel_num; pixel++)
+    {
+        for(channel = 0; channel < channels; channel++)
+        {
+            double value = matrices[channel]->data[pixel];
+            unsigned char output_value;
+
+            // Make sure the pixel value is in [0, 255] range
+            if (value > 255)
+            {
+                output_value  = 255;
+            }
+            else if (value < 255)
+            {
+                output_value = 0;
+            }
+            else
+            {
+                output_value = (unsigned char) value;
+            }
+
+            data[pixel * channels + channel] = output_value;
+        }
+    }
+
+    return data;
 }
