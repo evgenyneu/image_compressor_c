@@ -4,10 +4,10 @@
 #include "external/stb_image_write.h"
 #include "load_image.h"
 
-Matrix **load_image(const char *path,  int *channels)
+Matrix **load_image(const char *path, int *matrix_num)
 {
-    int width, height;
-    unsigned char *image = stbi_load(path, &width, &height, channels, 0);
+    int width, height, channels;
+    unsigned char *image = stbi_load(path, &width, &height, &channels, 0);
 
     if (image == NULL)
     {
@@ -15,13 +15,7 @@ Matrix **load_image(const char *path,  int *channels)
         exit(EXIT_FAILURE);
     }
 
-    Matrix **matrices = image_to_matrix(image, width, height, *channels);
-
-    if (*channels == 4)
-    {
-        // We do not want the 4th alpha channel
-        *channels = 3;
-    }
+    Matrix **matrices = image_to_matrix(image, width, height, channels, matrix_num);
 
     free(image);
     image = NULL;
@@ -45,22 +39,23 @@ void save_image(const char *path, Matrix **matrices, int channels)
 }
 
 
-Matrix **image_to_matrix(unsigned char *image, int width, int height, int channels)
+
+Matrix **image_to_matrix(unsigned char *image, int width, int height, int channels, int *matrix_num)
 {
     int channel, pixel;
     int pixel_num = width * height;
-    int allocate_channels = channels;
+    *matrix_num = channels;
 
     if (channels == 4)
     {
-        allocate_channels = 3; // Skip the alpha channel
+        *matrix_num = 3; // Skip the alpha channel
     }
 
-    Matrix **matrices = malloc((unsigned long) allocate_channels * sizeof(Matrix *));
+    Matrix **matrices = malloc((unsigned long) (*matrix_num) * sizeof(Matrix *));
     Matrix *single_matrix = NULL;
 
     // Allocate data
-    for (channel = 0; channel < allocate_channels; channel++)
+    for (channel = 0; channel < (*matrix_num); channel++)
     {
         single_matrix = new_matrix(height, width);
         matrices[channel] =  single_matrix;
@@ -68,7 +63,7 @@ Matrix **image_to_matrix(unsigned char *image, int width, int height, int channe
 
     for (pixel = 0; pixel < pixel_num; pixel++)
     {
-        for (channel = 0; channel < allocate_channels; channel++)
+        for (channel = 0; channel < (*matrix_num); channel++)
         {
             matrices[channel]->data[pixel] = image[pixel * channels + channel];
         }

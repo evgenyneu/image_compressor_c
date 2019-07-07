@@ -4,10 +4,10 @@
 
 static char *test_load_image()
 {
-    int channels = 0;
-    Matrix **matrices = load_image("images/test_3x3.bmp", &channels);
+    int matrix_num = 0;
+    Matrix **matrices = load_image("images/test_3x3.bmp", &matrix_num);
 
-    MU_EQUAL_INT(channels, 3);
+    MU_EQUAL_INT(matrix_num, 3);
 
     // Red
     MU_EQUAL_INT(matrices[0]->row_num, 3);
@@ -98,10 +98,10 @@ static char *test_save_image()
     // Verify the image
     // --------------
 
-    int channels;
-    Matrix **matrices_read = load_image("images/test_output_3x2.bmp", &channels);
+    int matrix_num;
+    Matrix **matrices_read = load_image("images/test_output_3x2.bmp", &matrix_num);
 
-    MU_EQUAL_INT(channels, 3);
+    MU_EQUAL_INT(matrix_num, 3);
 
     // Red
     MU_EQUAL_INT(matrices[0]->row_num, 3);
@@ -161,6 +161,7 @@ static char *test_image_to_matrix()
     int width = 2;
     int height = 3;
     int channels = 1;
+    int matrix_num;
     int i;
     int pixel_num = width * height;
 
@@ -170,9 +171,9 @@ static char *test_image_to_matrix()
        image[i] = (unsigned char)i;
     }
 
-    Matrix **matrices = image_to_matrix(image, width, height, channels);
+    Matrix **matrices = image_to_matrix(image, width, height, channels, &matrix_num);
 
-    MU_EQUAL_INT(channels, 1);
+    MU_EQUAL_INT(matrix_num, 1);
     MU_EQUAL_INT(matrices[0]->row_num, 3);
     MU_EQUAL_INT(matrices[0]->col_num, 2);
     MU_ASSERT(matrices[0]->data[0] == 0);
