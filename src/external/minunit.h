@@ -8,6 +8,7 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 
 // Fail if `test` is false
@@ -45,6 +46,15 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
         char *buffer; \
         buffer = malloc(1024 * sizeof(char)); \
         sprintf(buffer, "\nTEST FAILED: %d != %d, %s:%d %s\n", a, b, __FILE__, __LINE__, __FUNCTION__); \
+        return buffer; } \
+    } while (0)
+
+// Fail if strings are not equal
+#define MU_EQUAL_STR(a, b) do { \
+    if (strcmp(a, b) != 0) { \
+        char *buffer; \
+        buffer = malloc(1024 * sizeof(char)); \
+        sprintf(buffer, "\nTEST FAILED: %s != %s, %s:%d %s\n", a, b, __FILE__, __LINE__, __FUNCTION__); \
         return buffer; } \
     } while (0)
 

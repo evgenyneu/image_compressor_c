@@ -30,4 +30,22 @@ Returns : 1 if `ending` is found at the end of `target`. Returns 0 otherwise.
 */
 int string_ends_with(const char *target, const char *ending);
 
+/*
+
+Converts string to lower case
+
+Inputs:
+-------
+
+string : string to convert to lower case.
+
+
+Outputs:
+-------
+
+Returns : a lowercase string.
+
+*/
+char *string_to_lower(const char *string);
+
 #endif // INCLUDE_STRING_UTIL_H

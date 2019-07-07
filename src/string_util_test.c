@@ -13,8 +13,16 @@ static char *test_string_ends_with()
     return 0;
 }
 
+static char *test_string_to_lower()
+{
+    MU_EQUAL_STR(string_to_lower("My String"), "my string");
+
+    return 0;
+}
+
 char *load_all_string_util_tests(void)
 {
     MU_RUN_TEST(test_string_ends_with);
+    MU_RUN_TEST(test_string_to_lower);
     return 0;
 }
