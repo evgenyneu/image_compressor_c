@@ -19,7 +19,7 @@ char *string_to_lower(const char *string)
 {
     unsigned long str_len = strlen(string);
     unsigned long i;
-    char *result = malloc(str_len * sizeof(char));
+    char *result = malloc((str_len + 1) * sizeof(char));
 
     if (result == NULL)
     {
@@ -31,6 +31,8 @@ char *string_to_lower(const char *string)
     {
         result[i] = (char) tolower(string[i]);
     }
+    
+    result[str_len] = '\0';
 
     return result;
 }

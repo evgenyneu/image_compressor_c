@@ -150,6 +150,31 @@ static char *test_save_image()
     free_matrix(matrices_read[2]);
     free(matrices_read);
     matrices_read = NULL;
+    
+
+    return 0;
+}
+
+static char *test_save_image_to_jpg()
+{
+    int matrix_num;
+    Matrix **matrices = load_image("images/test_100x100.jpg", &matrix_num);
+
+    save_image("images/test_output_100x100.jpg", matrices, matrix_num);
+
+    // Verify the image
+    // --------------
+
+    Matrix **matrices_read = load_image("images/test_output_100x100.jpg", &matrix_num);
+
+    MU_EQUAL_INT(matrix_num, 3);
+
+    // Free memory
+    free_matrix(matrices_read[0]);
+    free_matrix(matrices_read[1]);
+    free_matrix(matrices_read[2]);
+    free(matrices_read);
+    matrices_read = NULL;
 
     return 0;
 }
@@ -256,5 +281,6 @@ char *load_all_image_tests(void)
     MU_RUN_TEST(test_image_to_matrix);
     MU_RUN_TEST(test_matrix_to_image);
     MU_RUN_TEST(test_save_image);
+    MU_RUN_TEST(test_save_image_to_jpg);
     return 0;
 }

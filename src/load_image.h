@@ -35,7 +35,7 @@ Saves matrices to an image.
 Inputs:
 -------
 
-path : path to the image, with any of the following extensions: jpg, png, bmp.
+path : path to the image, with any of the following extensions: jpg or bmp.
 
 matrices: matrices containing data each channel, array length is `channels`.
 

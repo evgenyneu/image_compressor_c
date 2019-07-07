@@ -3,6 +3,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "external/stb_image_write.h"
 #include "load_image.h"
+#include "string_util.h"
 
 Matrix **load_image(const char *path, int *matrix_num)
 {
@@ -35,7 +36,24 @@ void save_image(const char *path, Matrix **matrices, int channels)
     int width = matrices[0]->col_num;
     int height = matrices[0]->row_num;
 
-    stbi_write_bmp(path, width, height, channels, image);
+    char *path_lowercase = string_to_lower(path);
+
+    if (string_ends_with(path_lowercase, ".jpg") == 1 || string_ends_with(path_lowercase, ".jpeg") == 1)
+    {
+        stbi_write_jpg(path, width, height, channels, image, 80);
+    }
+    else if (string_ends_with(path_lowercase, ".bmp") == 1)
+    {
+        stbi_write_bmp(path, width, height, channels, image);
+    }
+    else
+    {
+        perror("Incorrect output string name. Only JPG, or BMP string are supported.");
+        exit(EXIT_FAILURE);
+    }
+
+    free(path_lowercase);
+    path_lowercase = NULL;
 }
 
 
