@@ -6,6 +6,7 @@
 #include "svd_test.h"
 #include "core_test.h"
 #include "string_util_test.h"
+#include "cmd_args_test.h"
 
 int tests_run = 0;
 
@@ -17,6 +18,7 @@ static char *all_tests()
     MU_RUN_TEST(load_all_svd_tests);
     MU_RUN_TEST(load_all_core_tests);
     MU_RUN_TEST(load_all_string_util_tests);
+    MU_RUN_TEST(load_all_cmd_args_tests);
     return 0;
 }
 

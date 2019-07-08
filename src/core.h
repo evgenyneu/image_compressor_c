@@ -36,7 +36,7 @@ Inputs:
 
 path : path to the image file to compress.
 
-output : path to the output image file that will be created.
+output : path to the compressed image file that will be created.
 
 terms :  The number of terms for the singular value expansion. Higher number will produce better quality.
 
