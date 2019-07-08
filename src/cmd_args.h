@@ -15,7 +15,24 @@ typedef struct
 
     // Number of terms in the singular value expansion.
     int iterations;
+
+    // Contains 1 if arguments were passed successfully, or 0 if there was an error.
+    int success;
 } CmdArgs;
+
+
+/*
+
+Free memory from `cmd_args`.
+
+Inputs:
+-------
+
+cmd_args : command line arguments.
+
+*/
+void free_cmd_args(CmdArgs *cmd_args);
+
 
 /*
 
@@ -30,13 +47,15 @@ argv :  the array containing arguments that is supplied to the `main` function.
 
 iterations : Number of terms in the singular value expansion.
 
+cmd_args : parsed command line arguments.
+
 
 Outputs:
 -------
 
-Returns : 0 if arguments are successfully parsed, or 1 if there was an error.
+Returns : text from the parser that is intended to be shown to user.
 
 */
-int parse_cmd_args(int argc, const char *argv[]);
+char *parse_cmd_args(int argc, const char *argv[], CmdArgs *cmd_args);
 
 #endif // INCLUDE_CMD_ARGS_H
