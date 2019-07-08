@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "external/parg.h"
 #include "cmd_args.h"
 
@@ -24,8 +25,9 @@ char *parse_cmd_args(int argc, const char *argv[], CmdArgs *cmd_args)
 
 	parg_init(&ps);
 
-    char *output_text = malloc(10 * 1024 * sizeof(char));
-    output_text[0] = "\0";
+    char *output_text = malloc(100 * 1024 * sizeof(char));
+    strcpy(output_text, "");
+    char buffer[1024];
 
     const char help[] = "Compress an image using singular value decomposition\n\n"
         "Usage: \n\n"
@@ -39,38 +41,46 @@ char *parse_cmd_args(int argc, const char *argv[], CmdArgs *cmd_args)
 	while ((c = parg_getopt_long(&ps, argc, argv, "ma", po_def, &li)) != -1) {
 		switch (c) {
 		case 1:
-			sprintf(output_text, "nonoption '%s'\n", ps.optarg);
+			sprintf(buffer, "nonoption '%s'\n", ps.optarg);
+            strcat(output_text, buffer);
 			break;
 		case 'h':
-            sprintf(output_text, "%s", help);
+            sprintf(buffer, "%s", help);
+            strcat(output_text, buffer);
 			return NULL;
 			break;
 		case 't':
-			sprintf(output_text, "option --terms with argument '%s'\n", ps.optarg);
+			sprintf(buffer, "option --terms with argument '%s'\n", ps.optarg);
+            strcat(output_text, buffer);
 			break;
         case 'i':
-			sprintf(output_text, "option --iterations with argument '%s'\n", ps.optarg);
+			sprintf(buffer, "option --iterations with argument '%s'\n", ps.optarg);
+            strcat(output_text, buffer);
 			break;
 		case '?':
 		case ':':
             switch (ps.optopt)
             {
                 case 't':
-                    sprintf(output_text, "option --terms requires an argument. Example: --terms=10\n");
+                    sprintf(buffer, "option --terms requires an argument. Example: --terms=10\n");
+                    strcat(output_text, buffer);
                     break;
 
                 case 'i':
-                    sprintf(output_text, "option --iterations requires an argument. Example: --iterations=3\n");
+                    sprintf(buffer, "option --iterations requires an argument. Example: --iterations=3\n");
+                    strcat(output_text, buffer);
                     break;
 
                 default:
-                    sprintf(output_text, "unknown option %c\n", ps.optopt);
+                    sprintf(buffer, "unknown option %c\n", ps.optopt);
+                    strcat(output_text, buffer);
                     break;
             }
             cmd_args->success = 0;
             return output_text;
 		default:
-			sprintf(output_text, "error: unhandled option -%c\n", c);
+			sprintf(buffer, "error: unhandled option -%c\n", c);
+            strcat(output_text, buffer);
 			cmd_args->success = 0;
             return output_text;
 			break;
@@ -80,7 +90,7 @@ char *parse_cmd_args(int argc, const char *argv[], CmdArgs *cmd_args)
     if (argc == 1)
     {
         // No options supplied
-        sprintf(output_text, "%s", help);
+        strcat(output_text, help);
     }
 
     cmd_args->success = 1;

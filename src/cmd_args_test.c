@@ -5,12 +5,15 @@
 static char *test_parse_cmd_args()
 {
     const char *argv[] = { "compressor", "--terms=13", "--iterations=3", "image_path", "output_path" };
+    int argc = sizeof(argv) / sizeof(char *);
 
     CmdArgs *cmd_args = malloc(sizeof(CmdArgs));
     cmd_args->path = NULL;
     cmd_args->output = NULL;
 
-    char *result = parse_cmd_args(sizeof(argv), argv, cmd_args);
+    char *result = parse_cmd_args(argc, argv, cmd_args);
+
+    printf("Result:\n%s", result);
 
     // Free memory
     free_cmd_args(cmd_args);
