@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
 
     if (cmd_args->ready_to_compress)
     {
-        printf("Compresssing to %s", cmd_args->output);
+        printf("\nCompresssing to %s\n", cmd_args->output);
         compress_image_file(cmd_args->path, cmd_args->output, cmd_args->terms, cmd_args->iterations);
-        printf("Done");
+        printf("Done\n");
         free_cmd_args(cmd_args);
         cmd_args = NULL;
         return EXIT_SUCCESS;
