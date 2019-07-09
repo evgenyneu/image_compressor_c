@@ -4,6 +4,16 @@
 #include "external/parg.h"
 #include "cmd_args.h"
 
+
+CmdArgs *new_cmd_args(void)
+{
+    CmdArgs *cmd_args = malloc(sizeof(CmdArgs));
+    cmd_args->path = NULL;
+    cmd_args->output = NULL;
+    return cmd_args;
+}
+
+
 void free_cmd_args(CmdArgs *cmd_args)
 {
     free(cmd_args->path);
@@ -11,7 +21,8 @@ void free_cmd_args(CmdArgs *cmd_args)
     free(cmd_args);
 }
 
-char *parse_cmd_args(int argc, const char *argv[], CmdArgs *cmd_args)
+
+char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
 {
     struct parg_state ps;
 	int c;
@@ -38,7 +49,7 @@ char *parse_cmd_args(int argc, const char *argv[], CmdArgs *cmd_args)
         "--iterations :  number of iterations of the power method\n"
         "--help :  show this message\n";
 
-	while ((c = parg_getopt_long(&ps, argc, argv, "ma", po_def, &li)) != -1) {
+	while ((c = parg_getopt_long(&ps,  argc, argv, "ma", po_def, &li)) != -1) {
 		switch (c) {
 		case 1:
 			sprintf(buffer, "nonoption '%s'\n", ps.optarg);
