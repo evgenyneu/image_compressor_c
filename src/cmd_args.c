@@ -66,14 +66,14 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
             {
                 sprintf(buffer, "ERROR: unkown option '%s'\n", ps.optarg);
                 strcat(output_text, buffer);
-                cmd_args->success = 0;
+                cmd_args->ready_to_compress = 0;
                 return output_text;
             }
 			break;
 		case 'h':
             sprintf(buffer, "%s", help);
             strcat(output_text, buffer);
-            cmd_args->success = 1;
+            cmd_args->ready_to_compress = 0;
 			return output_text;
 			break;
 		case 't':
@@ -85,7 +85,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
             {
                 sprintf(buffer, "ERROR: --terms value is not a number.\n");
                 strcat(output_text, buffer);
-                cmd_args->success = 0;
+                cmd_args->ready_to_compress = 0;
                 return output_text;
             }
 			break;
@@ -98,7 +98,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
             {
                 sprintf(buffer, "ERROR: --iterations value is not a number.\n");
                 strcat(output_text, buffer);
-                cmd_args->success = 0;
+                cmd_args->ready_to_compress = 0;
                 return output_text;
             }
 			break;
@@ -121,12 +121,12 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
                     strcat(output_text, buffer);
                     break;
             }
-            cmd_args->success = 0;
+            cmd_args->ready_to_compress = 0;
             return output_text;
 		default:
 			sprintf(buffer, "ERROR: unhandled option -%c\n", c);
             strcat(output_text, buffer);
-			cmd_args->success = 0;
+			cmd_args->ready_to_compress = 0;
             return output_text;
 			break;
 		}
@@ -136,8 +136,10 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
     {
         // No options supplied
         strcat(output_text, help);
+        cmd_args->ready_to_compress = 0;
+        return output_text;
     }
 
-    cmd_args->success = 1;
+    cmd_args->ready_to_compress = 1;
     return output_text;
 }

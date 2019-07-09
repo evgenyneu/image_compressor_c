@@ -17,8 +17,10 @@ typedef struct
     // Number of terms in the singular value expansion.
     int iterations;
 
-    // Contains 1 if arguments were passed successfully, or 0 if there was an error.
-    int success;
+    // Contains 1 if all necessary arguments were supplied in order
+    // to compress an image.
+    // Contains 0 otherwise.
+    int ready_to_compress;
 } CmdArgs;
 
 

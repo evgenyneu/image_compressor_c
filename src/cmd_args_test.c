@@ -13,7 +13,7 @@ static char *test_parse_cmd_args__all_options_supplied()
 
     char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
 
-    MU_EQUAL_INT(cmd_args->success, 1);
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 1);
     MU_EQUAL_INT(cmd_args->terms, 13);
     MU_EQUAL_INT(cmd_args->iterations, 3);
     MU_EQUAL_STR(cmd_args->path, "dir/image.jpg");
@@ -25,6 +25,7 @@ static char *test_parse_cmd_args__all_options_supplied()
 
     return 0;
 }
+
 
 
 char *load_all_cmd_args_tests(void)
