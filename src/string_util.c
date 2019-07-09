@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <errno.h>
+#include <limits.h>
 #include "string_util.h"
 
 int string_ends_with(const char *target, const char *ending)
@@ -35,4 +37,30 @@ char *string_to_lower(const char *string)
     result[str_len] = '\0';
 
     return result;
+}
+
+
+int string_to_int(const char *string, int *number)
+{
+    char *end;
+    long result = strtol(string, &end, 10);
+
+    if (errno == ERANGE)
+    {
+        return 1;
+    }
+
+    if (result > INT_MAX || result < INT_MIN)
+    {
+        return 1;
+    }
+
+    if (strcmp(end, string) == 0)
+    {
+        // string is empty or is not a number
+        return 1;
+    }
+
+    *number = (int) result;
+    return 0;
 }

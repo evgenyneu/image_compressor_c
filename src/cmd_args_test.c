@@ -2,7 +2,7 @@
 #include "cmd_args_test.h"
 #include "cmd_args.h"
 
-static char *test_parse_cmd_args()
+static char *test_parse_cmd_args_all()
 {
     const char *argv[] = { "compressor", "--terms=13", "--iterations=3", "image_path", "output_path" };
     int argc = sizeof(argv) / sizeof(char *);
@@ -21,6 +21,6 @@ static char *test_parse_cmd_args()
 
 char *load_all_cmd_args_tests(void)
 {
-    MU_RUN_TEST(test_parse_cmd_args);
+    MU_RUN_TEST(test_parse_cmd_args_all);
     return 0;
 }

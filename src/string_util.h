@@ -48,4 +48,25 @@ Returns : a lowercase string.
 */
 char *string_to_lower(const char *string);
 
+
+/*
+
+Converts string to integer.
+
+Inputs:
+-------
+
+string : string to convert to integer.
+
+
+Outputs:
+-------
+
+number : the number parsed from `string`.
+
+Returns : 0 on success, 1 on error.
+
+*/
+int string_to_int(const char *string, int *number);
+
 #endif // INCLUDE_STRING_UTIL_H
