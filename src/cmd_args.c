@@ -3,6 +3,7 @@
 #include <string.h>
 #include "external/parg.h"
 #include "cmd_args.h"
+#include "string_util.h"
 
 
 CmdArgs *new_cmd_args(void)
@@ -26,6 +27,8 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
 {
     struct parg_state ps;
 	int c;
+    int number;
+
     const struct parg_option po_def[] = {
         { "terms", PARG_REQARG, NULL, 't' },
         { "iterations", PARG_REQARG, NULL, 'i' },
@@ -52,45 +55,76 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
 	while ((c = parg_getopt_long(&ps,  argc, argv, "ma", po_def, &li)) != -1) {
 		switch (c) {
 		case 1:
-			sprintf(buffer, "nonoption '%s'\n", ps.optarg);
-            strcat(output_text, buffer);
+            if (cmd_args->path == NULL) {
+                cmd_args->path = copy_string(ps.optarg);
+            }
+            else if (cmd_args->output == NULL)
+            {
+                cmd_args->output = copy_string(ps.optarg); 
+            }
+            else
+            {
+                sprintf(buffer, "ERROR: unkown option '%s'\n", ps.optarg);
+                strcat(output_text, buffer);
+                cmd_args->success = 0;
+                return output_text;
+            }
 			break;
 		case 'h':
             sprintf(buffer, "%s", help);
             strcat(output_text, buffer);
-			return NULL;
+            cmd_args->success = 1;
+			return output_text;
 			break;
 		case 't':
-			sprintf(buffer, "option --terms with argument '%s'\n", ps.optarg);
-            strcat(output_text, buffer);
+            if (string_to_int(ps.optarg, &number) == 0)
+            {
+                cmd_args->terms = number;
+            }
+            else
+            {
+                sprintf(buffer, "ERROR: --terms value is not a number.\n");
+                strcat(output_text, buffer);
+                cmd_args->success = 0;
+                return output_text;
+            }
 			break;
         case 'i':
-			sprintf(buffer, "option --iterations with argument '%s'\n", ps.optarg);
-            strcat(output_text, buffer);
+			if (string_to_int(ps.optarg, &number) == 0)
+            {
+                cmd_args->iterations = number;
+            }
+            else
+            {
+                sprintf(buffer, "ERROR: --iterations value is not a number.\n");
+                strcat(output_text, buffer);
+                cmd_args->success = 0;
+                return output_text;
+            }
 			break;
 		case '?':
 		case ':':
             switch (ps.optopt)
             {
                 case 't':
-                    sprintf(buffer, "option --terms requires an argument. Example: --terms=10\n");
+                    sprintf(buffer, "ERROR: option --terms requires an argument. Example: --terms=10\n");
                     strcat(output_text, buffer);
                     break;
 
                 case 'i':
-                    sprintf(buffer, "option --iterations requires an argument. Example: --iterations=3\n");
+                    sprintf(buffer, "ERROR: option --iterations requires an argument. Example: --iterations=3\n");
                     strcat(output_text, buffer);
                     break;
 
                 default:
-                    sprintf(buffer, "unknown option %c\n", ps.optopt);
+                    sprintf(buffer, "ERROR: unknown option %c\n", ps.optopt);
                     strcat(output_text, buffer);
                     break;
             }
             cmd_args->success = 0;
             return output_text;
 		default:
-			sprintf(buffer, "error: unhandled option -%c\n", c);
+			sprintf(buffer, "ERROR: unhandled option -%c\n", c);
             strcat(output_text, buffer);
 			cmd_args->success = 0;
             return output_text;

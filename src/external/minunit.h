@@ -51,7 +51,12 @@ Based on http://www.jera.com/techinfo/jtns/jtn002.html
 
 // Fail if strings are not equal
 #define MU_EQUAL_STR(a, b) do { \
-    if (strcmp(a, b) != 0) { \
+    if (a == NULL || b == NULL) { \
+        char *buffer; \
+        buffer = malloc(1024 * sizeof(char)); \
+        sprintf(buffer, "\nTEST FAILED: NULL string, %s:%d %s\n", __FILE__, __LINE__, __FUNCTION__); \
+        return buffer; \
+    } else if (strcmp(a, b) != 0) { \
         char *buffer; \
         buffer = malloc(1024 * sizeof(char)); \
         sprintf(buffer, "\nTEST FAILED: %s != %s, %s:%d %s\n", a, b, __FILE__, __LINE__, __FUNCTION__); \

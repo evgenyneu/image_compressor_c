@@ -24,8 +24,8 @@ static char *test_string_to_lower()
 
 static char *test_string_to_int()
 {
-    int number;
     int result;
+    int number;
 
     result = string_to_int("123", &number);
     MU_EQUAL_INT(number, 123);
@@ -74,10 +74,24 @@ static char *test_string_to_int()
     return 0;
 }
 
+
+static char *test_copy_string()
+{
+    char *result;
+
+    result = copy_string("Hello world");
+    MU_EQUAL_STR(result, "Hello world");
+
+    free(result);
+
+    return 0;
+}
+
 char *load_all_string_util_tests(void)
 {
     MU_RUN_TEST(test_string_ends_with);
     MU_RUN_TEST(test_string_to_lower);
     MU_RUN_TEST(test_string_to_int);
+    MU_RUN_TEST(test_copy_string);
     return 0;
 }

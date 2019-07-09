@@ -69,4 +69,23 @@ Returns : 0 on success, 1 on error.
 */
 int string_to_int(const char *string, int *number);
 
+
+/*
+
+Copies a string.
+
+Inputs:
+-------
+
+string : string to copy.
+
+
+Outputs:
+-------
+
+Returns : a newly allocated string, which is a copy of the `string` parameter.
+
+*/
+char *copy_string(const char *string);
+
 #endif // INCLUDE_STRING_UTIL_H

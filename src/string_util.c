@@ -64,3 +64,11 @@ int string_to_int(const char *string, int *number)
     *number = (int) result;
     return 0;
 }
+
+
+char *copy_string(const char *string)
+{
+    char *new_string = malloc(strlen(string) + 1); 
+    strcpy(new_string, string);
+    return new_string;
+}
