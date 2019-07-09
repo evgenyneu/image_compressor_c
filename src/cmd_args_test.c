@@ -18,6 +18,114 @@ static char *test_parse_cmd_args__all_options_supplied()
     MU_EQUAL_INT(cmd_args->iterations, 3);
     MU_EQUAL_STR(cmd_args->path, "dir/image.jpg");
     MU_EQUAL_STR(cmd_args->output, "dir/compressed.jpg");
+    MU_EQUAL_STR(result, "");
+
+    // Free memory
+    free_cmd_args(cmd_args);
+    free(result);
+
+    return 0;
+}
+
+
+static char *test_parse_cmd_args__no_arguments()
+{
+    const char *argv[] = { "compressor"};
+
+    int argc = sizeof(argv) / sizeof(char *);
+    CmdArgs *cmd_args = new_cmd_args();
+
+    char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
+
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 0);
+
+    // Free memory
+    free_cmd_args(cmd_args);
+    free(result);
+
+    return 0;
+}
+
+static char *test_parse_cmd_args__extra_arguments()
+{
+    const char *argv[] = { "compressor", "dir/image.jpg", "dir/compressed.jpg", "extra"};
+
+    int argc = sizeof(argv) / sizeof(char *);
+    CmdArgs *cmd_args = new_cmd_args();
+
+    char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
+
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 0);
+    MU_EQUAL_STR(cmd_args->path, "dir/image.jpg");
+    MU_EQUAL_STR(cmd_args->output, "dir/compressed.jpg");
+    MU_EQUAL_STR(result, "ERROR: unkown option 'extra'\n");
+
+    // Free memory
+    free_cmd_args(cmd_args);
+    free(result);
+
+    return 0;
+}
+
+
+static char *test_parse_cmd_args__no_output_path()
+{
+    const char *argv[] = { "compressor", "dir/image.jpg"};
+
+    int argc = sizeof(argv) / sizeof(char *);
+    CmdArgs *cmd_args = new_cmd_args();
+
+    char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
+
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 0);
+    MU_EQUAL_STR(cmd_args->path, "dir/image.jpg");
+    MU_ASSERT(cmd_args->output == NULL);
+    MU_EQUAL_STR(result, "ERROR: OUTPUT path is not supplied\n");
+
+    // Free memory
+    free_cmd_args(cmd_args);
+    free(result);
+
+    return 0;
+}
+
+
+static char *test_parse_cmd_args__no_image_path()
+{
+    const char *argv[] = { "compressor", "--terms=5"};
+
+    int argc = sizeof(argv) / sizeof(char *);
+    CmdArgs *cmd_args = new_cmd_args();
+
+    char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
+
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 0);
+    MU_ASSERT(cmd_args->path == NULL);
+    MU_EQUAL_STR(result, "ERROR: IMAGE path is not supplied\n");
+
+    // Free memory
+    free_cmd_args(cmd_args);
+    free(result);
+
+    return 0;
+}
+
+
+static char *test_parse_cmd_args__default_terms_and_iterations()
+{
+   const char *argv[] = { "compressor",  "dir/image.jpg", "dir/compressed.jpg" };
+
+    int argc = sizeof(argv) / sizeof(char *);
+    CmdArgs *cmd_args = new_cmd_args();
+
+    char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
+
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 1);
+    MU_EQUAL_INT(cmd_args->terms, 10);
+    MU_EQUAL_INT(cmd_args->iterations, 3);
+    MU_EQUAL_STR(cmd_args->path, "dir/image.jpg");
+    MU_EQUAL_STR(cmd_args->output, "dir/compressed.jpg");
+    MU_EQUAL_STR(result, "");
 
     // Free memory
     free_cmd_args(cmd_args);
@@ -31,5 +139,10 @@ static char *test_parse_cmd_args__all_options_supplied()
 char *load_all_cmd_args_tests(void)
 {
     MU_RUN_TEST(test_parse_cmd_args__all_options_supplied);
+    MU_RUN_TEST(test_parse_cmd_args__no_arguments);
+    MU_RUN_TEST(test_parse_cmd_args__extra_arguments);
+    MU_RUN_TEST(test_parse_cmd_args__no_output_path);
+    MU_RUN_TEST(test_parse_cmd_args__no_image_path);
+    MU_RUN_TEST(test_parse_cmd_args__default_terms_and_iterations);
     return 0;
 }

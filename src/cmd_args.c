@@ -11,6 +11,8 @@ CmdArgs *new_cmd_args(void)
     CmdArgs *cmd_args = malloc(sizeof(CmdArgs));
     cmd_args->path = NULL;
     cmd_args->output = NULL;
+    cmd_args->terms = 10;
+    cmd_args->iterations = 3;
     return cmd_args;
 }
 
@@ -138,6 +140,22 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
         strcat(output_text, help);
         cmd_args->ready_to_compress = 0;
         return output_text;
+    }
+
+    if (cmd_args->path == NULL)
+    {
+        sprintf(buffer, "ERROR: IMAGE path is not supplied\n");
+        strcat(output_text, buffer);
+        cmd_args->ready_to_compress = 0;
+        return output_text; 
+    }
+
+    if (cmd_args->output == NULL)
+    {
+        sprintf(buffer, "ERROR: OUTPUT path is not supplied\n");
+        strcat(output_text, buffer);
+        cmd_args->ready_to_compress = 0;
+        return output_text; 
     }
 
     cmd_args->ready_to_compress = 1;
