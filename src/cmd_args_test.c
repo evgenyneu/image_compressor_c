@@ -2,6 +2,7 @@
 #include "cmd_args_test.h"
 #include "cmd_args.h"
 
+
 static char *test_parse_cmd_args__all_options_supplied()
 {
     const char *argv[] = { "compressor", "--terms=13", "--iterations=3",
@@ -24,6 +25,7 @@ static char *test_parse_cmd_args__all_options_supplied()
 
     return 0;
 }
+
 
 char *load_all_cmd_args_tests(void)
 {
