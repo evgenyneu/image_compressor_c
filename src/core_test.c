@@ -67,9 +67,39 @@ static char *test_compress_image_file()
 }
 
 
+static char *test_compress_3_by_3_image_file()
+{
+    const char *output_path = "images/test_3x3_output.bmp";
+
+    if (access(output_path, F_OK) != -1)
+    {
+        if (remove(output_path) != 0)
+        {
+            printf("Unable to delete the file");
+        }
+    }
+
+    MU_ASSERT(access(output_path, F_OK) == -1);
+
+    compress_image_file("images/test_3x3.bmp", output_path, 1, 1);
+
+    // Check image exists
+    MU_ASSERT(access(output_path, F_OK) != -1);
+
+    // Delete test file
+    if (remove(output_path) != 0)
+    {
+        printf("Unable to delete the file");
+    }
+
+    return 0;
+}
+
+
 char *load_all_core_tests(void)
 {
     MU_RUN_TEST(test_compress_image);
     MU_RUN_TEST(test_compress_image_file);
+    MU_RUN_TEST(test_compress_3_by_3_image_file);
     return 0;
 }

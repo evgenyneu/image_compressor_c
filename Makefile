@@ -15,7 +15,10 @@
 #
 
 CXX = gcc
-CXX_FLAGS = -O2 -ffast-math -g -std=c99 -Wall -Wextra -Wshadow -Wwrite-strings -Werror-implicit-function-declaration -Wundef -Wpointer-arith -Waggregate-return  -Wswitch-default -Wunreachable-code -Wformat=2 -Wmissing-prototypes -Wstrict-prototypes -Wconversion
+CXX_FLAGS = -g -std=c99 -Wall -Wextra -Wshadow -Wwrite-strings -Werror-implicit-function-declaration -Wundef -Wpointer-arith -Waggregate-return  -Wswitch-default -Wunreachable-code -Wformat=2 -Wmissing-prototypes -Wstrict-prototypes -Wconversion
+
+# Add the following flags to make it faster
+# -O2 -ffast-math
 
 # Final binary
 BIN = compressor
