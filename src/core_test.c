@@ -86,11 +86,77 @@ static char *test_compress_3_by_3_image_file()
     // Check image exists
     MU_ASSERT(access(output_path, F_OK) != -1);
 
+    // Verify output image
+    // -----------
+
+    int matrix_num;
+    Matrix **matrices = load_image(output_path, &matrix_num);
+
+    MU_EQUAL_INT(matrix_num, 3);
+
+
+    // Red
+
+    Matrix *matrix = matrices[0];
+    MU_EQUAL_INT(matrix->row_num, 3);
+    MU_EQUAL_INT(matrix->col_num, 3);
+    MU_EQUAL_DOUBLE(matrix->data[0], 59.0);
+    MU_EQUAL_DOUBLE(matrix->data[1], 49.0);
+    MU_EQUAL_DOUBLE(matrix->data[2], 41.0);
+    MU_EQUAL_DOUBLE(matrix->data[3], 145.0);
+    MU_EQUAL_DOUBLE(matrix->data[4], 122.0);
+    MU_EQUAL_DOUBLE(matrix->data[5], 102.0);
+    MU_EQUAL_DOUBLE(matrix->data[6], 255.0);
+    MU_EQUAL_DOUBLE(matrix->data[7], 221.0);
+    MU_EQUAL_DOUBLE(matrix->data[8], 185.0);
+
+
+    // Green
+
+    matrix = matrices[1];
+    MU_EQUAL_INT(matrix->row_num, 3);
+    MU_EQUAL_INT(matrix->col_num, 3);
+    MU_EQUAL_DOUBLE(matrix->data[0], 64.0);
+    MU_EQUAL_DOUBLE(matrix->data[1], 54.0);
+    MU_EQUAL_DOUBLE(matrix->data[2], 46.0);
+    MU_EQUAL_DOUBLE(matrix->data[3], 150.0);
+    MU_EQUAL_DOUBLE(matrix->data[4], 128.0);
+    MU_EQUAL_DOUBLE(matrix->data[5], 107.0);
+    MU_EQUAL_DOUBLE(matrix->data[6], 255.0);
+    MU_EQUAL_DOUBLE(matrix->data[7], 226.0);
+    MU_EQUAL_DOUBLE(matrix->data[8], 189.0);
+
+
+    // Blue
+
+    matrix = matrices[2];
+    MU_EQUAL_INT(matrix->row_num, 3);
+    MU_EQUAL_INT(matrix->col_num, 3);
+    MU_EQUAL_DOUBLE(matrix->data[0], 69.0);
+    MU_EQUAL_DOUBLE(matrix->data[1], 60.0);
+    MU_EQUAL_DOUBLE(matrix->data[2], 50.0);
+    MU_EQUAL_DOUBLE(matrix->data[3], 154.0);
+    MU_EQUAL_DOUBLE(matrix->data[4], 134.0);
+    MU_EQUAL_DOUBLE(matrix->data[5], 112.0);
+    MU_EQUAL_DOUBLE(matrix->data[6], 255.0);
+    MU_EQUAL_DOUBLE(matrix->data[7], 230.0);
+    MU_EQUAL_DOUBLE(matrix->data[8], 194.0);
+
+
     // Delete test file
     if (remove(output_path) != 0)
     {
         printf("Unable to delete the file");
     }
+
+    // Free memory
+    // -------
+
+    free_matrix(matrices[0]);
+    free_matrix(matrices[1]);
+    free_matrix(matrices[2]);
+    free(matrices);
+    matrices = NULL;
 
     return 0;
 }
