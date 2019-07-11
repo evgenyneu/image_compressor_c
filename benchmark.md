@@ -59,6 +59,8 @@ sudo apt install valgrind
 sudo apt install kcachegrind
 ```
 
+Make sure executable is compiled with `-g` options, which saves debug information.
+
 Run the profiler:
 
 ```
