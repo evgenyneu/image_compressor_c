@@ -41,3 +41,15 @@ The benchmark was run on MacBook Pro (Retina, 13-inch, Late 2012) computer with 
 ### Initial (c830f4e)
 
 19.483s, 19.201s, 18.849s.
+
+
+## Reference
+
+### Profiling with valgrind
+
+Install valgrind and kcachegrind
+
+```
+sudo apt install valgrind
+sudo apt install kcachegrind
+```
