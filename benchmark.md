@@ -45,11 +45,30 @@ The benchmark was run on MacBook Pro (Retina, 13-inch, Late 2012) computer with 
 
 ## Reference
 
+### Profiling with gprof
+
+This profiler comes with GCC compiler.
+
+
 ### Profiling with valgrind
 
-Install valgrind and kcachegrind
+Install valgrind and kcachegrind on Ubuntu:
 
 ```
 sudo apt install valgrind
 sudo apt install kcachegrind
 ```
+
+Run the profiler:
+
+```
+valgrind --tool=callgrind ./build/compressor --terms=100 images/test_100x100.jpg benchmark.jpg
+```
+
+View results:
+
+```
+kcachegrind callgrind.out.*
+```
+
+![Profiling result from valgrind](images/valgrind.png)
