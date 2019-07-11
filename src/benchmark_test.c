@@ -1,10 +1,12 @@
-#include <munistd.h>
+#include <unistd.h>
+#include <time.h>
 #include "external/minunit.h"
 #include "core.h"
 
 
 static char *test_run_benchmark()
 {
+    clock_t begin = clock();
     const char *output_path = "images/marmite_output_500x500.jpg";
 
     if (access(output_path, F_OK) != -1)
@@ -27,6 +29,9 @@ static char *test_run_benchmark()
     {
         printf("Unable to delete the file");
     }
+
+    clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 
     return 0;
 }
