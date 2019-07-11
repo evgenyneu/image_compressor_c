@@ -35,6 +35,8 @@ Compression time: 19.400999 s
 
 Here we write the "compression time" reported by the benchmark. The text like `c830f4e` in the brackets indicates the GIT commit that was used to run the benchmark.
 
+The benchmark was run on MacBook Pro (Retina, 13-inch, Late 2012) computer with 2.5 GHz Intel Core i5 processor and 8 GB of RAM. The gcc compiler command used Apple LLVM compiler version 10.0.1.
+
 
 ### Initial (c830f4e)
 
