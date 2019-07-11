@@ -4,6 +4,8 @@
 #include "core.h"
 #include "core_test.h"
 #include "load_image.h"
+#include "cmd_args.h"
+#include "string_util.h"
 
 
 static char *test_compress_image()
@@ -162,10 +164,49 @@ static char *test_compress_3_by_3_image_file()
 }
 
 
+static char *test_compress_from_command_line_options()
+{
+    const char *output_path = "images/test_output_100x100.jpg";
+    CmdArgs *cmd_args = new_cmd_args();
+    cmd_args->path = copy_string("images/test_100x100.jpg");
+    cmd_args->output = copy_string(output_path);
+    cmd_args->terms = 3;
+    cmd_args->iterations = 5;
+
+    if (access(output_path, F_OK) != -1)
+    {
+        if (remove(output_path) != 0)
+        {
+            printf("Unable to delete the file");
+        }
+    }
+
+    MU_ASSERT(access(output_path, F_OK) == -1);
+
+    compress_from_command_line_options(cmd_args);
+
+    // Check image exists
+    MU_ASSERT(access(output_path, F_OK) != -1);
+
+    // Delete test file
+    if (remove(output_path) != 0)
+    {
+        printf("Unable to delete the file");
+    }
+
+    // Free memory
+
+    free_cmd_args(cmd_args);
+
+    return 0;
+}
+
+
 char *load_all_core_tests(void)
 {
     MU_RUN_TEST(test_compress_image);
     MU_RUN_TEST(test_compress_image_file);
+    MU_RUN_TEST(test_compress_from_command_line_options);
     MU_RUN_TEST(test_compress_3_by_3_image_file);
     return 0;
 }

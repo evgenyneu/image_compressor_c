@@ -3,6 +3,7 @@
 
 
 #include "linear_algebra.h"
+#include "cmd_args.h"
 
 /*
 
@@ -44,6 +45,19 @@ iterations : Number of terms in the singular value expansion.
 
 */
 void compress_image_file(const char *path, const char *output, int terms, int iterations);
+
+
+/*
+
+Compresses the image according to the command line options.
+
+Inputs:
+-------
+
+cmd_args : command line options.
+
+*/
+void compress_from_command_line_options(CmdArgs *cmd_args);
 
 
 #endif // INCLUDE_CORE_H

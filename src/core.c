@@ -60,3 +60,9 @@ void compress_image_file(const char *path, const char *output, int terms, int it
     free(matrices_compressed);
     matrices_compressed = NULL;
 }
+
+
+void compress_from_command_line_options(CmdArgs *cmd_args)
+{
+    compress_image_file(cmd_args->path, cmd_args->output, cmd_args->terms, cmd_args->iterations);
+}
