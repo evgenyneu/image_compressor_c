@@ -1,6 +1,6 @@
 # Benchmark
 
-We want to make the program run faster. To measure performance we run the following benchmark on the same computer:
+We want to make the program run faster. To measure performance we run the following benchmark:
 
 ```
 ./build/compressor --benchmark
