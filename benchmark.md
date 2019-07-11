@@ -1,35 +1,32 @@
 # Benchmark
 
-We want to optimize the program in order to make it faster. In order to do this we need to measure the time it takes for the program to compress an image. This compression time is reported by running the following command:
+We want to optimize the program in order to make it faster. In order to do this we need to measure the time it takes for the program to compress an image.
 
-```
-./build/compressor --benchmark
-```
-
-Before running the benchmark we replace CXX and CXX_FLAGS in the [Makefile](Makefile) with the following:
-
-```
-CXX = gcc
-CXX_FLAGS = -O1 -g -std=c99 -Wall -Wextra -Wshadow -Wwrite-strings -Werror-implicit-function-declaration -Wundef -Wpointer-arith -Waggregate-return  -Wswitch-default -Wunreachable-code -Wformat=2 -Wmissing-prototypes -Wconversion
-```
-
-Then we rebuild the program
+First, recompile the program with benchmarking settings:
 
 ```
 make clean
-make
+make benchmark
+```
+
+Next, run the benchmark:
+
+```
+./build/compressor --benchmark
 ```
 
 The benchmark shows the following output:
 
 
 ```
-Compresssing images/marmite_500x500.jpg to images/marmite_output_500x500.bmp
+Compressing images/marmite_500x500.jpg to images/marmite_output_500x500.bmp
 Terms: 30
 Iterations: 5
 Done
 Compression time: 19.400999 s
 ```
+
+We can see that compression took 19.4 seconds.
 
 
 ## Profiling

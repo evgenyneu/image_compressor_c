@@ -47,6 +47,12 @@ else
   CFILES_TO_BUILD=$(CFILES)
 endif
 
+ifeq ($(MAKECMDGOALS), benchmark)
+# Use specific flags for benchmark
+	CXX = gcc
+	CXX_FLAGS = -O1 -g -std=c99 -Wall -Wextra -Wshadow -Wwrite-strings -Werror-implicit-function-declaration -Wundef -Wpointer-arith -Waggregate-return  -Wswitch-default -Wunreachable-code -Wformat=2 -Wmissing-prototypes -Wconversion
+endif
+
 # All .o files go to build dir.
 OBJ = $(CFILES_TO_BUILD:%.c=$(BUILD_DIR)/%.o)
 
@@ -55,6 +61,9 @@ DEP = $(OBJ:%.o=%.d)
 
 # Default target named after the binary.
 compressor : $(BUILD_DIR)/$(BIN)
+
+# Default target named after the binary.
+benchmark : $(BUILD_DIR)/$(BIN)
 
 # Build and run tests
 test : $(BUILD_DIR)/$(BIN)

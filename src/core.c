@@ -70,7 +70,7 @@ void compress_from_command_line_options(CmdArgs *cmd_args, int silent)
 
     if (silent == 0)
     {
-        printf("\nCompresssing %s to %s\n", cmd_args->path, cmd_args->output);
+        printf("\nCompressing %s to %s\n", cmd_args->path, cmd_args->output);
         printf("Terms: %d\n", cmd_args->terms);
         printf("Iterations: %d\n", cmd_args->iterations);
     }
