@@ -31,9 +31,10 @@ Done
 Compression time: 19.400999 s
 ```
 
-## Benchmark log
+## Benchmark history
 
-Here we write the "compression time" reported by the benchmark.
+Here we write the "compression time" reported by the benchmark. The text like `c830f4e` in the brackets indicates the GIT commit that was used to run the benchmark.
+
 
 ### Initial (c830f4e)
 
