@@ -87,7 +87,7 @@ sudo apt install valgrind
 sudo apt install kcachegrind
 ```
 
-Make sure executable is compiled with `-g` options, which saves debug information. This option should be included in `CXX_FLAGS` variable of the [Makefile](Makefile).
+Make sure executable is compiled with the `-g` option, which saves debugging information. This option should already be included in `CXX_FLAGS` variable of the [Makefile](Makefile).
 
 Run the profiler:
 
