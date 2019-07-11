@@ -1,38 +1,15 @@
-#include <unistd.h>
-#include <time.h>
 #include "external/minunit.h"
 #include "core.h"
-
-#define TICK(X) clock_t X = clock()
-#define TOCK(X) printf("time %s: %g sec.\n", (#X), (double)(clock() - (X)) / CLOCKS_PER_SEC)
+#include "string_util.h"
 
 
 static char *test_run_benchmark()
 {
-    const char *output_path = "images/marmite_output_500x500.bmp";
+    CmdArgs *cmd_args = new_cmd_args();
+    benchmark_options(cmd_args);
+    // cmd_args->path = copy_string("images/marmite_1000x1000.jpg");
 
-    if (access(output_path, F_OK) != -1)
-    {
-        if (remove(output_path) != 0)
-        {
-            printf("Unable to delete the file");
-        }
-    }
-
-    MU_ASSERT(access(output_path, F_OK) == -1);
-
-    TICK(COMPRESS_500_by_500);
-    compress_image_file("images/marmite_500x500.jpg", output_path, 30, 5);
-    TOCK(COMPRESS_500_by_500);
-
-    // Check image exists
-    MU_ASSERT(access(output_path, F_OK) != -1);
-
-    // Delete test file
-    if (remove(output_path) != 0)
-    {
-        printf("Unable to delete the file");
-    }
+    compress_from_command_line_options(cmd_args, 0);
 
     return 0;
 }
