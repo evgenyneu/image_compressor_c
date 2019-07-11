@@ -71,4 +71,4 @@ View results:
 kcachegrind callgrind.out.*
 ```
 
-![Profiling result from valgrind](images/valgrind.png)
+![Profiling result from valgrind](/images/valgrind.png)
