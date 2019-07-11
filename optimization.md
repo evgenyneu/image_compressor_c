@@ -11,8 +11,8 @@ with compiler options
 
 ## Benchmark log
 
-Here we write the `user` elapsed time from the output of the `time` command.
+Here we write the `user` elapsed time from the output of the `time` command. Text like `c830f4e` in brackets indicates the corresponding GIT commit.
 
-### Initial
+### Initial (c830f4e)
 
 19.483s, 19.201s, 18.849s.
