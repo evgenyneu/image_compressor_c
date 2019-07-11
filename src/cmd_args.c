@@ -176,7 +176,7 @@ void benchmark_options(CmdArgs *cmd_args)
     cmd_args->ready_to_compress = 1;
     cmd_args->benchmark = 1;
     cmd_args->terms = 30;
-    cmd_args->iterations = 3;
+    cmd_args->iterations = 5;
     cmd_args->path = copy_string("images/marmite_500x500.jpg");
     cmd_args->output = copy_string("images/marmite_output_500x500.bmp");
 }

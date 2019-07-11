@@ -2,7 +2,7 @@
 
 We want to make the program run faster. To measure performance we run the following benchmark on the same computer
 
-> time ./build/compressor images/marmite_500x500.jpg ~/Downloads/compressed.bmp --terms=30 --iterations=5
+> ./build/compressor --benchmark
 
 with compiler options
 
@@ -11,7 +11,7 @@ with compiler options
 
 ## Benchmark log
 
-Here we write the `user` elapsed time from the output of the `time` command. Text like `c830f4e` in brackets indicates the corresponding GIT commit.
+Here we write the elapsed time reported by the benchmark.
 
 ### Initial (c830f4e)
 

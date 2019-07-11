@@ -148,7 +148,7 @@ static char *test_parse_cmd_args__benchmark()
     MU_EQUAL_INT(cmd_args->ready_to_compress, 1);
     MU_EQUAL_INT(cmd_args->benchmark, 1);
     MU_EQUAL_INT(cmd_args->terms, 30);
-    MU_EQUAL_INT(cmd_args->iterations, 3);
+    MU_EQUAL_INT(cmd_args->iterations, 5);
     MU_EQUAL_STR(cmd_args->path, "images/marmite_500x500.jpg");
     MU_EQUAL_STR(cmd_args->output, "images/marmite_output_500x500.bmp");
     MU_EQUAL_STR(result, "");
@@ -169,7 +169,7 @@ static char *test_benchmark_options()
     MU_EQUAL_INT(cmd_args->ready_to_compress, 1);
     MU_EQUAL_INT(cmd_args->benchmark, 1);
     MU_EQUAL_INT(cmd_args->terms, 30);
-    MU_EQUAL_INT(cmd_args->iterations, 3);
+    MU_EQUAL_INT(cmd_args->iterations, 5);
     MU_EQUAL_STR(cmd_args->path, "images/marmite_500x500.jpg");
     MU_EQUAL_STR(cmd_args->output, "images/marmite_output_500x500.bmp");
 
