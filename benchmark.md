@@ -47,7 +47,41 @@ The benchmark was run on MacBook Pro (Retina, 13-inch, Late 2012) computer with 
 
 ### Profiling with gprof
 
-This profiler comes with GCC compiler.
+This profiler comes with GCC compiler. All we need to do is to add `-pg` option to the `CXX_FLAGS` variable of the [Makefile](Makefile) and rebuild the program:
+
+```
+make clean
+make
+```
+
+Next, run the benchmark:
+
+```
+./build/compressor --benchmark
+```
+
+Finally, save the profile report to analysis.txt file:
+
+
+```
+gprof ./build/compressor gmon.out > analysis.txt
+```
+
+The `analysis.txt` file looks like this:
+
+
+```
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 98.03     13.88    13.88      897     0.02     0.02  multiply_matrices
+  0.71     13.98     0.10      267     0.00     0.00  transpose_matrix
+  0.71     14.08     0.10      177     0.00     0.00  add_matrices
+  0.49     14.15     0.07      717     0.00     0.00  multiply_matrix_with_a_number
+  0.07     14.16     0.01        1     0.01     0.01  image_to_matrix
+  0.00     14.16     0.00   250517     0.00     0.00  stbi__stdio_write
+  0.00     14.16     0.00   250000     0.00     0.00  stbiw__write3
+```
 
 
 ### Profiling with valgrind
@@ -59,7 +93,7 @@ sudo apt install valgrind
 sudo apt install kcachegrind
 ```
 
-Make sure executable is compiled with `-g` options, which saves debug information.
+Make sure executable is compiled with `-g` options, which saves debug information. This option should be included in `CXX_FLAGS` variable of the [Makefile](Makefile).
 
 Run the profiler:
 
