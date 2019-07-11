@@ -1,4 +1,5 @@
 #include "external/minunit.h"
+#include "benchmark_test.h"
 #include "core.h"
 #include "string_util.h"
 
