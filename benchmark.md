@@ -1,6 +1,6 @@
 # Benchmark
 
-We want to make the program run faster. To measure performance we run the following benchmark:
+We want to optimize the program in order to make it faster. In order to do this we need to measure the time it takes for the program to compress an image. This compression time is reported by running the following command:
 
 ```
 ./build/compressor --benchmark
