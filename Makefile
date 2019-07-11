@@ -17,6 +17,9 @@
 CXX = gcc
 CXX_FLAGS = -O1 -g -std=c99 -Wall -Wextra -Wshadow -Wwrite-strings -Werror-implicit-function-declaration -Wundef -Wpointer-arith -Waggregate-return  -Wswitch-default -Wunreachable-code -Wformat=2 -Wmissing-prototypes -Wstrict-prototypes -Wconversion
 
+# Libraries to link
+LINKER_FLAGS = -lm
+
 # Add the following flags to make it faster
 # -O2 -ffast-math
 
@@ -62,7 +65,7 @@ $(BUILD_DIR)/$(BIN) : $(OBJ)
 # Create build directories - same structure as sources.
 	mkdir -p $(@D)
 # Link all the object files and make the executable.
-	$(CXX) $(CXX_FLAGS) $^ -o $@
+	$(CXX) $(CXX_FLAGS) $^ -o $@ $(LINKER_FLAGS)
 
 # Include all .d files
 -include $(DEP)
