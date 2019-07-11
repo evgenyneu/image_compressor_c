@@ -13,6 +13,7 @@ CmdArgs *new_cmd_args(void)
     cmd_args->output = NULL;
     cmd_args->terms = 10;
     cmd_args->iterations = 3;
+    cmd_args->benchmark = 0;
     return cmd_args;
 }
 
@@ -35,6 +36,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
         { "terms", PARG_REQARG, NULL, 't' },
         { "iterations", PARG_REQARG, NULL, 'i' },
         { "help", PARG_NOARG, NULL, 'h' },
+        { "benchmark", PARG_NOARG, NULL, 'b' },
         { 0, 0, 0, 0 }
     };
     int li = -1;
@@ -56,7 +58,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
 
 	while ((c = parg_getopt_long(&ps,  argc, argv, "ma", po_def, &li)) != -1) {
 		switch (c) {
-		case 1:
+		case 1: // Non-optional argument (i.e. without the leading `--`)
             if (cmd_args->path == NULL) {
                 cmd_args->path = copy_string(ps.optarg);
             }
@@ -72,13 +74,17 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
                 return output_text;
             }
 			break;
-		case 'h':
+		case 'h': // --help
             sprintf(buffer, "%s", help);
             strcat(output_text, buffer);
             cmd_args->ready_to_compress = 0;
 			return output_text;
 			break;
-		case 't':
+        case 'b': // --benchmark
+            benchmark_options(cmd_args);
+			return output_text;
+			break;
+		case 't': // --terms
             if (string_to_int(ps.optarg, &number) == 0)
             {
                 cmd_args->terms = number;
@@ -91,7 +97,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
                 return output_text;
             }
 			break;
-        case 'i':
+        case 'i': // --iterations
 			if (string_to_int(ps.optarg, &number) == 0)
             {
                 cmd_args->iterations = number;
@@ -104,7 +110,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
                 return output_text;
             }
 			break;
-		case '?':
+		case '?': // Missing required argument or incorrect option
 		case ':':
             switch (ps.optopt)
             {
@@ -125,7 +131,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
             }
             cmd_args->ready_to_compress = 0;
             return output_text;
-		default:
+		default: // Unexpected option
 			sprintf(buffer, "ERROR: unhandled option -%c\n", c);
             strcat(output_text, buffer);
 			cmd_args->ready_to_compress = 0;
@@ -160,4 +166,15 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
 
     cmd_args->ready_to_compress = 1;
     return output_text;
+}
+
+
+void benchmark_options(CmdArgs *cmd_args)
+{
+    cmd_args->ready_to_compress = 1;
+    cmd_args->benchmark = 1;
+    cmd_args->terms = 50;
+    cmd_args->iterations = 3;
+    cmd_args->path = copy_string("images/marmite_500x500.jpg");
+    cmd_args->output = copy_string("images/marmite_output_500x500.bmp");
 }

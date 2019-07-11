@@ -14,6 +14,7 @@ static char *test_parse_cmd_args__all_options_supplied()
     char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
 
     MU_EQUAL_INT(cmd_args->ready_to_compress, 1);
+    MU_EQUAL_INT(cmd_args->benchmark, 0);
     MU_EQUAL_INT(cmd_args->terms, 13);
     MU_EQUAL_INT(cmd_args->iterations, 3);
     MU_EQUAL_STR(cmd_args->path, "dir/image.jpg");
@@ -135,6 +136,31 @@ static char *test_parse_cmd_args__default_terms_and_iterations()
 }
 
 
+static char *test_parse_cmd_args__benchmark()
+{
+   const char *argv[] = { "compressor",  "--benchmark" };
+
+    int argc = sizeof(argv) / sizeof(char *);
+    CmdArgs *cmd_args = new_cmd_args();
+
+    char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
+
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 1);
+    MU_EQUAL_INT(cmd_args->benchmark, 1);
+    MU_EQUAL_INT(cmd_args->terms, 50);
+    MU_EQUAL_INT(cmd_args->iterations, 3);
+    MU_EQUAL_STR(cmd_args->path, "images/marmite_500x500.jpg");
+    MU_EQUAL_STR(cmd_args->output, "images/marmite_output_500x500.bmp");
+    MU_EQUAL_STR(result, "");
+
+    // Free memory
+    free_cmd_args(cmd_args);
+    free(result);
+
+    return 0;
+}
+
+
 
 char *load_all_cmd_args_tests(void)
 {
@@ -144,5 +170,6 @@ char *load_all_cmd_args_tests(void)
     MU_RUN_TEST(test_parse_cmd_args__no_output_path);
     MU_RUN_TEST(test_parse_cmd_args__no_image_path);
     MU_RUN_TEST(test_parse_cmd_args__default_terms_and_iterations);
+    MU_RUN_TEST(test_parse_cmd_args__benchmark);
     return 0;
 }

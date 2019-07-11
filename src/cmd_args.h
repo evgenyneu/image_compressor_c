@@ -21,6 +21,10 @@ typedef struct
     // to compress an image.
     // Contains 0 otherwise.
     int ready_to_compress;
+
+    // Contains 1 the benchmark if this is a benchmark compression
+    // Contains 0 otherwise.
+    int benchmark;
 } CmdArgs;
 
 
@@ -74,5 +78,18 @@ Returns : text from the parser that is intended to be shown to user.
 
 */
 char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args);
+
+
+/*
+
+Assign options used for the benchmark.
+
+Inputs:
+-------
+
+cmd_args : Command line options.
+
+*/
+void benchmark_options(CmdArgs *cmd_args);
 
 #endif // INCLUDE_CMD_ARGS_H
