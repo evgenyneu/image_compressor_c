@@ -12,9 +12,7 @@ int main(int argc, char *argv[])
 
     if (cmd_args->ready_to_compress)
     {
-        printf("\nCompresssing to %s\n", cmd_args->output);
-        compress_from_command_line_options(cmd_args);
-        printf("Done\n");
+        compress_from_command_line_options(cmd_args, 0);
         free_cmd_args(cmd_args);
         cmd_args = NULL;
         return EXIT_SUCCESS;

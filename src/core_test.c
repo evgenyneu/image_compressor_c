@@ -183,7 +183,7 @@ static char *test_compress_from_command_line_options()
 
     MU_ASSERT(access(output_path, F_OK) == -1);
 
-    compress_from_command_line_options(cmd_args);
+    compress_from_command_line_options(cmd_args, 1);
 
     // Check image exists
     MU_ASSERT(access(output_path, F_OK) != -1);

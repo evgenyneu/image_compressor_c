@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "core.h"
 #include "svd.h"
 #include "load_image.h"
@@ -62,7 +63,30 @@ void compress_image_file(const char *path, const char *output, int terms, int it
 }
 
 
-void compress_from_command_line_options(CmdArgs *cmd_args)
+void compress_from_command_line_options(CmdArgs *cmd_args, int silent)
 {
+    clock_t start_clock = clock();
+
+
+    if (silent == 0)
+    {
+        printf("\nCompresssing %s to %s\n", cmd_args->path, cmd_args->output);
+        printf("Terms: %d\n", cmd_args->terms);
+        printf("Iterations: %d\n", cmd_args->iterations);
+    }
+
     compress_image_file(cmd_args->path, cmd_args->output, cmd_args->terms, cmd_args->iterations);
+
+    clock_t end_clock = clock();
+    double time_spent_sec = (double)(end_clock - start_clock) / CLOCKS_PER_SEC;
+
+    if (silent == 0)
+    {
+        printf("Done\n");
+    }
+
+    if (cmd_args->benchmark && silent == 0)
+    {
+        printf("Compression time: %f s\n", time_spent_sec);
+    }
 }

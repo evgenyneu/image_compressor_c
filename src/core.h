@@ -56,8 +56,10 @@ Inputs:
 
 cmd_args : command line options.
 
+silent : If 1 it does not show any output.
+
 */
-void compress_from_command_line_options(CmdArgs *cmd_args);
+void compress_from_command_line_options(CmdArgs *cmd_args, int silent);
 
 
 #endif // INCLUDE_CORE_H

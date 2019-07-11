@@ -54,6 +54,8 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
         "OUTPUT :  path to the compressed image that will be created\n"
         "--terms :  number of terms in the singular value expansion\n"
         "--iterations :  number of iterations of the power method\n"
+        "--benchmark :  run the benchmark to measure compression performance,\n"
+        "               (no other options are needed for benchmarkmak)\n"
         "--help :  show this message\n";
 
 	while ((c = parg_getopt_long(&ps,  argc, argv, "ma", po_def, &li)) != -1) {
@@ -173,7 +175,7 @@ void benchmark_options(CmdArgs *cmd_args)
 {
     cmd_args->ready_to_compress = 1;
     cmd_args->benchmark = 1;
-    cmd_args->terms = 50;
+    cmd_args->terms = 30;
     cmd_args->iterations = 3;
     cmd_args->path = copy_string("images/marmite_500x500.jpg");
     cmd_args->output = copy_string("images/marmite_output_500x500.bmp");
