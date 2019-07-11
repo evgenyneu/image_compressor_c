@@ -43,7 +43,10 @@ The benchmark was run on MacBook Pro (Retina, 13-inch, Late 2012) computer with 
 19.483s, 19.201s, 18.849s.
 
 
-## Reference
+## Profiling
+
+We can run a profiling program to see the list of functions where our program spends most of the time.
+
 
 ### Profiling with gprof
 
@@ -83,6 +86,8 @@ Each sample counts as 0.01 seconds.
   0.00     14.16     0.00   250000     0.00     0.00  stbiw__write3
 ```
 
+We can see that 98% of the time is spent in `multiply_matrices` function that multiplies matrices.
+
 
 ### Profiling with valgrind
 
@@ -108,3 +113,6 @@ kcachegrind callgrind.out.*
 ```
 
 ![Profiling result from valgrind](/images/valgrind.png)
+
+We can see that most of the time is spent in `multiply_matrices` function.
+
