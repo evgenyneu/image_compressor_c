@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <cblas.h>
 #include "linear_algebra.h"
-#include "blas.h"
 
 Matrix *new_matrix(int row_num, int col_num)
 {
@@ -59,38 +59,6 @@ Matrix *add_matrices(Matrix *matrix1, Matrix *matrix2)
 }
 
 
-Matrix *multiply_matrices_old(Matrix *matrix1, Matrix *matrix2)
-{
-    if (matrix1->col_num != matrix2->row_num)
-    {
-        perror("Incompatible matrix dimensions");
-        exit(EXIT_FAILURE);
-    }
-
-    Matrix *product = new_matrix(matrix1->row_num, matrix2->col_num);
-
-    int i, j, k;
-    double sum;
-
-    for (i = 0; i < matrix1->row_num; i++)
-    {
-        for (j = 0; j < matrix2->col_num; j++)
-        {
-            sum = 0;
-
-            for (k = 0; k < matrix1->col_num; k++)
-            {
-                sum += matrix1->data[i * matrix1->col_num + k]
-                            * matrix2->data[k * matrix2->col_num + j];
-            }
-
-            product->data[i * matrix2->col_num + j] = sum;
-        }
-    }
-
-    return product;
-}
-
 Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
 {
     if (matrix1->col_num != matrix2->row_num)
@@ -101,15 +69,12 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
 
     Matrix *product = new_matrix(matrix1->row_num, matrix2->col_num);
 
-    char ta = 'N';
-    char tb = 'N';
     int m = matrix1->row_num;
     int n = matrix2->col_num;
     int k = matrix1->col_num;
-    double alpha = 1;
-    double beta = 0;
 
-    DGEMM_ROWMAJOR(&ta, &tb, &m, &n, &k, &alpha, matrix1->data, matrix2->data, &beta, product->data);
+    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1,
+        matrix1->data, k, matrix2->data, n, 0, product->data, n);
 
     return product;
 }
@@ -186,6 +151,3 @@ Matrix *gramian(Matrix *matrix)
 
     return product;
 }
-
-
-

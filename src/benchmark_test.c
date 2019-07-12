@@ -1,5 +1,4 @@
 #include <time.h>
-#include <cblas.h>
 #include "external/minunit.h"
 #include "benchmark_test.h"
 #include "core.h"
