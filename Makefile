@@ -20,6 +20,9 @@ CXX_FLAGS = -O2 -g -std=c99 -Wall -Wextra -Wshadow -Wwrite-strings -Werror-impli
 # Libraries to link
 LINKER_FLAGS = -lm -lopenblas -L/opt/OpenBLAS/lib
 
+# Additional directories containing *.h files
+HEADER_DIRS =  -I/opt/OpenBLAS/include
+
 # Add the following flags to make it faster
 # -O2 -ffast-math
 
@@ -87,7 +90,7 @@ $(BUILD_DIR)/%.o : %.c
 # Complile *.c files into the object files.
 # The -MMD flags additionaly creates a .d file with
 # the same name as the .o file.
-	$(CXX) $(CXX_FLAGS) -MMD -c $< -o $@
+	$(CXX) $(CXX_FLAGS) $(HEADER_DIRS) -MMD -c $< -o $@
 
 .PHONY : clean
 
