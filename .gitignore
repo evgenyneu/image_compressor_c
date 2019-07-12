@@ -1,3 +1,4 @@
 .vscode
 build/
-images/marmite_output_500x500.bmp
+images/marmite_output_500x500.bmp # test output
+~$*.xls* # Excel temporary
