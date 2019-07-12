@@ -4,6 +4,7 @@
 
 Benchmark results: [benchmark.xlsx](/benchmark/benchmark.xlsx).
 
+Follow the instructions below to install OpenBLAS library.
 
 ## Download the source code
 
