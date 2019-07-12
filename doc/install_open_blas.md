@@ -31,7 +31,7 @@ sudo make install
 The library and header files will be copied to `/opt/OpenBLAS` directory.
 
 
-## Remove source code
+## Cleanup: remove OpenBLAS source code
 
 ```
 rm -rf OpenBLAS
