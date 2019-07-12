@@ -18,7 +18,7 @@ CXX = gcc
 CXX_FLAGS = -O2 -g -std=c99 -Wall -Wextra -Wshadow -Wwrite-strings -Werror-implicit-function-declaration -Wundef -Wpointer-arith -Waggregate-return  -Wswitch-default -Wunreachable-code -Wformat=2 -Wmissing-prototypes  -Wconversion
 
 # Libraries to link
-LINKER_FLAGS = -lm
+LINKER_FLAGS = -lm -lopenblas -L/opt/OpenBLAS/lib
 
 # Add the following flags to make it faster
 # -O2 -ffast-math
