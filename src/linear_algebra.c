@@ -73,6 +73,7 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
     int n = matrix2->col_num;
     int k = matrix1->col_num;
 
+    // Use high-performace matrix multiplication from BLAS
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1,
         matrix1->data, k, matrix2->data, n, 0, product->data, n);
 
