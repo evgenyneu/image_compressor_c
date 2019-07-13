@@ -174,13 +174,15 @@ Matrix *gramian(Matrix *matrix)
 {
     Matrix *product = new_matrix(matrix->col_num, matrix->col_num);
 
-    int m = matrix->col_num;
+    // TEMPORARY memeset
+    // REMOVE THIS!!!!
+    memset(product->data, 0, (unsigned long) (matrix->col_num * matrix->col_num) * sizeof(double));
+
     int n = matrix->col_num;
     int k = matrix->row_num;
 
-    // Use high-performace matrix multiplication from BLAS
-    cblas_dgemm(CblasRowMajor, CblasTrans, CblasNoTrans, m, n, k, 1,
-        matrix->data, m, matrix->data, n, 0, product->data, n);
+    cblas_dsyrk(CblasRowMajor, CblasUpper, CblasTrans,
+		 n, k, 1, matrix->data, n, 0, product->data, n);
 
     return product;
 }

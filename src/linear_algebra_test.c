@@ -6,29 +6,32 @@
 static char *test_gramian()
 {
     double matrix_data[] = {
-                                3.912, -2.01,
-                                -2.99998, -1.23
+                                3.912, -2.01, 6,
+                                -2.99998, -1.23, 5.1,
+                                -2.1, 3.5, 3.1,
+                                -0.0001, 1.1, 1.1
                             };
 
-    Matrix *matrix = new_matrix_from_array(matrix_data, 2, 2);
+    Matrix *matrix = new_matrix_from_array(matrix_data, 4, 3);
 
     Matrix *result = gramian(matrix);
 
-    MU_EQUAL_INT(result->row_num, 2);
-    MU_EQUAL_INT(result->col_num, 2);
+    MU_EQUAL_INT(result->row_num, 3);
+    MU_EQUAL_INT(result->col_num, 3);
 
-    MU_APPROX_DOUBLE(result->data[0], 24.3036, 0.0001);
-    MU_APPROX_DOUBLE(result->data[1], -4.17314, 0.0001);
-    MU_APPROX_DOUBLE(result->data[2], -4.17314, 0.0001);
-    MU_APPROX_DOUBLE(result->data[3], 5.553, 0.0001);
-
+    MU_APPROX_DOUBLE(result->data[0], 28.7136, 0.0001);
+    MU_APPROX_DOUBLE(result->data[1], -11.5232546, 0.0001);
+    MU_APPROX_DOUBLE(result->data[2], 1.661992, 0.0001);
+    MU_APPROX_DOUBLE(result->data[4], 19.013, 0.0001);
+    MU_APPROX_DOUBLE(result->data[5], -6.27299, 0.0001);
+    MU_APPROX_DOUBLE(result->data[8], 72.83, 0.0001);
 
     // Free memory
-    free_matrix(matrix);
-    matrix = NULL;
+    // free_matrix(matrix);
+    // matrix = NULL;
 
-    free_matrix(result);
-    result = NULL;
+    // free_matrix(result);
+    // result = NULL;
 
     return 0;
 }
