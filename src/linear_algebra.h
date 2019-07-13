@@ -133,6 +133,27 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2);
 
 /*
 
+Multiply a matrix with a vector.
+
+Inputs:
+-------
+
+matrix: A matrix.
+
+vector: A vector (a matrix with a single column).
+
+
+Outputs:
+-------
+
+Returns : a new n-by-1 matrix, which is the result of the product of `matrix` with `vector`.
+
+*/
+Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector);
+
+
+/*
+
 Multiply `matrix` with the `number` and return the result.
 
 Inputs:

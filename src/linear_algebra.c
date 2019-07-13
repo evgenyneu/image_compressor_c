@@ -80,6 +80,43 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
     return product;
 }
 
+Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector)
+{
+    if (matrix->col_num != vector->row_num)
+    {
+        perror("Incompatible matrix dimensions");
+        exit(EXIT_FAILURE);
+    }
+
+    if (vector->col_num != 1)
+    {
+        perror("Not a vector.");
+        exit(EXIT_FAILURE);
+    }
+
+    Matrix *product = new_matrix(matrix->row_num, 1);
+    int i, k;
+    double sum;
+
+    for (i = 0; i < matrix->row_num; i++)
+    {
+        sum = 0;
+
+        for (k=0; k < matrix->col_num; k++)
+        {
+            sum += matrix->data[i * matrix->col_num + k]
+                       * vector->data[k];
+        }
+
+        product->data[i] = sum;
+    }
+
+    return product;
+}
+
+
+
+
 
 Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number)
 {
