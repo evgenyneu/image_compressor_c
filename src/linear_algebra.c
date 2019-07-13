@@ -144,11 +144,15 @@ double norm(Matrix *matrix)
 
 Matrix *gramian(Matrix *matrix)
 {
-    Matrix *transposed = transpose_matrix(matrix);
-    Matrix *product = multiply_matrices(transposed, matrix);
+    Matrix *product = new_matrix(matrix->col_num, matrix->col_num);
 
-    free_matrix(transposed);
-    transposed = NULL;
+    int m = matrix->col_num;
+    int n = matrix->col_num;
+    int k = matrix->row_num;
+
+    // Use high-performace matrix multiplication from BLAS
+    cblas_dgemm(CblasRowMajor, CblasTrans, CblasNoTrans, m, n, k, 1,
+        matrix->data, m, matrix->data, n, 0, product->data, n);
 
     return product;
 }
