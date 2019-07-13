@@ -137,11 +137,6 @@ Matrix *multiply_upper_symmetric_matrix_with_vector(Matrix *matrix, Matrix *vect
 }
 
 
-
-
-
-
-
 Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number)
 {
     Matrix *product = new_matrix(matrix->row_num, matrix->col_num);
@@ -206,10 +201,6 @@ double norm(Matrix *matrix)
 Matrix *gramian(Matrix *matrix)
 {
     Matrix *product = new_matrix(matrix->col_num, matrix->col_num);
-
-    // TEMPORARY memeset
-    // REMOVE THIS!!!!
-    memset(product->data, 0, (unsigned long) (matrix->col_num * matrix->col_num) * sizeof(double));
 
     int n = matrix->col_num;
     int k = matrix->row_num;
