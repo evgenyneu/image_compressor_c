@@ -1,0 +1,639 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 47.92      0.23     0.23                             dgemm_kernel
+ 12.50      0.29     0.06                             dgemm_itcopy
+  8.33      0.33     0.04                             dgemm_otcopy
+  6.25      0.36     0.03      177     0.17     0.17  add_matrices
+  6.25      0.39     0.03                             blas_thread_server
+  4.17      0.41     0.02      717     0.03     0.03  multiply_matrix_with_a_number
+  4.17      0.43     0.02                             dscal_kernel_8_zero
+  2.08      0.44     0.01                             dgemm_beta
+  2.08      0.45     0.01                             dgemv_t
+  2.08      0.46     0.01                             dsymv_L
+  2.08      0.47     0.01                             dsymv_kernel_4x4
+  2.08      0.48     0.01                             inner_thread
+  0.00      0.48     0.00   250517     0.00     0.00  stbi__stdio_write
+  0.00      0.48     0.00   250000     0.00     0.00  stbiw__write3
+  0.00      0.48     0.00   250000     0.00     0.00  stbiw__write_pixel
+  0.00      0.48     0.00   122962     0.00     0.00  stbi__get8
+  0.00      0.48     0.00    56871     0.00     0.00  stbi__grow_buffer_unsafe
+  0.00      0.48     0.00    33291     0.00     0.00  stbi__jpeg_huff_decode
+  0.00      0.48     0.00    27166     0.00     0.00  stbi__extend_receive
+  0.00      0.48     0.00     6144     0.00     0.00  stbi__idct_simd
+  0.00      0.48     0.00     6144     0.00     0.00  stbi__jpeg_decode_block
+  0.00      0.48     0.00     2067     0.00     0.00  new_matrix
+  0.00      0.48     0.00     2064     0.00     0.00  free_matrix
+  0.00      0.48     0.00     1000     0.00     0.00  stbi__resample_row_hv_2_simd
+  0.00      0.48     0.00      963     0.00     0.00  stbi__refill_buffer
+  0.00      0.48     0.00      963     0.00     0.00  stbi__stdio_read
+  0.00      0.48     0.00      540     0.00     0.00  dot_product
+  0.00      0.48     0.00      540     0.00     0.00  multiply_upper_symmetric_matrix_with_vector
+  0.00      0.48     0.00      500     0.00     0.00  resample_row_1
+  0.00      0.48     0.00      500     0.00     0.00  stbi__YCbCr_to_RGB_simd
+  0.00      0.48     0.00      450     0.00     0.00  norm
+  0.00      0.48     0.00      177     0.00     0.00  multiply_matrices
+  0.00      0.48     0.00      177     0.00     0.00  transpose_matrix
+  0.00      0.48     0.00       93     0.00     0.00  new_matrix_from_array
+  0.00      0.48     0.00       90     0.00     0.14  dominant_eigen_system
+  0.00      0.48     0.00       90     0.00     0.03  find_u_from_v
+  0.00      0.48     0.00       90     0.00     0.00  gramian
+  0.00      0.48     0.00       90     0.00     0.00  multiply_matrix_with_vector
+  0.00      0.48     0.00       32     0.00     0.00  stbi__jpeg_reset
+  0.00      0.48     0.00       16     0.00     0.00  stbi__get16be
+  0.00      0.48     0.00       16     0.00     0.00  stbi__get_marker
+  0.00      0.48     0.00       11     0.00     0.00  stbi__process_marker
+  0.00      0.48     0.00        7     0.00     0.00  stbi__mul2sizes_valid
+  0.00      0.48     0.00        4     0.00     0.00  stbi__build_huffman
+  0.00      0.48     0.00        4     0.00     0.00  stbi__skip
+  0.00      0.48     0.00        3     0.00     0.00  free_svd
+  0.00      0.48     0.00        3     0.00     5.92  singular_value_expansion
+  0.00      0.48     0.00        3     0.00     0.00  stbi__malloc_mad2
+  0.00      0.48     0.00        3     0.00     0.00  string_ends_with
+  0.00      0.48     0.00        3     0.00    10.75  svd
+  0.00      0.48     0.00        2     0.00     0.00  copy_string
+  0.00      0.48     0.00        2     0.00     0.00  stbi__decode_jpeg_header
+  0.00      0.48     0.00        2     0.00     0.00  stbi__mad3sizes_valid
+  0.00      0.48     0.00        2     0.00     0.00  stbi__stdio_skip
+  0.00      0.48     0.00        1     0.00     0.00  benchmark_options
+  0.00      0.48     0.00        1     0.00    50.00  compress_from_command_line_options
+  0.00      0.48     0.00        1     0.00    50.00  compress_image
+  0.00      0.48     0.00        1     0.00    50.00  compress_image_file
+  0.00      0.48     0.00        1     0.00     0.00  free_cmd_args
+  0.00      0.48     0.00        1     0.00     0.00  image_to_matrix
+  0.00      0.48     0.00        1     0.00     0.00  is_argv_end
+  0.00      0.48     0.00        1     0.00     0.00  load_image
+  0.00      0.48     0.00        1     0.00     0.00  matrix_to_image
+  0.00      0.48     0.00        1     0.00     0.00  new_cmd_args
+  0.00      0.48     0.00        1     0.00     0.00  parg_getopt_long
+  0.00      0.48     0.00        1     0.00     0.00  parg_init
+  0.00      0.48     0.00        1     0.00     0.00  parse_cmd_args
+  0.00      0.48     0.00        1     0.00     0.00  save_image
+  0.00      0.48     0.00        1     0.00     0.00  stbi__cleanup_jpeg
+  0.00      0.48     0.00        1     0.00     0.00  stbi__free_jpeg_components
+  0.00      0.48     0.00        1     0.00     0.00  stbi__load_and_postprocess_8bit
+  0.00      0.48     0.00        1     0.00     0.00  stbi__load_main
+  0.00      0.48     0.00        1     0.00     0.00  stbi__malloc_mad3
+  0.00      0.48     0.00        1     0.00     0.00  stbi__start_callbacks
+  0.00      0.48     0.00        1     0.00     0.00  stbi_load
+  0.00      0.48     0.00        1     0.00     0.00  stbi_load_from_file
+  0.00      0.48     0.00        1     0.00     0.00  stbi_write_bmp
+  0.00      0.48     0.00        1     0.00     0.00  stbi_write_bmp_core
+  0.00      0.48     0.00        1     0.00     0.00  stbiw__outfile
+  0.00      0.48     0.00        1     0.00     0.00  stbiw__writefv
+  0.00      0.48     0.00        1     0.00     0.00  string_to_lower
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 2.08% of 0.48 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     47.9    0.23    0.00                 dgemm_kernel [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     12.5    0.06    0.00                 dgemm_itcopy [2]
+-----------------------------------------------
+                0.00    0.05       1/1           main [6]
+[3]     10.4    0.00    0.05       1         compress_from_command_line_options [3]
+                0.00    0.05       1/1           compress_image_file [5]
+-----------------------------------------------
+                0.00    0.05       1/1           compress_image_file [5]
+[4]     10.4    0.00    0.05       1         compress_image [4]
+                0.00    0.03       3/3           svd [8]
+                0.00    0.02       3/3           singular_value_expansion [13]
+                0.00    0.00       3/3           free_svd [52]
+-----------------------------------------------
+                0.00    0.05       1/1           compress_from_command_line_options [3]
+[5]     10.4    0.00    0.05       1         compress_image_file [5]
+                0.00    0.05       1/1           compress_image [4]
+                0.00    0.00       6/2064        free_matrix [31]
+                0.00    0.00       1/1           load_image [63]
+                0.00    0.00       1/1           save_image [69]
+-----------------------------------------------
+                                                 <spontaneous>
+[6]     10.4    0.00    0.05                 main [6]
+                0.00    0.05       1/1           compress_from_command_line_options [3]
+                0.00    0.00       1/1           new_cmd_args [65]
+                0.00    0.00       1/1           parse_cmd_args [68]
+                0.00    0.00       1/1           free_cmd_args [60]
+-----------------------------------------------
+                                                 <spontaneous>
+[7]      8.3    0.04    0.00                 dgemm_otcopy [7]
+-----------------------------------------------
+                0.00    0.03       3/3           compress_image [4]
+[8]      6.7    0.00    0.03       3         svd [8]
+                0.01    0.00      87/177         add_matrices [9]
+                0.00    0.01      90/90          dominant_eigen_system [14]
+                0.00    0.00      90/90          find_u_from_v [20]
+                0.00    0.00      87/717         multiply_matrix_with_a_number [11]
+                0.00    0.00     438/2064        free_matrix [31]
+                0.00    0.00      90/90          gramian [43]
+                0.00    0.00      87/177         transpose_matrix [41]
+                0.00    0.00      87/177         multiply_matrices [40]
+                0.00    0.00       3/93          new_matrix_from_array [42]
+-----------------------------------------------
+                0.01    0.00      87/177         svd [8]
+                0.02    0.00      90/177         singular_value_expansion [13]
+[9]      6.3    0.03    0.00     177         add_matrices [9]
+                0.00    0.00     177/2067        new_matrix [30]
+-----------------------------------------------
+                                                 <spontaneous>
+[10]     6.3    0.03    0.00                 blas_thread_server [10]
+-----------------------------------------------
+                0.00    0.00      87/717         svd [8]
+                0.00    0.00      90/717         find_u_from_v [20]
+                0.00    0.00      90/717         singular_value_expansion [13]
+                0.01    0.00     450/717         dominant_eigen_system [14]
+[11]     4.2    0.02    0.00     717         multiply_matrix_with_a_number [11]
+                0.00    0.00     717/2067        new_matrix [30]
+-----------------------------------------------
+                                                 <spontaneous>
+[12]     4.2    0.02    0.00                 dscal_kernel_8_zero [12]
+-----------------------------------------------
+                0.00    0.02       3/3           compress_image [4]
+[13]     3.7    0.00    0.02       3         singular_value_expansion [13]
+                0.02    0.00      90/177         add_matrices [9]
+                0.00    0.00      90/717         multiply_matrix_with_a_number [11]
+                0.00    0.00     360/2064        free_matrix [31]
+                0.00    0.00      90/177         transpose_matrix [41]
+                0.00    0.00      90/177         multiply_matrices [40]
+                0.00    0.00       3/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.01      90/90          svd [8]
+[14]     2.6    0.00    0.01      90         dominant_eigen_system [14]
+                0.01    0.00     450/717         multiply_matrix_with_a_number [11]
+                0.00    0.00     990/2064        free_matrix [31]
+                0.00    0.00     540/540         multiply_upper_symmetric_matrix_with_vector [36]
+                0.00    0.00     450/450         norm [39]
+                0.00    0.00      90/93          new_matrix_from_array [42]
+                0.00    0.00      90/540         dot_product [35]
+-----------------------------------------------
+                                                 <spontaneous>
+[15]     2.1    0.01    0.00                 dgemm_beta [15]
+-----------------------------------------------
+                                                 <spontaneous>
+[16]     2.1    0.01    0.00                 dgemv_t [16]
+-----------------------------------------------
+                                                 <spontaneous>
+[17]     2.1    0.01    0.00                 dsymv_L [17]
+-----------------------------------------------
+                                                 <spontaneous>
+[18]     2.1    0.01    0.00                 dsymv_kernel_4x4 [18]
+-----------------------------------------------
+                                                 <spontaneous>
+[19]     2.1    0.01    0.00                 inner_thread [19]
+-----------------------------------------------
+                0.00    0.00      90/90          svd [8]
+[20]     0.5    0.00    0.00      90         find_u_from_v [20]
+                0.00    0.00      90/717         multiply_matrix_with_a_number [11]
+                0.00    0.00      90/90          multiply_matrix_with_vector [44]
+                0.00    0.00      90/2064        free_matrix [31]
+-----------------------------------------------
+                0.00    0.00      17/250517      stbiw__writefv [81]
+                0.00    0.00     500/250517      stbiw__outfile [80]
+                0.00    0.00  250000/250517      stbiw__write3 [22]
+[21]     0.0    0.00    0.00  250517         stbi__stdio_write [21]
+-----------------------------------------------
+                0.00    0.00  250000/250000      stbiw__write_pixel [23]
+[22]     0.0    0.00    0.00  250000         stbiw__write3 [22]
+                0.00    0.00  250000/250517      stbi__stdio_write [21]
+-----------------------------------------------
+                0.00    0.00  250000/250000      stbiw__outfile [80]
+[23]     0.0    0.00    0.00  250000         stbiw__write_pixel [23]
+                0.00    0.00  250000/250000      stbiw__write3 [22]
+-----------------------------------------------
+                0.00    0.00      10/122962      stbi__load_main [73]
+                0.00    0.00      11/122962      stbi__decode_jpeg_header [56]
+                0.00    0.00      30/122962      stbi__get_marker [47]
+                0.00    0.00      32/122962      stbi__get16be [46]
+                0.00    0.00     551/122962      stbi__process_marker [48]
+                0.00    0.00  122328/122962      stbi__grow_buffer_unsafe [25]
+[24]     0.0    0.00    0.00  122962         stbi__get8 [24]
+                0.00    0.00     962/963         stbi__refill_buffer [33]
+-----------------------------------------------
+                0.00    0.00       6/56871       stbi__jpeg_huff_decode [26]
+                0.00    0.00      22/56871       stbi__load_main [73]
+                0.00    0.00     177/56871       stbi__extend_receive [27]
+                0.00    0.00   56666/56871       stbi__jpeg_decode_block [29]
+[25]     0.0    0.00    0.00   56871         stbi__grow_buffer_unsafe [25]
+                0.00    0.00  122328/122962      stbi__get8 [24]
+-----------------------------------------------
+                0.00    0.00   33291/33291       stbi__jpeg_decode_block [29]
+[26]     0.0    0.00    0.00   33291         stbi__jpeg_huff_decode [26]
+                0.00    0.00       6/56871       stbi__grow_buffer_unsafe [25]
+-----------------------------------------------
+                0.00    0.00   27166/27166       stbi__jpeg_decode_block [29]
+[27]     0.0    0.00    0.00   27166         stbi__extend_receive [27]
+                0.00    0.00     177/56871       stbi__grow_buffer_unsafe [25]
+-----------------------------------------------
+                0.00    0.00    6144/6144        stbi__load_main [73]
+[28]     0.0    0.00    0.00    6144         stbi__idct_simd [28]
+-----------------------------------------------
+                0.00    0.00    6144/6144        stbi__load_main [73]
+[29]     0.0    0.00    0.00    6144         stbi__jpeg_decode_block [29]
+                0.00    0.00   56666/56871       stbi__grow_buffer_unsafe [25]
+                0.00    0.00   33291/33291       stbi__jpeg_huff_decode [26]
+                0.00    0.00   27166/27166       stbi__extend_receive [27]
+-----------------------------------------------
+                0.00    0.00       3/2067        image_to_matrix [61]
+                0.00    0.00       3/2067        singular_value_expansion [13]
+                0.00    0.00      90/2067        multiply_matrix_with_vector [44]
+                0.00    0.00      90/2067        gramian [43]
+                0.00    0.00      93/2067        new_matrix_from_array [42]
+                0.00    0.00     177/2067        add_matrices [9]
+                0.00    0.00     177/2067        multiply_matrices [40]
+                0.00    0.00     177/2067        transpose_matrix [41]
+                0.00    0.00     540/2067        multiply_upper_symmetric_matrix_with_vector [36]
+                0.00    0.00     717/2067        multiply_matrix_with_a_number [11]
+[30]     0.0    0.00    0.00    2067         new_matrix [30]
+-----------------------------------------------
+                0.00    0.00       6/2064        compress_image_file [5]
+                0.00    0.00      90/2064        find_u_from_v [20]
+                0.00    0.00     180/2064        free_svd [52]
+                0.00    0.00     360/2064        singular_value_expansion [13]
+                0.00    0.00     438/2064        svd [8]
+                0.00    0.00     990/2064        dominant_eigen_system [14]
+[31]     0.0    0.00    0.00    2064         free_matrix [31]
+-----------------------------------------------
+                0.00    0.00    1000/1000        stbi__load_main [73]
+[32]     0.0    0.00    0.00    1000         stbi__resample_row_hv_2_simd [32]
+-----------------------------------------------
+                0.00    0.00       1/963         stbi__start_callbacks [75]
+                0.00    0.00     962/963         stbi__get8 [24]
+[33]     0.0    0.00    0.00     963         stbi__refill_buffer [33]
+                0.00    0.00     963/963         stbi__stdio_read [34]
+-----------------------------------------------
+                0.00    0.00     963/963         stbi__refill_buffer [33]
+[34]     0.0    0.00    0.00     963         stbi__stdio_read [34]
+-----------------------------------------------
+                0.00    0.00      90/540         dominant_eigen_system [14]
+                0.00    0.00     450/540         norm [39]
+[35]     0.0    0.00    0.00     540         dot_product [35]
+-----------------------------------------------
+                0.00    0.00     540/540         dominant_eigen_system [14]
+[36]     0.0    0.00    0.00     540         multiply_upper_symmetric_matrix_with_vector [36]
+                0.00    0.00     540/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.00     500/500         stbi__load_main [73]
+[37]     0.0    0.00    0.00     500         resample_row_1 [37]
+-----------------------------------------------
+                0.00    0.00     500/500         stbi__load_main [73]
+[38]     0.0    0.00    0.00     500         stbi__YCbCr_to_RGB_simd [38]
+-----------------------------------------------
+                0.00    0.00     450/450         dominant_eigen_system [14]
+[39]     0.0    0.00    0.00     450         norm [39]
+                0.00    0.00     450/540         dot_product [35]
+-----------------------------------------------
+                0.00    0.00      87/177         svd [8]
+                0.00    0.00      90/177         singular_value_expansion [13]
+[40]     0.0    0.00    0.00     177         multiply_matrices [40]
+                0.00    0.00     177/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.00      87/177         svd [8]
+                0.00    0.00      90/177         singular_value_expansion [13]
+[41]     0.0    0.00    0.00     177         transpose_matrix [41]
+                0.00    0.00     177/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.00       3/93          svd [8]
+                0.00    0.00      90/93          dominant_eigen_system [14]
+[42]     0.0    0.00    0.00      93         new_matrix_from_array [42]
+                0.00    0.00      93/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.00      90/90          svd [8]
+[43]     0.0    0.00    0.00      90         gramian [43]
+                0.00    0.00      90/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.00      90/90          find_u_from_v [20]
+[44]     0.0    0.00    0.00      90         multiply_matrix_with_vector [44]
+                0.00    0.00      90/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.00      32/32          stbi__load_main [73]
+[45]     0.0    0.00    0.00      32         stbi__jpeg_reset [45]
+-----------------------------------------------
+                0.00    0.00       1/16          stbi__load_main [73]
+                0.00    0.00       3/16          stbi__decode_jpeg_header [56]
+                0.00    0.00      12/16          stbi__process_marker [48]
+[46]     0.0    0.00    0.00      16         stbi__get16be [46]
+                0.00    0.00      32/122962      stbi__get8 [24]
+-----------------------------------------------
+                0.00    0.00       7/16          stbi__decode_jpeg_header [56]
+                0.00    0.00       9/16          stbi__load_main [73]
+[47]     0.0    0.00    0.00      16         stbi__get_marker [47]
+                0.00    0.00      30/122962      stbi__get8 [24]
+-----------------------------------------------
+                0.00    0.00       4/11          stbi__decode_jpeg_header [56]
+                0.00    0.00       7/11          stbi__load_main [73]
+[48]     0.0    0.00    0.00      11         stbi__process_marker [48]
+                0.00    0.00     551/122962      stbi__get8 [24]
+                0.00    0.00      12/16          stbi__get16be [46]
+                0.00    0.00       4/4           stbi__build_huffman [50]
+                0.00    0.00       4/4           stbi__skip [51]
+-----------------------------------------------
+                0.00    0.00       3/7           stbi__malloc_mad2 [53]
+                0.00    0.00       4/7           stbi__mad3sizes_valid [57]
+[49]     0.0    0.00    0.00       7         stbi__mul2sizes_valid [49]
+-----------------------------------------------
+                0.00    0.00       4/4           stbi__process_marker [48]
+[50]     0.0    0.00    0.00       4         stbi__build_huffman [50]
+-----------------------------------------------
+                0.00    0.00       4/4           stbi__process_marker [48]
+[51]     0.0    0.00    0.00       4         stbi__skip [51]
+                0.00    0.00       2/2           stbi__stdio_skip [58]
+-----------------------------------------------
+                0.00    0.00       3/3           compress_image [4]
+[52]     0.0    0.00    0.00       3         free_svd [52]
+                0.00    0.00     180/2064        free_matrix [31]
+-----------------------------------------------
+                0.00    0.00       3/3           stbi__decode_jpeg_header [56]
+[53]     0.0    0.00    0.00       3         stbi__malloc_mad2 [53]
+                0.00    0.00       3/7           stbi__mul2sizes_valid [49]
+-----------------------------------------------
+                0.00    0.00       3/3           save_image [69]
+[54]     0.0    0.00    0.00       3         string_ends_with [54]
+-----------------------------------------------
+                0.00    0.00       2/2           benchmark_options [59]
+[55]     0.0    0.00    0.00       2         copy_string [55]
+-----------------------------------------------
+                0.00    0.00       2/2           stbi__load_main [73]
+[56]     0.0    0.00    0.00       2         stbi__decode_jpeg_header [56]
+                0.00    0.00      11/122962      stbi__get8 [24]
+                0.00    0.00       7/16          stbi__get_marker [47]
+                0.00    0.00       4/11          stbi__process_marker [48]
+                0.00    0.00       3/16          stbi__get16be [46]
+                0.00    0.00       3/3           stbi__malloc_mad2 [53]
+                0.00    0.00       1/2           stbi__mad3sizes_valid [57]
+-----------------------------------------------
+                0.00    0.00       1/2           stbi__malloc_mad3 [74]
+                0.00    0.00       1/2           stbi__decode_jpeg_header [56]
+[57]     0.0    0.00    0.00       2         stbi__mad3sizes_valid [57]
+                0.00    0.00       4/7           stbi__mul2sizes_valid [49]
+-----------------------------------------------
+                0.00    0.00       2/2           stbi__skip [51]
+[58]     0.0    0.00    0.00       2         stbi__stdio_skip [58]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_cmd_args [68]
+[59]     0.0    0.00    0.00       1         benchmark_options [59]
+                0.00    0.00       2/2           copy_string [55]
+-----------------------------------------------
+                0.00    0.00       1/1           main [6]
+[60]     0.0    0.00    0.00       1         free_cmd_args [60]
+-----------------------------------------------
+                0.00    0.00       1/1           load_image [63]
+[61]     0.0    0.00    0.00       1         image_to_matrix [61]
+                0.00    0.00       3/2067        new_matrix [30]
+-----------------------------------------------
+                0.00    0.00       1/1           parg_getopt_long [66]
+[62]     0.0    0.00    0.00       1         is_argv_end [62]
+-----------------------------------------------
+                0.00    0.00       1/1           compress_image_file [5]
+[63]     0.0    0.00    0.00       1         load_image [63]
+                0.00    0.00       1/1           stbi_load [76]
+                0.00    0.00       1/1           image_to_matrix [61]
+-----------------------------------------------
+                0.00    0.00       1/1           save_image [69]
+[64]     0.0    0.00    0.00       1         matrix_to_image [64]
+-----------------------------------------------
+                0.00    0.00       1/1           main [6]
+[65]     0.0    0.00    0.00       1         new_cmd_args [65]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_cmd_args [68]
+[66]     0.0    0.00    0.00       1         parg_getopt_long [66]
+                0.00    0.00       1/1           is_argv_end [62]
+-----------------------------------------------
+                0.00    0.00       1/1           parse_cmd_args [68]
+[67]     0.0    0.00    0.00       1         parg_init [67]
+-----------------------------------------------
+                0.00    0.00       1/1           main [6]
+[68]     0.0    0.00    0.00       1         parse_cmd_args [68]
+                0.00    0.00       1/1           parg_init [67]
+                0.00    0.00       1/1           parg_getopt_long [66]
+                0.00    0.00       1/1           benchmark_options [59]
+-----------------------------------------------
+                0.00    0.00       1/1           compress_image_file [5]
+[69]     0.0    0.00    0.00       1         save_image [69]
+                0.00    0.00       3/3           string_ends_with [54]
+                0.00    0.00       1/1           matrix_to_image [64]
+                0.00    0.00       1/1           string_to_lower [82]
+                0.00    0.00       1/1           stbi_write_bmp [78]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi__load_main [73]
+[70]     0.0    0.00    0.00       1         stbi__cleanup_jpeg [70]
+                0.00    0.00       1/1           stbi__free_jpeg_components [71]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi__cleanup_jpeg [70]
+[71]     0.0    0.00    0.00       1         stbi__free_jpeg_components [71]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi_load_from_file [77]
+[72]     0.0    0.00    0.00       1         stbi__load_and_postprocess_8bit [72]
+                0.00    0.00       1/1           stbi__load_main [73]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi__load_and_postprocess_8bit [72]
+[73]     0.0    0.00    0.00       1         stbi__load_main [73]
+                0.00    0.00    6144/6144        stbi__jpeg_decode_block [29]
+                0.00    0.00    6144/6144        stbi__idct_simd [28]
+                0.00    0.00    1000/1000        stbi__resample_row_hv_2_simd [32]
+                0.00    0.00     500/500         resample_row_1 [37]
+                0.00    0.00     500/500         stbi__YCbCr_to_RGB_simd [38]
+                0.00    0.00      32/32          stbi__jpeg_reset [45]
+                0.00    0.00      22/56871       stbi__grow_buffer_unsafe [25]
+                0.00    0.00      10/122962      stbi__get8 [24]
+                0.00    0.00       9/16          stbi__get_marker [47]
+                0.00    0.00       7/11          stbi__process_marker [48]
+                0.00    0.00       2/2           stbi__decode_jpeg_header [56]
+                0.00    0.00       1/16          stbi__get16be [46]
+                0.00    0.00       1/1           stbi__malloc_mad3 [74]
+                0.00    0.00       1/1           stbi__cleanup_jpeg [70]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi__load_main [73]
+[74]     0.0    0.00    0.00       1         stbi__malloc_mad3 [74]
+                0.00    0.00       1/2           stbi__mad3sizes_valid [57]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi_load_from_file [77]
+[75]     0.0    0.00    0.00       1         stbi__start_callbacks [75]
+                0.00    0.00       1/963         stbi__refill_buffer [33]
+-----------------------------------------------
+                0.00    0.00       1/1           load_image [63]
+[76]     0.0    0.00    0.00       1         stbi_load [76]
+                0.00    0.00       1/1           stbi_load_from_file [77]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi_load [76]
+[77]     0.0    0.00    0.00       1         stbi_load_from_file [77]
+                0.00    0.00       1/1           stbi__start_callbacks [75]
+                0.00    0.00       1/1           stbi__load_and_postprocess_8bit [72]
+-----------------------------------------------
+                0.00    0.00       1/1           save_image [69]
+[78]     0.0    0.00    0.00       1         stbi_write_bmp [78]
+                0.00    0.00       1/1           stbi_write_bmp_core [79]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi_write_bmp [78]
+[79]     0.0    0.00    0.00       1         stbi_write_bmp_core [79]
+                0.00    0.00       1/1           stbiw__outfile [80]
+-----------------------------------------------
+                0.00    0.00       1/1           stbi_write_bmp_core [79]
+[80]     0.0    0.00    0.00       1         stbiw__outfile [80]
+                0.00    0.00  250000/250000      stbiw__write_pixel [23]
+                0.00    0.00     500/250517      stbi__stdio_write [21]
+                0.00    0.00       1/1           stbiw__writefv [81]
+-----------------------------------------------
+                0.00    0.00       1/1           stbiw__outfile [80]
+[81]     0.0    0.00    0.00       1         stbiw__writefv [81]
+                0.00    0.00      17/250517      stbi__stdio_write [21]
+-----------------------------------------------
+                0.00    0.00       1/1           save_image [69]
+[82]     0.0    0.00    0.00       1         string_to_lower [82]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+   [9] add_matrices           [40] multiply_matrices      [45] stbi__jpeg_reset (stb_image.h)
+  [59] benchmark_options      [11] multiply_matrix_with_a_number [72] stbi__load_and_postprocess_8bit (stb_image.h)
+  [10] blas_thread_server     [44] multiply_matrix_with_vector [73] stbi__load_main (stb_image.h)
+   [3] compress_from_command_line_options [36] multiply_upper_symmetric_matrix_with_vector [57] stbi__mad3sizes_valid (stb_image.h)
+   [4] compress_image         [65] new_cmd_args           [53] stbi__malloc_mad2 (stb_image.h)
+   [5] compress_image_file    [30] new_matrix             [74] stbi__malloc_mad3 (stb_image.h)
+  [55] copy_string            [42] new_matrix_from_array  [49] stbi__mul2sizes_valid (stb_image.h)
+  [15] dgemm_beta             [39] norm                   [48] stbi__process_marker (stb_image.h)
+   [2] dgemm_itcopy           [66] parg_getopt_long       [33] stbi__refill_buffer (stb_image.h)
+   [1] dgemm_kernel           [67] parg_init              [32] stbi__resample_row_hv_2_simd (stb_image.h)
+   [7] dgemm_otcopy           [68] parse_cmd_args         [51] stbi__skip (stb_image.h)
+  [16] dgemv_t                [37] resample_row_1 (stb_image.h) [75] stbi__start_callbacks (stb_image.h)
+  [14] dominant_eigen_system  [69] save_image             [34] stbi__stdio_read (stb_image.h)
+  [35] dot_product            [13] singular_value_expansion [58] stbi__stdio_skip (stb_image.h)
+  [12] dscal_kernel_8_zero    [38] stbi__YCbCr_to_RGB_simd (stb_image.h) [21] stbi__stdio_write (stb_image_write.h)
+  [17] dsymv_L                [50] stbi__build_huffman (stb_image.h) [76] stbi_load
+  [18] dsymv_kernel_4x4       [70] stbi__cleanup_jpeg (stb_image.h) [77] stbi_load_from_file
+  [20] find_u_from_v          [56] stbi__decode_jpeg_header (stb_image.h) [78] stbi_write_bmp
+  [60] free_cmd_args          [27] stbi__extend_receive (stb_image.h) [79] stbi_write_bmp_core (stb_image_write.h)
+  [31] free_matrix            [71] stbi__free_jpeg_components (stb_image.h) [80] stbiw__outfile (stb_image_write.h)
+  [52] free_svd               [46] stbi__get16be (stb_image.h) [22] stbiw__write3 (stb_image_write.h)
+  [43] gramian                [24] stbi__get8 (stb_image.h) [23] stbiw__write_pixel (stb_image_write.h)
+  [61] image_to_matrix        [47] stbi__get_marker (stb_image.h) [81] stbiw__writefv (stb_image_write.h)
+  [19] inner_thread           [25] stbi__grow_buffer_unsafe (stb_image.h) [54] string_ends_with
+  [62] is_argv_end (parg.c)   [28] stbi__idct_simd (stb_image.h) [82] string_to_lower
+  [63] load_image             [29] stbi__jpeg_decode_block (stb_image.h) [8] svd
+  [64] matrix_to_image        [26] stbi__jpeg_huff_decode (stb_image.h) [41] transpose_matrix
