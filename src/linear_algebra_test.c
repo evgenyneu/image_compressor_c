@@ -199,6 +199,45 @@ static char *test_multiply_matrix_with_vector()
     return 0;
 }
 
+static char *test_multiply_matrix_with_vector2()
+{
+    double matrix1_data[] = {
+                                1.3, -8.0,
+                                -4.0, 1.5,
+                                2.0, -3.1
+                            };
+
+    Matrix *matrix1 = new_matrix_from_array(matrix1_data, 3, 2);
+
+    double matrix2_data[] = {
+                                0.340724,
+                                -0.940163
+                            };
+
+    Matrix *matrix2 = new_matrix_from_array(matrix2_data, 2, 1);
+
+    Matrix *result = multiply_matrix_with_vector(matrix1, matrix2);
+
+    MU_EQUAL_INT(result->row_num, 3);
+    MU_EQUAL_INT(result->col_num, 1);
+
+    MU_APPROX_DOUBLE(result->data[0], 7.96425, 0.0001);
+    MU_APPROX_DOUBLE(result->data[1], -2.77314, 0.0001);
+    MU_APPROX_DOUBLE(result->data[2], 3.59595, 0.0001);
+
+    // Free memory
+    free_matrix(matrix1);
+    matrix1 = NULL;
+
+    free_matrix(matrix2);
+    matrix2 = NULL;
+
+    free_matrix(result);
+    result = NULL;
+
+    return 0;
+}
+
 
 static char *test_multiply_matrices()
 {
@@ -338,5 +377,6 @@ char *load_all_linear_algebra_tests(void)
     MU_RUN_TEST(test_norm);
     MU_RUN_TEST(test_gramian);
     MU_RUN_TEST(test_multiply_matrix_with_vector);
+    MU_RUN_TEST(test_multiply_matrix_with_vector2);
     return 0;
 }

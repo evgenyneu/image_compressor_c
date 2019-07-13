@@ -97,9 +97,9 @@ Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector)
     Matrix *product = new_matrix(matrix->row_num, 1);
 
     int m = matrix->row_num;
-    int n = matrix->row_num;
+    int n = matrix->col_num;
 
-    cblas_dgemv(CblasRowMajor, CblasNoTrans,  m, n, 1, matrix->data, n,
+    cblas_dgemv(CblasRowMajor, CblasNoTrans, m, n, 1, matrix->data, n,
                 vector->data, 1,  0, product->data, 1);
 
     return product;

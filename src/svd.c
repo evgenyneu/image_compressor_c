@@ -26,7 +26,7 @@ void free_svd(SVD *svd_data)
 
 Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)
 {
-    Matrix *product = multiply_matrices(matrix, v);
+    Matrix *product = multiply_matrix_with_vector(matrix, v);
     Matrix *vector_u = multiply_matrix_with_a_number(product, 1 / singular_value);
 
     free_matrix(product);
