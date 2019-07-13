@@ -16,7 +16,7 @@ Matrix *dominant_eigen_system(Matrix *matrix, int iterations, double *eigenvalue
 
     for (i = 0; i < iterations; i++)
     {
-        product = multiply_matrices(matrix, unit_vector);
+        product = multiply_matrix_with_vector(matrix, unit_vector);
         vec_length = norm(product);
 
         free_matrix(unit_vector);
@@ -39,7 +39,7 @@ Matrix *dominant_eigen_system(Matrix *matrix, int iterations, double *eigenvalue
     }
 
     // Calculate dominant eigenvalue
-    product = multiply_matrices(matrix, unit_vector);
+    product = multiply_matrix_with_vector(matrix, unit_vector);
     *eigenvalue = dot_product(product, unit_vector);
 
     // Free memory
