@@ -95,21 +95,12 @@ Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector)
     }
 
     Matrix *product = new_matrix(matrix->row_num, 1);
-    int i, k;
-    double sum;
 
-    for (i = 0; i < matrix->row_num; i++)
-    {
-        sum = 0;
+    int m = matrix->row_num;
+    int n = matrix->row_num;
 
-        for (k=0; k < matrix->col_num; k++)
-        {
-            sum += matrix->data[i * matrix->col_num + k]
-                       * vector->data[k];
-        }
-
-        product->data[i] = sum;
-    }
+    cblas_dgemv(CblasRowMajor, CblasNoTrans,  m, n, 1, matrix->data, n,
+                vector->data, 1,  0, product->data, 1);
 
     return product;
 }
