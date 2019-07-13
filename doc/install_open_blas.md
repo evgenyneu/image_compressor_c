@@ -34,5 +34,6 @@ The library and header files will be copied to `/opt/OpenBLAS` directory.
 ## Cleanup: remove OpenBLAS source code
 
 ```
+cd ..
 rm -rf OpenBLAS
 ```
