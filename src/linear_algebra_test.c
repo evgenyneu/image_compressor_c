@@ -27,11 +27,11 @@ static char *test_gramian()
     MU_APPROX_DOUBLE(result->data[8], 72.83, 0.0001);
 
     // Free memory
-    // free_matrix(matrix);
-    // matrix = NULL;
+    free_matrix(matrix);
+    matrix = NULL;
 
-    // free_matrix(result);
-    // result = NULL;
+    free_matrix(result);
+    result = NULL;
 
     return 0;
 }
@@ -242,6 +242,47 @@ static char *test_multiply_matrix_with_vector2()
 }
 
 
+static char *test_multiply_upper_symmetric_matrix_with_vector()
+{
+    double matrix1_data[] = {
+                                1.3, -8.0, 2.1,
+                                -8.0, 1.5, 3.1,
+                                2.1,  3.1, -0.01
+                            };
+
+    Matrix *matrix1 = new_matrix_from_array(matrix1_data, 3, 3);
+
+    double matrix2_data[] = {
+                                0.340724,
+                                -0.940163,
+                                0.1,
+                            };
+
+    Matrix *matrix2 = new_matrix_from_array(matrix2_data, 3, 1);
+
+    Matrix *result = multiply_upper_symmetric_matrix_with_vector(matrix1, matrix2);
+
+    MU_EQUAL_INT(result->row_num, 3);
+    MU_EQUAL_INT(result->col_num, 1);
+
+    MU_APPROX_DOUBLE(result->data[0], 8.17425, 0.0001);
+    MU_APPROX_DOUBLE(result->data[1], -3.82604, 0.0001);
+    MU_APPROX_DOUBLE(result->data[2], -2.19998, 0.0001);
+
+    // Free memory
+    free_matrix(matrix1);
+    matrix1 = NULL;
+
+    free_matrix(matrix2);
+    matrix2 = NULL;
+
+    free_matrix(result);
+    result = NULL;
+
+    return 0;
+}
+
+
 static char *test_multiply_matrices()
 {
     double matrix1_data[] = {
@@ -381,5 +422,6 @@ char *load_all_linear_algebra_tests(void)
     MU_RUN_TEST(test_gramian);
     MU_RUN_TEST(test_multiply_matrix_with_vector);
     MU_RUN_TEST(test_multiply_matrix_with_vector2);
+    MU_RUN_TEST(test_multiply_upper_symmetric_matrix_with_vector);
     return 0;
 }

@@ -154,6 +154,27 @@ Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector);
 
 /*
 
+Multiply a symmetric matrix with a vector.
+
+Inputs:
+-------
+
+matrix: A symmetric matrix with only upper triangular part specified.
+
+vector: A vector (a matrix with a single column).
+
+
+Outputs:
+-------
+
+Returns : a new n-by-1 matrix, which is the result of the product of `matrix` with `vector`.
+
+*/
+Matrix *multiply_upper_symmetric_matrix_with_vector(Matrix *matrix, Matrix *vector);
+
+
+/*
+
 Multiply `matrix` with the `number` and return the result.
 
 Inputs:
@@ -231,7 +252,7 @@ double norm(Matrix *matrix);
 
 /*
 
-Returns the Gramian of `matrix`.
+Returns the upper triangular part of Gramian of `matrix`.
 
 Inputs:
 -------
@@ -242,7 +263,7 @@ matrix : a matrix.
 Outputs:
 -------
 
-Returns : Gramian of `matrix`.
+Returns : Gramian of `matrix`. This symmetric matrix has values only in its upper triangular part. The values in the strictly lower triangular part are not initialized.
 
 */
 Matrix *gramian(Matrix *matrix);

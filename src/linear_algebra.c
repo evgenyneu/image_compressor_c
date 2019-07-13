@@ -106,6 +106,39 @@ Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector)
 }
 
 
+Matrix *multiply_upper_symmetric_matrix_with_vector(Matrix *matrix, Matrix *vector)
+{
+    if (matrix->col_num != matrix->row_num)
+    {
+        perror("Matrix is not square");
+        exit(EXIT_FAILURE);
+    }
+
+    if (matrix->col_num != vector->row_num)
+    {
+        perror("Incompatible matrix dimensions");
+        exit(EXIT_FAILURE);
+    }
+
+    if (vector->col_num != 1)
+    {
+        perror("Not a vector.");
+        exit(EXIT_FAILURE);
+    }
+
+    Matrix *product = new_matrix(matrix->row_num, 1);
+
+    int n = matrix->col_num;
+
+    cblas_dsymv(CblasRowMajor, CblasUpper, n, 1, matrix->data,
+                n, vector->data, 1, 0, product->data, 1);
+
+    return product;
+}
+
+
+
+
 
 
 
