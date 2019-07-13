@@ -51,8 +51,46 @@ static char *test_matrix_multiplication()
 }
 
 
+static char *test_banchmark_gramian()
+{
+    // Create a matrix
+    int row_num = 1000;
+    int col_num = 1200;
+
+    double *matrix_data = malloc((unsigned long)(row_num * col_num) * sizeof(double));
+    Matrix *matrix = new_matrix_from_array(matrix_data, row_num, col_num);
+
+    // Fill matrix with random numbers between -max and max
+    double max = 1000;
+    int i, j;
+    srand((unsigned int) time(NULL)); // randomize seed
+
+    for (i=0; i<row_num; i++)
+    {
+        for(j=0; j<col_num; j++)
+        {
+            matrix_data[i*col_num + j] = (double)rand() * 2 / RAND_MAX * max - max;
+        }
+    }
+
+    TICK(GRAMIAN);
+    Matrix *result = gramian(matrix);
+    TOCK(GRAMIAN);
+
+    // Free memory
+    free_matrix(result);
+    result = NULL;
+
+    free_matrix(matrix);
+    matrix = NULL;
+
+    return 0;
+}
+
+
 char *load_all_benchmark_tests(void)
 {
     MU_RUN_TEST(test_matrix_multiplication);
+    MU_RUN_TEST(test_banchmark_gramian);
     return 0;
 }
