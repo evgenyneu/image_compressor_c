@@ -45,7 +45,7 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
     }
 
     int iteration;
-    // Matrix used to find dominant eigenvalues 
+    // Matrix used to find dominant eigenvalues
     Matrix *current_matrix = new_matrix_from_array(matrix->data, matrix->row_num, matrix->col_num);
 
     for (iteration = 0; iteration < max_eigenvalues; iteration++)
