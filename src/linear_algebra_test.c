@@ -138,25 +138,22 @@ static char *test_multiply_matrix_with_a_number()
 
     Matrix *matrix = new_matrix_from_array(matrix_data, 3, 2);
 
-    Matrix *result = multiply_matrix_with_a_number(matrix, 2.98);
+    multiply_matrix_with_a_number(matrix, 2.98);
 
-    MU_EQUAL_INT(result->row_num, 3);
-    MU_EQUAL_INT(result->col_num, 2);
+    MU_EQUAL_INT(matrix->row_num, 3);
+    MU_EQUAL_INT(matrix->col_num, 2);
 
-    MU_APPROX_DOUBLE(result->data[0], 3.278, 0.0001);
-    MU_APPROX_DOUBLE(result->data[1], 5.96, 0.0001);
-    MU_APPROX_DOUBLE(result->data[2], 11.92, 0.0001);;
-    MU_APPROX_DOUBLE(result->data[3], 14.9, 0.0001);;
-    MU_APPROX_DOUBLE(result->data[4], 14.9, 0.0001);;
-    MU_APPROX_DOUBLE(result->data[5], 17.88, 0.0001);;
+    MU_APPROX_DOUBLE(matrix->data[0], 3.278, 0.0001);
+    MU_APPROX_DOUBLE(matrix->data[1], 5.96, 0.0001);
+    MU_APPROX_DOUBLE(matrix->data[2], 11.92, 0.0001);;
+    MU_APPROX_DOUBLE(matrix->data[3], 14.9, 0.0001);;
+    MU_APPROX_DOUBLE(matrix->data[4], 14.9, 0.0001);;
+    MU_APPROX_DOUBLE(matrix->data[5], 17.88, 0.0001);;
 
 
     // Free memory
     free_matrix(matrix);
     matrix = NULL;
-
-    free_matrix(result);
-    result = NULL;
 
     return 0;
 }

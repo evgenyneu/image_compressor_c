@@ -175,7 +175,7 @@ Matrix *multiply_upper_symmetric_matrix_with_vector(Matrix *matrix, Matrix *vect
 
 /*
 
-Multiply `matrix` with the `number` and return the result.
+Multiply `matrix` with the `number` and update `matrix`.
 
 Inputs:
 -------
@@ -184,14 +184,8 @@ matrix : a matrix.
 
 number : a number.
 
-
-Outputs:
--------
-
-Returns : a new matrix, which is the product of `matrix` with a `number`.
-
 */
-Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number);
+void multiply_matrix_with_a_number(Matrix *matrix, double number);
 
 
 /*

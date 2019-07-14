@@ -27,12 +27,9 @@ void free_svd(SVD *svd_data)
 Matrix *find_u_from_v(Matrix *matrix, Matrix *v, double singular_value)
 {
     Matrix *product = multiply_matrix_with_vector(matrix, v);
-    Matrix *vector_u = multiply_matrix_with_a_number(product, 1 / singular_value);
+    multiply_matrix_with_a_number(product, 1 / singular_value);
 
-    free_matrix(product);
-    product = NULL;
-
-    return vector_u;
+    return product;
 }
 
 SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
@@ -82,10 +79,10 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
         // Calculate the first dominant term of the singular value expansion
         Matrix *v_transposed = transpose_matrix(v);
         Matrix *product_u_transpose = multiply_matrices(u, v_transposed);
-        Matrix *dominant_matrix = multiply_matrix_with_a_number(product_u_transpose, -singular_value);
+        multiply_matrix_with_a_number(product_u_transpose, -singular_value);
 
         // Subtract the dominant term
-        Matrix *matrix_dominant_subtracted = add_matrices(current_matrix, dominant_matrix);
+        Matrix *matrix_dominant_subtracted = add_matrices(current_matrix, product_u_transpose);
 
         // Use the new `current_matrix` for next iteration
         free_matrix(current_matrix);
@@ -100,9 +97,6 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
 
         free_matrix(product_u_transpose);
         product_u_transpose = NULL;
-
-        free_matrix(dominant_matrix);
-        dominant_matrix = NULL;
     }
 
     // Copy SVD elements to `result`
@@ -153,16 +147,14 @@ Matrix *singular_value_expansion(SVD *svd_data)
     int i;
     Matrix *u_times_transpose_v;
     Matrix *transposed_v;
-    Matrix *u_times_transpose_v_times_singular_value;
     Matrix *temp_matrix;
 
     for (i = 0; i < svd_data->elements; i++)
     {
         transposed_v = transpose_matrix(svd_data->v_vectors[i]);
         u_times_transpose_v = multiply_matrices(svd_data->u_vectors[i], transposed_v);
-        u_times_transpose_v_times_singular_value = multiply_matrix_with_a_number(u_times_transpose_v,                                                                       svd_data->singular_values[i]);
-
-        temp_matrix = add_matrices(matrix, u_times_transpose_v_times_singular_value);
+        multiply_matrix_with_a_number(u_times_transpose_v, svd_data->singular_values[i]);
+        temp_matrix = add_matrices(matrix, u_times_transpose_v);
 
         free_matrix(matrix);
         matrix = temp_matrix;
@@ -174,9 +166,6 @@ Matrix *singular_value_expansion(SVD *svd_data)
 
         free_matrix(u_times_transpose_v);
         u_times_transpose_v = NULL;
-
-        free_matrix(u_times_transpose_v_times_singular_value);
-        u_times_transpose_v_times_singular_value = NULL;
     }
 
     return matrix;

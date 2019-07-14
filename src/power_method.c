@@ -33,9 +33,8 @@ Matrix *dominant_eigen_system(Matrix *matrix, int iterations, double *eigenvalue
         }
 
         // Normalize unit vector
-        unit_vector = multiply_matrix_with_a_number(product, 1 / vec_length);
-        free_matrix(product);
-        product = NULL;
+        multiply_matrix_with_a_number(product, 1 / vec_length);
+        unit_vector = product;
     }
 
     // Calculate dominant eigenvalue

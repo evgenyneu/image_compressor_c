@@ -137,19 +137,16 @@ Matrix *multiply_upper_symmetric_matrix_with_vector(Matrix *matrix, Matrix *vect
 }
 
 
-Matrix *multiply_matrix_with_a_number(Matrix *matrix, double number)
+void multiply_matrix_with_a_number(Matrix *matrix, double number)
 {
-    Matrix *product = new_matrix(matrix->row_num, matrix->col_num);
-
     int i;
-    int elements = matrix->row_num * matrix->col_num;
+    int n = matrix->col_num;
+    int row_num = matrix->row_num;
 
-    for (i = 0; i < elements; i++)
+    for (i = 0; i < row_num; i++)
     {
-        product->data[i] = number * matrix->data[i];
+        cblas_dscal(n, number, matrix->data + i * n, 1);
     }
-
-    return product;
 }
 
 

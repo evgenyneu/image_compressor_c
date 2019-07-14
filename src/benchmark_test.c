@@ -110,12 +110,8 @@ static char *test_benchmark_multiply_matrix_with_a_number()
     }
 
     TICK(MULTIPLY_MATRIX_WITH_NUMBER);
-    Matrix *result = multiply_matrix_with_a_number(matrix, 2.98);
+    multiply_matrix_with_a_number(matrix, 2.98);
     TOCK(MULTIPLY_MATRIX_WITH_NUMBER);
-
-    // Free memory
-    free_matrix(result);
-    result = NULL;
 
     free_matrix(matrix);
     matrix = NULL;
