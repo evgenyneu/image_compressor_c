@@ -80,7 +80,7 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
     return product;
 }
 
-Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector)
+Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector, double scalar)
 {
     if (matrix->col_num != vector->row_num)
     {
@@ -99,7 +99,7 @@ Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector)
     int m = matrix->row_num;
     int n = matrix->col_num;
 
-    cblas_dgemv(CblasRowMajor, CblasNoTrans, m, n, 1, matrix->data, n,
+    cblas_dgemv(CblasRowMajor, CblasNoTrans, m, n, scalar, matrix->data, n,
                 vector->data, 1,  0, product->data, 1);
 
     return product;

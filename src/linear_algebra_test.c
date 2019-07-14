@@ -177,14 +177,14 @@ static char *test_multiply_matrix_with_vector()
 
     Matrix *matrix2 = new_matrix_from_array(matrix2_data, 3, 1);
 
-    Matrix *result = multiply_matrix_with_vector(matrix1, matrix2);
+    Matrix *result = multiply_matrix_with_vector(matrix1, matrix2, 2);
 
     MU_EQUAL_INT(result->row_num, 3);
     MU_EQUAL_INT(result->col_num, 1);
 
-    MU_APPROX_DOUBLE(result->data[0], 2.16, 0.0001);
-    MU_APPROX_DOUBLE(result->data[1], 16.6, 0.0001);
-    MU_APPROX_DOUBLE(result->data[2], 7.39, 0.0001);
+    MU_APPROX_DOUBLE(result->data[0], 4.32, 0.0001);
+    MU_APPROX_DOUBLE(result->data[1], 33.2, 0.0001);
+    MU_APPROX_DOUBLE(result->data[2], 14.78, 0.0001);
 
     // Free memory
     free_matrix(matrix1);
@@ -216,7 +216,7 @@ static char *test_multiply_matrix_with_vector2()
 
     Matrix *matrix2 = new_matrix_from_array(matrix2_data, 2, 1);
 
-    Matrix *result = multiply_matrix_with_vector(matrix1, matrix2);
+    Matrix *result = multiply_matrix_with_vector(matrix1, matrix2, 1);
 
     MU_EQUAL_INT(result->row_num, 3);
     MU_EQUAL_INT(result->col_num, 1);

@@ -133,7 +133,7 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2);
 
 /*
 
-Multiply a matrix with a vector.
+Multiply a matrix with a vector: scalar * matrix * vector.
 
 Inputs:
 -------
@@ -142,6 +142,8 @@ matrix: A matrix.
 
 vector: A vector (a matrix with a single column).
 
+scalar: A scalar that multiplies the matrix-vector product.
+
 
 Outputs:
 -------
@@ -149,7 +151,7 @@ Outputs:
 Returns : a new n-by-1 matrix, which is the result of the product of `matrix` with `vector`.
 
 */
-Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector);
+Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector, double scalar);
 
 
 /*
