@@ -80,6 +80,21 @@ Matrix *multiply_matrices(Matrix *matrix1, Matrix *matrix2)
     return product;
 }
 
+void multiply_vector_by_vector_transpose(Matrix *vector1, Matrix *vector2, double scalar, Matrix *matrix)
+{
+    if (vector1->col_num != 1 || vector2->col_num != 1)
+    {
+        perror("Not a vector.");
+        exit(EXIT_FAILURE);
+    }
+
+    int m = vector1->row_num;
+    int n = vector2->row_num;
+
+    cblas_dger(CblasRowMajor, m, n, scalar, vector1->data, 1, vector2->data, 1, matrix->data, n);
+}
+
+
 Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector, double scalar)
 {
     if (matrix->col_num != vector->row_num)

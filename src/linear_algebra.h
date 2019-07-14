@@ -56,6 +56,7 @@ Returns : a new matrix.
 */
 Matrix *new_matrix(int row_num, int col_num);
 
+
 /*
 
 Allocate a new matrix based on the given data array.
@@ -152,6 +153,32 @@ Returns : a new n-by-1 matrix, which is the result of the product of `matrix` wi
 
 */
 Matrix *multiply_matrix_with_vector(Matrix *matrix, Matrix *vector, double scalar);
+
+
+/*
+
+Multiply a vector1 by transpose of vector2 and add the result to a matrix.
+
+    scalar * vector1 * vector2^T + matrix
+
+Inputs:
+-------
+
+vector1: An m by 1 matrix.
+
+vector2: An n by 1 matrix.
+
+scalar: A scalar that multiplies the vector-vector product.
+
+
+Outputs:
+--------
+
+matrix : a n-by-m matrix. Result is updated into this matrix.
+
+*/
+void multiply_vector_by_vector_transpose(Matrix *vector1, Matrix *vector2, double scalar,
+                                        Matrix *matrix);
 
 
 /*

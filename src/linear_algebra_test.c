@@ -199,6 +199,7 @@ static char *test_multiply_matrix_with_vector()
     return 0;
 }
 
+
 static char *test_multiply_matrix_with_vector2()
 {
     double matrix1_data[] = {
@@ -237,6 +238,57 @@ static char *test_multiply_matrix_with_vector2()
 
     return 0;
 }
+
+
+static char *test_multiply_vector_by_vector_transpose()
+{
+    double vector1_data[] = {
+                                1.1,
+                                3,
+                                5
+                            };
+
+    Matrix *vector1 = new_matrix_from_array(vector1_data, 3, 1);
+
+    double vector2_data[] = {
+                                4.1,
+                                1
+                            };
+
+    Matrix *vector2 = new_matrix_from_array(vector2_data, 2, 1);
+
+    double matrix_data[] = {
+                                1.0, 1.1,
+                                1.2, 1.3,
+                                1.4, 1.5
+                            };
+
+    Matrix *matrix = new_matrix_from_array(matrix_data, 3, 2);
+
+    multiply_vector_by_vector_transpose(vector1, vector2, 2, matrix);
+
+    MU_APPROX_DOUBLE(matrix->data[0], 10.02, 0.0001);
+    MU_APPROX_DOUBLE(matrix->data[1], 3.3, 0.0001);
+
+    MU_APPROX_DOUBLE(matrix->data[2], 25.8, 0.0001);
+    MU_APPROX_DOUBLE(matrix->data[3], 7.3, 0.0001);
+
+    MU_APPROX_DOUBLE(matrix->data[4], 42.4, 0.0001);
+    MU_APPROX_DOUBLE(matrix->data[5], 11.5, 0.0001);
+
+    // Free memory
+    free_matrix(vector1);
+    vector1 = NULL;
+
+    free_matrix(vector2);
+    vector2 = NULL;
+
+    free_matrix(matrix);
+    matrix = NULL;
+
+    return 0;
+}
+
 
 
 static char *test_multiply_upper_symmetric_matrix_with_vector()
@@ -420,5 +472,6 @@ char *load_all_linear_algebra_tests(void)
     MU_RUN_TEST(test_multiply_matrix_with_vector);
     MU_RUN_TEST(test_multiply_matrix_with_vector2);
     MU_RUN_TEST(test_multiply_upper_symmetric_matrix_with_vector);
+    MU_RUN_TEST(test_multiply_vector_by_vector_transpose);
     return 0;
 }

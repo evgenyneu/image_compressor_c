@@ -75,26 +75,12 @@ SVD *svd(Matrix *matrix, int max_eigenvalues, int iterations)
         }
 
         // Calculate the first dominant term of the singular value expansion
-        Matrix *v_transposed = transpose_matrix(v);
-        Matrix *product_u_transpose = multiply_matrices(u, v_transposed);
-        multiply_matrix_with_a_number(product_u_transpose, -singular_value);
-
-        // Subtract the dominant term
-        Matrix *matrix_dominant_subtracted = add_matrices(current_matrix, product_u_transpose);
-
-        // Use the new `current_matrix` for next iteration
-        free_matrix(current_matrix);
-        current_matrix = matrix_dominant_subtracted;
+        // and subtract is from current_matrix
+        multiply_vector_by_vector_transpose(u, v, -singular_value, current_matrix);
 
         // Free memory
         free_matrix(matrix_gramian);
         matrix_gramian = NULL;
-
-        free_matrix(v_transposed);
-        v_transposed = NULL;
-
-        free_matrix(product_u_transpose);
-        product_u_transpose = NULL;
     }
 
     // Copy SVD elements to `result`
