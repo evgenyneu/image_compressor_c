@@ -55,7 +55,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
         "--terms :  number of terms in the singular value expansion\n"
         "--iterations :  number of iterations of the power method\n"
         "--benchmark :  run the benchmark to measure compression performance,\n"
-        "               (no other options are needed for benchmarkmak)\n"
+        "               no other options are needed for the benchmark\n"
         "--help :  show this message\n";
 
 	while ((c = parg_getopt_long(&ps,  argc, argv, "ma", po_def, &li)) != -1) {
