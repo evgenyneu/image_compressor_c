@@ -115,3 +115,43 @@ The program produced the following compressed images featuring my cat Marmite. T
 ![19 term compression](images/compressed/marmite_019_terms.jpg)
 
 ![20 term compression](images/compressed/marmite_020_terms.jpg)
+
+![25 term compression](images/compressed/marmite_025_terms.jpg)
+
+![30 term compression](images/compressed/marmite_030_terms.jpg)
+
+![35 term compression](images/compressed/marmite_035_terms.jpg)
+
+![40 term compression](images/compressed/marmite_040_terms.jpg)
+
+![45 term compression](images/compressed/marmite_045_terms.jpg)
+
+![50 term compression](images/compressed/marmite_050_terms.jpg)
+
+![60 term compression](images/compressed/marmite_060_terms.jpg)
+
+![70 term compression](images/compressed/marmite_070_terms.jpg)
+
+![80 term compression](images/compressed/marmite_080_terms.jpg)
+
+![90 term compression](images/compressed/marmite_090_terms.jpg)
+
+![100 term compression](images/compressed/marmite_100_terms.jpg)
+
+![120 term compression](images/compressed/marmite_120_terms.jpg)
+
+![150 term compression](images/compressed/marmite_150_terms.jpg)
+
+![180 term compression](images/compressed/marmite_180_terms.jpg)
+
+![200 term compression](images/compressed/marmite_200_terms.jpg)
+
+![300 term compression](images/compressed/marmite_300_terms.jpg)
+
+![400 term compression](images/compressed/marmite_400_terms.jpg)
+
+![500 term compression](images/compressed/marmite_500_terms.jpg)
+
+### Original uncompressed image
+
+![Uncompressed image](images/marmite_1000x1000.jpg)
