@@ -23,9 +23,6 @@ LINKER_FLAGS = -lm /opt/OpenBLAS/lib/libopenblas.a -lpthread
 # Additional directories containing *.h files
 HEADER_DIRS =  -I/opt/OpenBLAS/include
 
-# Add the following flags to make it faster
-# -O2 -ffast-math
-
 # Final binary
 BIN = compressor
 
