@@ -92,8 +92,6 @@ This work is in [public domain](LICENSE).
 
 ### Compressed images
 
-The program produced the following compressed images:
-
 ![1 term compression](images/compressed/marmite_001_terms.jpg)
 
 ![2 term compression](images/compressed/marmite_002_terms.jpg)
