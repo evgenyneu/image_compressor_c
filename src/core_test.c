@@ -212,9 +212,9 @@ static char *test_compress_from_command_line_options()
 }
 
 
-static char *test_compressed_size()
+static char *test_compression_ratio()
 {
-    double result = compressed_size(10, 100, 80);
+    double result = compression_ratio(10, 100, 80);
     MU_EQUAL_DOUBLE(result, 0.226250);
 
     return 0;
@@ -227,6 +227,6 @@ char *load_all_core_tests(void)
     MU_RUN_TEST(test_compress_image_file);
     MU_RUN_TEST(test_compress_from_command_line_options);
     MU_RUN_TEST(test_compress_3_by_3_image_file);
-    MU_RUN_TEST(test_compressed_size);
+    MU_RUN_TEST(test_compression_ratio);
     return 0;
 }

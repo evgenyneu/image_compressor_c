@@ -31,7 +31,7 @@ Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channe
 
 /*
 
-Calculate the size of the compressed image relative to non-compressed.
+Calculate the size of the original image relative to the compressed image.
 
 Inputs:
 -------
@@ -44,10 +44,10 @@ terms :  The number of terms for the singular value expansion. Higher number wil
 Output:
 -------
 
-Returns: The size of the compressed image relative to non-compressed.
+Returns: The size of the original image relative to the compressed image.
 
 */
-double compressed_size(int terms, int width, int height);
+double compression_ratio(int terms, int width, int height);
 
 
 /*

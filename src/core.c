@@ -4,6 +4,7 @@
 #include "core.h"
 #include "svd.h"
 #include "load_image.h"
+#include "annotate.h"
 
 Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channels)
 {
@@ -70,9 +71,9 @@ void compress_image_file(const char *path, const char *output, int terms, int it
 }
 
 
-double compressed_size(int terms, int width, int height)
+double compression_ratio(int terms, int width, int height)
 {
-    return (double) terms * (1 + width + height) / (width * height);
+    return 1.0 / ((double) terms * (1 + width + height) / (width * height));
 }
 
 
@@ -89,16 +90,18 @@ void compress_from_command_line_options(CmdArgs *cmd_args, int silent)
 
     int width, height;
 
-    compress_image_file(cmd_args->path, cmd_args->output, cmd_args->terms, cmd_args->iterations, &width, &height);
+    compress_image_file(cmd_args->path, cmd_args->output, cmd_args->terms,
+                        cmd_args->iterations, &width, &height);
 
     clock_t end_clock = clock();
     double time_spent_sec = (double)(end_clock - start_clock) / CLOCKS_PER_SEC;
 
+    double compression_ratio_value = compression_ratio(cmd_args->terms, width, height);
+    annotate(cmd_args->output, cmd_args->terms,compression_ratio_value, width);
+
     if (silent == 0)
     {
-        double compressed_size_value = compressed_size(cmd_args->terms, width, height);
-
-        printf("Compression: %.2fx\n", 1 / compressed_size_value);
+        printf("Compression: %.2fx\n", compression_ratio_value);
         printf("Done\n");
     }
 
