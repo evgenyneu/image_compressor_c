@@ -94,7 +94,6 @@ void compress_from_command_line_options(CmdArgs *cmd_args, int silent)
     clock_t end_clock = clock();
     double time_spent_sec = (double)(end_clock - start_clock) / CLOCKS_PER_SEC;
 
-
     if (silent == 0)
     {
         double compressed_size_value = compressed_size(cmd_args->terms, width, height);

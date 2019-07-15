@@ -8,6 +8,7 @@
 #include "string_util_test.h"
 #include "cmd_args_test.h"
 #include "benchmark_test.h"
+#include "annotate_test.h"
 
 int tests_run = 0;
 
@@ -21,6 +22,7 @@ static char *all_tests()
     MU_RUN_TEST(load_all_string_util_tests);
     MU_RUN_TEST(load_all_cmd_args_tests);
     MU_RUN_TEST(load_all_benchmark_tests);
+    MU_RUN_TEST(load_all_annotate_tests);
     return 0;
 }
 
