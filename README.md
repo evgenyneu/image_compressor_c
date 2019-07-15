@@ -94,7 +94,7 @@ This work is in [public domain](LICENSE).
 
 ### Compressed images
 
-The program produced the following compressed images featuring my cat Marmite. The image are 1000 by 1000 pixels:
+The program produced the following compressed images featuring my cat Marmite. Results are also available on [YouTube](https://youtu.be/7JXdEilZ2cE).
 
 ![1 term compression](images/compressed/marmite_001_terms.jpg)
 
