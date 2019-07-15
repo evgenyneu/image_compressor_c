@@ -77,3 +77,13 @@ OUTPUT :  path to the compressed image that will be created
 The program produced the following compressed images featuring my cat Marmite. The image are 1000 by 1000 pixels:
 
 ![1 term compression](images/compressed/marmite_001_terms.jpg)
+
+![2 term compression](images/compressed/marmite_002_terms.jpg)
+
+![3 term compression](images/compressed/marmite_003_terms.jpg)
+
+![4 term compression](images/compressed/marmite_004_terms.jpg)
+
+![5 term compression](images/compressed/marmite_005_terms.jpg)
+
+![6 term compression](images/compressed/marmite_006_terms.jpg)
