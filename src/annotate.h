@@ -16,4 +16,22 @@ compression : The compression factor (the ratio of the original image size to th
 width : image width.
 
 */
-void annotate(char *path, int terms, double compression, int width);
+void annotate(const char *path, int terms, double compression, int width);
+
+/*
+
+Calculates the font size for the annotation based on the width of the image
+
+Inputs:
+-------
+
+width : width of the image in pixels.
+
+
+Outputs:
+-------
+
+Returns: Size of the font in the annotation
+
+*/
+int calculate_font_size(int width);

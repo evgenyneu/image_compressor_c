@@ -2,9 +2,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
-#include "file.h"
+#include "file_util.h"
 
-int cp(const char *from, const char *to, int overwrite)
+int copy_file(const char *from, const char *to, int overwrite)
 {
     int fd_to, fd_from;
     char buf[4096];
@@ -18,13 +18,13 @@ int cp(const char *from, const char *to, int overwrite)
         {
             if (remove(to) != 0)
             {
-                printf("Can not remove file %s", to);
+                printf("Can not remove file %s\n", to);
                 return -1;
             }
         }
         else
         {
-            printf("File already exists %s", to);
+            printf("File already exists %s\n", to);
         }
     }
 

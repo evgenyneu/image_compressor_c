@@ -2,6 +2,8 @@
 
 Copy file from `from` to `to` path.
 
+Based on https://stackoverflow.com/a/2180788/297131.
+
 Inputs:
 -------
 
@@ -16,4 +18,4 @@ Output:
 Returns: 0 on success, non-zero on error.
 
 */
-int cp(const char *from, const char *to, int overwrite);
+int copy_file(const char *from, const char *to, int overwrite);
