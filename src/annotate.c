@@ -17,7 +17,7 @@ void annotate(const char *path, int terms, double compression, int width)
     }
 
     char *message = malloc(1000 * sizeof(char));
-    sprintf(message, "%d %s \n %.1fx compression", terms, terms_word, compression);
+    sprintf(message, "%d %s\n%.1fx compression", terms, terms_word, compression);
     int fontsize = calculate_font_size(width);
     int margin = fontsize;
 
