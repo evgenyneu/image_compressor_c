@@ -1,9 +1,10 @@
 # An image compression program written in C
 
-This is a C program I wrote for fun to apply linear algebra theory I learned in Monash uni. The code uses singular value expansion method to reduce the size of an image.
+This is a C program I wrote for fun to apply linear algebra theory I learned in Monash uni. The code uses singular value expansion method to reduce the size of an image. Here is are examples of the compression, featuring my cat Marmite.
 
 ![Compressed with single value expansion](images/compressed/compression_animated.gif)
 
+[![Image compression video](images/youtube/youtube_thumbnail.jpg)](https://youtu.be/7JXdEilZ2cE).
 
 ## Setup
 
@@ -92,17 +93,7 @@ This work is in [public domain](LICENSE).
 ![Uncompressed image](images/marmite_1000x1000.jpg)
 
 
-
-
-
-### Video
-
-[![Image compression video](images/youtube/youtube_thumbnail.jpg)](https://youtu.be/7JXdEilZ2cE).
-
-
-### Compressed images
-
-The program produced the following compressed images featuring my cat Marmite. 
+The program produced the following compressed images.
 
 ![1 term compression](images/compressed/marmite_001_terms.jpg)
 
