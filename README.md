@@ -4,11 +4,11 @@ This is a C program I wrote for fun to apply linear algebra theory I learned in 
 
 <a href="https://youtu.be/7JXdEilZ2cE" target=”_blank”><img alt="Video of the compressed image" width="400px" src="images/youtube/youtube_thumbnail4.jpg"></a> <img alt="Image compressed using single value expansion" width="400px" src="images/compressed/compression_animated2.gif">
 
-## Setup
+## Setup (MacOS or Linux)
 
 ### 1. Install GCC
 
-In order to compile the program, you will need the GCC, a C compiler. Check if it's installed with the command that prints its version.
+In order to compile the program, you will need GCC, the C language compiler. Check if it's installed with the command that prints its version.
 
 ```
 gcc -v
