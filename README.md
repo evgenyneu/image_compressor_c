@@ -72,7 +72,23 @@ OUTPUT :  path to the compressed image that will be created
 
 
 
+## Run unit tests 
+
+```
+make test
+```
+
+## The unlicense
+
+This work is in [public domain](LICENSE).
+
+
 ## Compression results
+
+### Original uncompressed image
+
+![Uncompressed image](images/marmite_1000x1000.jpg)
+
 
 The program produced the following compressed images featuring my cat Marmite. The image are 1000 by 1000 pixels:
 
@@ -152,13 +168,3 @@ The program produced the following compressed images featuring my cat Marmite. T
 
 ![500 term compression](images/compressed/marmite_500_terms.jpg)
 
-### Original uncompressed image
-
-![Uncompressed image](images/marmite_1000x1000.jpg)
-
-
-## Run unit tests 
-
-```
-make test
-```
