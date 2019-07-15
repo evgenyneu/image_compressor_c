@@ -54,10 +54,15 @@ static char *test_compress_image_file()
 
     MU_ASSERT(access(output_path, F_OK) == -1);
 
-    compress_image_file("images/test_100x100.jpg", output_path, 3, 5);
+    int width, height;
+
+    compress_image_file("images/test_100x100.jpg", output_path, 3, 5, &width, &height);
 
     // Check image exists
     MU_ASSERT(access(output_path, F_OK) != -1);
+
+    MU_EQUAL_INT(width, 100);
+    MU_EQUAL_INT(height, 100);
 
     // Delete test file
     if (remove(output_path) != 0)
@@ -83,10 +88,15 @@ static char *test_compress_3_by_3_image_file()
 
     MU_ASSERT(access(output_path, F_OK) == -1);
 
-    compress_image_file("images/test_3x3.bmp", output_path, 1, 1);
+    int width, height;
+
+    compress_image_file("images/test_3x3.bmp", output_path, 1, 1, &width, &height);
 
     // Check image exists
     MU_ASSERT(access(output_path, F_OK) != -1);
+
+    MU_EQUAL_INT(width, 3);
+    MU_EQUAL_INT(height, 3);
 
     // Verify output image
     // -----------
@@ -202,11 +212,21 @@ static char *test_compress_from_command_line_options()
 }
 
 
+static char *test_compressed_size()
+{
+    double result = compressed_size(10, 100, 80);
+    MU_EQUAL_DOUBLE(result, 0.226250);
+
+    return 0;
+}
+
+
 char *load_all_core_tests(void)
 {
     MU_RUN_TEST(test_compress_image);
     MU_RUN_TEST(test_compress_image_file);
     MU_RUN_TEST(test_compress_from_command_line_options);
     MU_RUN_TEST(test_compress_3_by_3_image_file);
+    MU_RUN_TEST(test_compressed_size);
     return 0;
 }

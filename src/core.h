@@ -28,6 +28,28 @@ Returns : matrices containing data each channel for the compressed image, array 
 Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channels);
 
 
+
+/*
+
+Calculate the size of the compressed image relative to non-compressed.
+
+Inputs:
+-------
+
+width, height: width and height of the image in pixels.
+
+terms :  The number of terms for the singular value expansion. Higher number will produce better quality.
+
+
+Output:
+-------
+
+Returns: The size of the compressed image relative to non-compressed.
+
+*/
+double compressed_size(int terms, int width, int height);
+
+
 /*
 
 Compresses the image and the output file.
@@ -43,8 +65,13 @@ terms :  The number of terms for the singular value expansion. Higher number wil
 
 iterations : Number of terms in the singular value expansion.
 
+Output:
+-------
+
+width, height: will be set to the width and height of the image.
+
 */
-void compress_image_file(const char *path, const char *output, int terms, int iterations);
+void compress_image_file(const char *path, const char *output, int terms, int iterations, int *width, int *height);
 
 
 /*

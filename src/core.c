@@ -36,10 +36,17 @@ Matrix **compress_image(Matrix **matrices, int terms, int iterations, int channe
     return result;
 }
 
-void compress_image_file(const char *path, const char *output, int terms, int iterations)
+void compress_image_file(const char *path, const char *output, int terms, int iterations,
+                         int *width, int *height)
 {
     int matrix_num = 0;
     Matrix **matrices = load_image(path, &matrix_num);
+
+    if (matrix_num > 0)
+    {
+        *width = matrices[0]->col_num;
+        *height = matrices[0]->row_num;
+    }
 
     Matrix **matrices_compressed = compress_image(matrices, terms, iterations, matrix_num);
 
@@ -63,10 +70,15 @@ void compress_image_file(const char *path, const char *output, int terms, int it
 }
 
 
+double compressed_size(int terms, int width, int height)
+{
+    return (double) terms * (1 + width + height) / (width * height);
+}
+
+
 void compress_from_command_line_options(CmdArgs *cmd_args, int silent)
 {
     clock_t start_clock = clock();
-
 
     if (silent == 0)
     {
@@ -75,13 +87,19 @@ void compress_from_command_line_options(CmdArgs *cmd_args, int silent)
         printf("Iterations: %d\n", cmd_args->iterations);
     }
 
-    compress_image_file(cmd_args->path, cmd_args->output, cmd_args->terms, cmd_args->iterations);
+    int width, height;
+
+    compress_image_file(cmd_args->path, cmd_args->output, cmd_args->terms, cmd_args->iterations, &width, &height);
 
     clock_t end_clock = clock();
     double time_spent_sec = (double)(end_clock - start_clock) / CLOCKS_PER_SEC;
 
+
     if (silent == 0)
     {
+        double compressed_size_value = compressed_size(cmd_args->terms, width, height);
+
+        printf("Compression: %.2fx\n", 1 / compressed_size_value);
         printf("Done\n");
     }
 
