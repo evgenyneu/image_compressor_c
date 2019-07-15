@@ -155,3 +155,10 @@ The program produced the following compressed images featuring my cat Marmite. T
 ### Original uncompressed image
 
 ![Uncompressed image](images/marmite_1000x1000.jpg)
+
+
+## Run unit tests 
+
+```
+make test
+```
