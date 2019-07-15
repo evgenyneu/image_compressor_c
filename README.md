@@ -2,9 +2,9 @@
 
 This is a C program I wrote for fun to apply linear algebra theory I learned in Monash uni. The code uses singular value expansion method to reduce the size of an image. Here is are compression examples, featuring my cat Marmite.
 
-<a href="https://youtu.be/7JXdEilZ2cE" target=”_blank”><img alt="Video of the compressed image" width="300px" src="images/youtube/youtube_thumbnail4.jpg"></a>
+<a href="https://youtu.be/7JXdEilZ2cE" target=”_blank”><img alt="Video of the compressed image" width="400px" src="images/youtube/youtube_thumbnail4.jpg"></a>
 
-<img alt="Image compressed using single value expansion" width="300px" src="images/compressed/compression_animated.gif">
+<img alt="Image compressed using single value expansion" width="400px" src="images/compressed/compression_animated.gif">
 
 ## Setup
 
