@@ -50,6 +50,6 @@ Compress an image file [marmite.jpg](marmite.jpg) using ten terms of the singula
 
 It creates an image named `compressed.jpg` that looks like this:
 
-![Singular value expansion compression with 10 terms](images/marmite_10_terms_25.0x_compression.jpg)
+![Singular value expansion compression with 10 terms](images/marmite_500x500_10_terms_25.0x_compression.jpg)
 
 You can experiment with the `--terms` and `--iterations` options and see how it affects the image quality and compression ratio.
