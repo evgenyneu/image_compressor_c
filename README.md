@@ -2,6 +2,8 @@
 
 This is a C program I wrote for fun to apply linear algebra theory I learned in Monash uni. The code uses singular value expansion method to reduce the size of an image.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7JXdEilZ2cE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Setup
 
 
