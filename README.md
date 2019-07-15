@@ -53,3 +53,19 @@ It creates an image named `compressed.jpg` that looks like this:
 ![Singular value expansion compression with 10 terms](images/marmite_500x500_10_terms_25.0x_compression.jpg)
 
 You can experiment with the `--terms` and `--iterations` options and see how it affects the image quality and compression ratio.
+
+
+### Available options
+
+```
+compressor [--help] [--terms=10] [--iterations=5] IMAGE OUTPUT
+
+IMAGE :  path to the image to compress
+OUTPUT :  path to the compressed image that will be created
+--terms :  number of terms in the singular value expansion
+--iterations :  number of iterations of the power method
+--notext :  no annotation on the image
+--benchmark :  run the benchmark to measure compression performance,
+               no other options are needed for the benchmark
+--help :  show this message
+```
