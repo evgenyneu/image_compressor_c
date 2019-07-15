@@ -87,3 +87,31 @@ The program produced the following compressed images featuring my cat Marmite. T
 ![5 term compression](images/compressed/marmite_005_terms.jpg)
 
 ![6 term compression](images/compressed/marmite_006_terms.jpg)
+
+![7 term compression](images/compressed/marmite_007_terms.jpg)
+
+![8 term compression](images/compressed/marmite_008_terms.jpg)
+
+![9 term compression](images/compressed/marmite_009_terms.jpg)
+
+![10 term compression](images/compressed/marmite_010_terms.jpg)
+
+![11 term compression](images/compressed/marmite_011_terms.jpg)
+
+![12 term compression](images/compressed/marmite_012_terms.jpg)
+
+![13 term compression](images/compressed/marmite_013_terms.jpg)
+
+![14 term compression](images/compressed/marmite_014_terms.jpg)
+
+![15 term compression](images/compressed/marmite_015_terms.jpg)
+
+![16 term compression](images/compressed/marmite_016_terms.jpg)
+
+![17 term compression](images/compressed/marmite_017_terms.jpg)
+
+![18 term compression](images/compressed/marmite_018_terms.jpg)
+
+![19 term compression](images/compressed/marmite_019_terms.jpg)
+
+![20 term compression](images/compressed/marmite_020_terms.jpg)
