@@ -8,7 +8,7 @@ This is a C program I wrote for fun to apply linear algebra theory I learned in 
 
 ### 1. Install GCC
 
-In order to compile the program, you will need GCC, the C language compiler. Check if it's installed with the command that prints its version.
+In order to compile the program, you will need GCC, the C language compiler. Check if it's installed with the command that prints its version:
 
 ```
 gcc -v
