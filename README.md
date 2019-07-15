@@ -92,9 +92,17 @@ This work is in [public domain](LICENSE).
 ![Uncompressed image](images/marmite_1000x1000.jpg)
 
 
+
+
+
+### Video
+
+[![Image compression video](images/youtube/youtube_thumbnail.jpg)](https://youtu.be/7JXdEilZ2cE).
+
+
 ### Compressed images
 
-The program produced the following compressed images featuring my cat Marmite. Results are also available on [YouTube](https://youtu.be/7JXdEilZ2cE).
+The program produced the following compressed images featuring my cat Marmite. 
 
 ![1 term compression](images/compressed/marmite_001_terms.jpg)
 
