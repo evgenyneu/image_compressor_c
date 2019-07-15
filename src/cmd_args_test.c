@@ -19,6 +19,28 @@ static char *test_parse_cmd_args__all_options_supplied()
     MU_EQUAL_INT(cmd_args->iterations, 3);
     MU_EQUAL_STR(cmd_args->path, "dir/image.jpg");
     MU_EQUAL_STR(cmd_args->output, "dir/compressed.jpg");
+    MU_EQUAL_INT(cmd_args->show_annotation, 1);
+    MU_EQUAL_STR(result, "");
+
+    // Free memory
+    free_cmd_args(cmd_args);
+    free(result);
+
+    return 0;
+}
+
+static char *test_parse_cmd_args__no_text()
+{
+    const char *argv[] = { "compressor", "--terms=13", "--iterations=3",
+        "dir/image.jpg", "dir/compressed.jpg", "--notext"};
+
+    int argc = sizeof(argv) / sizeof(char *);
+    CmdArgs *cmd_args = new_cmd_args();
+
+    char *result = parse_cmd_args(argc, (char *const *) argv, cmd_args);
+
+    MU_EQUAL_INT(cmd_args->ready_to_compress, 1);
+    MU_EQUAL_INT(cmd_args->show_annotation, 0);
     MU_EQUAL_STR(result, "");
 
     // Free memory
@@ -190,5 +212,6 @@ char *load_all_cmd_args_tests(void)
     MU_RUN_TEST(test_parse_cmd_args__default_terms_and_iterations);
     MU_RUN_TEST(test_parse_cmd_args__benchmark);
     MU_RUN_TEST(test_benchmark_options);
+    MU_RUN_TEST(test_parse_cmd_args__no_text);
     return 0;
 }

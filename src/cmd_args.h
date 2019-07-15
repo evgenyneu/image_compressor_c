@@ -25,6 +25,11 @@ typedef struct
     // Contains 1 the benchmark if this is a benchmark compression
     // Contains 0 otherwise.
     int benchmark;
+
+    // Contains the following values:
+    //      1: Annotate the image
+    //      0: No annotation on the image
+    int show_annotation;
 } CmdArgs;
 
 

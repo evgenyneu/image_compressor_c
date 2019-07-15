@@ -215,7 +215,7 @@ static char *test_compress_from_command_line_options()
 static char *test_compression_ratio()
 {
     double result = compression_ratio(10, 100, 80);
-    MU_EQUAL_DOUBLE(result, 0.226250);
+    MU_APPROX_DOUBLE(result, 4.41989, 0.0001);
 
     return 0;
 }

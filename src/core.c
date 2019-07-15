@@ -97,7 +97,11 @@ void compress_from_command_line_options(CmdArgs *cmd_args, int silent)
     double time_spent_sec = (double)(end_clock - start_clock) / CLOCKS_PER_SEC;
 
     double compression_ratio_value = compression_ratio(cmd_args->terms, width, height);
-    annotate(cmd_args->output, cmd_args->terms,compression_ratio_value, width);
+
+    if (cmd_args->show_annotation)
+    {
+        annotate(cmd_args->output, cmd_args->terms,compression_ratio_value, width);
+    }
 
     if (silent == 0)
     {

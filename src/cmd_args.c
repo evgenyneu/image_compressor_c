@@ -14,6 +14,7 @@ CmdArgs *new_cmd_args(void)
     cmd_args->terms = 10;
     cmd_args->iterations = 3;
     cmd_args->benchmark = 0;
+    cmd_args->show_annotation = 1;
     return cmd_args;
 }
 
@@ -36,6 +37,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
         { "terms", PARG_REQARG, NULL, 't' },
         { "iterations", PARG_REQARG, NULL, 'i' },
         { "help", PARG_NOARG, NULL, 'h' },
+        { "notext", PARG_NOARG, NULL, 'n' },
         { "benchmark", PARG_NOARG, NULL, 'b' },
         { 0, 0, 0, 0 }
     };
@@ -54,6 +56,7 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
         "OUTPUT :  path to the compressed image that will be created\n"
         "--terms :  number of terms in the singular value expansion\n"
         "--iterations :  number of iterations of the power method\n"
+        "--notext :  no annotation on the image\n"
         "--benchmark :  run the benchmark to measure compression performance,\n"
         "               no other options are needed for the benchmark\n"
         "--help :  show this message\n";
@@ -81,6 +84,9 @@ char *parse_cmd_args(int argc, char *const argv[], CmdArgs *cmd_args)
             strcat(output_text, buffer);
             cmd_args->ready_to_compress = 0;
 			return output_text;
+			break;
+        case 'n': // --help
+            cmd_args->show_annotation = 0;
 			break;
         case 'b': // --benchmark
             benchmark_options(cmd_args);
