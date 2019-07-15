@@ -90,6 +90,8 @@ This work is in [public domain](LICENSE).
 ![Uncompressed image](images/marmite_1000x1000.jpg)
 
 
+### Compressed images
+
 The program produced the following compressed images featuring my cat Marmite. The image are 1000 by 1000 pixels:
 
 ![1 term compression](images/compressed/marmite_001_terms.jpg)
