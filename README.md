@@ -69,3 +69,11 @@ OUTPUT :  path to the compressed image that will be created
                no other options are needed for the benchmark
 --help :  show this message
 ```
+
+
+
+## Compression results
+
+The program produced the following compressed images featuring my cat Marmite. The image are 1000 by 1000 pixels:
+
+![1 term compression](images/compressed/marmite_001_terms.jpg)
