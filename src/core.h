@@ -16,7 +16,7 @@ matrices : array of matrices containing image data for each color chanel. The si
 
 terms :  The number of terms for the singular value expansion. Higher number will produce better quality.
 
-iterations : Number of terms in the singular value expansion.
+iterations : Number of iterations of the power method.
 
 
 Outputs:
@@ -63,7 +63,7 @@ output : path to the compressed image file that will be created.
 
 terms :  The number of terms for the singular value expansion. Higher number will produce better quality.
 
-iterations : Number of terms in the singular value expansion.
+iterations : Number of iterations of the power method.
 
 Output:
 -------
